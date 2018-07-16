@@ -64,9 +64,5 @@ return [
   'gallery' => [
     'title' => 'Фотогалерея',
     'slug' => 'gallery'
-  ],
-  'partners' => [
-    'title' => 'Партнеры',
-    'slug' => 'partners'
   ]
   ];

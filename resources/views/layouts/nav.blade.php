@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
     <a class="navbar-brand" href="{{ route('home') }}">{{ trans('app.brand') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -33,36 +33,45 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="scienceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              {{ trans('menu.science.title') }}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="scienceDropdown">
-              <a class="dropdown-item" href="{{ route('pages.show', trans('menu.directions.slug')) }}">{{ trans('menu.directions.title') }}</a>
-              <a class="dropdown-item" href="{{ route('pages.show', trans('menu.postgraduate.slug')) }}">{{ trans('menu.postgraduate.title') }}</a>
-            </div>
-          </li>
+          <a class="nav-link dropdown-toggle" href="#" id="enrolleeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            {{ trans('menu.enrollee.title') }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="enrolleeDropdown">
+            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.for_bachelor.slug')) }}">{{ trans('menu.for_bachelor.title') }}</a>
+            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.for_magistracy.slug')) }}">{{ trans('menu.for_magistracy.title') }}</a>
+          </div>
+        </li>
 
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="enrolleeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                {{ trans('menu.enrollee.title') }}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="enrolleeDropdown">
-                <a class="dropdown-item" href="{{ route('pages.show', trans('menu.for_bachelor.slug')) }}">{{ trans('menu.for_bachelor.title') }}</a>
-                <a class="dropdown-item" href="{{ route('pages.show', trans('menu.for_magistracy.slug')) }}">{{ trans('menu.for_magistracy.title') }}</a>
-              </div>
-            </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="scienceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            {{ trans('menu.science.title') }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="scienceDropdown">
+            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.directions.slug')) }}">{{ trans('menu.directions.title') }}</a>
+            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.postgraduate.slug')) }}">{{ trans('menu.postgraduate.title') }}</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('employees') }}" class="nav-link">{{ trans('menu.employees.title') }}</a>
+        </li>
 
         <li class="nav-item active">
-        <a class="nav-link" href="{{ route('news') }}">{{ trans('menu.news') }}
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="{{ route('news') }}">{{ trans('menu.news.title') }}</a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('gallery') }}">{{ trans('menu.gallery.title') }}</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('partners') }}" class="nav-link">{{ trans('menu.partners.title') }}</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
@@ -74,7 +83,7 @@
             @endif @endforeach
           </div>
         </li>
-
+      </ul>
     </div>
   </div>
 </nav>
