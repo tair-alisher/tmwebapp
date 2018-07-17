@@ -6,30 +6,26 @@ return [
   ],
   'projects' => [
     'title' => 'Bildungsprojekte',
-    'slug' => 'bildungsprojekte' 
+    'slug' => 'bildungsprojekte'
   ],
   'credits' => [
     'title' => 'Credits',
-    'slug' => 'credits' 
+    'slug' => 'credits-und-bewertungssystem'
   ],
-  'modules_1' => [
-    'title' => 'Module Disziplinen #1',
-    'slug' => 'module-disziplinen-1'
-  ],
-  'modules_2' => [
-    'title' => 'Module Disziplinen #2',
-    'slug' => 'module-disziplinen-2'
+  'modules' => [
+    'title' => 'Module Disziplinen',
+    'slug' => 'module-disziplinen'
   ],
   'magistracy' => [
     'title' => 'Magister'
   ],
   'tm_medicine' => [
     'title' => 'Телемедецина',
-    'slug' => 'tm-medicine'
+    'slug' => 'telemedizin'
   ],
   'tm_services' => [
     'title' => 'Телематика услуг',
-    'slug' => 'tm-services'
+    'slug' => 'telematikdienste'
   ],
   'science' => [
     'title' => 'Wissenschaft'
@@ -54,7 +50,7 @@ return [
     'slug' => 'magistratur'
   ],
   'employees' => [
-    'title' => 'Сотрудники',
+    'title' => 'Mitarbeiter',
     'slug' => 'employees'
   ],
   'news' => [

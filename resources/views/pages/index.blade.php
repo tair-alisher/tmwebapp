@@ -1,8 +1,14 @@
-@extends('layouts.master') @section('meta')
+@extends('layouts.master')
+@section('meta')
 <meta name="description" content="{{ trans('meta.description') }}">
 <meta name="keywords" content="{{ trans('meta.keywords') }}">
 <meta name="robots" content="all" />
-<meta http-equiv="content-language" content="{{ trans('app.lang') }}" /> @endsection @section('title', trans('app.main_page')) @section('content')
+<meta http-equiv="content-language" content="{{ trans('app.lang') }}" />
+@endsection
+
+@section('title', trans('app.main_page'))
+
+@section('content')
 <div class="intro-header">
   <div class="container">
     <div class="row">
@@ -18,7 +24,7 @@
   </div>
 </div>
 
-<div class="white-row">
+<div class="grey-row">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
@@ -45,7 +51,11 @@
         </ul>
       </div>
     </div>
-    <hr>
+  </div>
+</div>
+
+<div class="white-row">
+  <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="row">
@@ -230,30 +240,47 @@
           <hr class="underline">
           <div class="clearfix"></div>
 
-          <div class="col-md-3">
-            <a href="#">
-              <img src="{{ asset('images/daad.gif') }}" alt="">Webpage
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#">
-              <img src="{{ asset('images/daad.gif') }}" alt="">Webpage
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#">
-              <img src="{{ asset('images/daad.gif') }}" alt="">Webpage
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#">
-              <img src="{{ asset('images/daad.gif') }}" alt="">Webpage
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#">
-              <img src="{{ asset('images/daad.gif') }}" alt="">Webpage
-            </a>
+          <div class="partners-logos">
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
+            <div class="slide">
+              <a href="#" target="_blank">
+                <img src="{{ asset('images/daad.gif') }}" alt="">
+              </a>
+            </div>
           </div>
 
         </div>

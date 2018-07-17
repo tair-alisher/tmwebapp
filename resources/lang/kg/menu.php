@@ -5,64 +5,68 @@ return [
     'title' => 'Бакалавр'
   ],
   'projects' => [
-    'title' => 'Учебные проекты',
-    'slug' => 'projects' 
+    'title' => 'Окуу пландары',
+    'slug' => 'projects'
   ],
   'credits' => [
-    'title' => 'Кредиты и системы оценки',
-    'slug' => 'credits' 
+    'title' => 'Баалоо системи жана кредиттер',
+    'slug' => 'baaloo-sistemi-zhana-kreditter'
   ],
-  'modules_1' => [
-    'title' => 'Модули дисциплин №1',
-    'slug' => 'modules_1'
-  ],
-  'modules_2' => [
-    'title' => 'Модули дисциплин №2',
-    'slug' => 'modules_2'
+  'modules' => [
+    'title' => 'Сабактын модул',
+    'slug' => 'sabaktyn-modul'
   ],
   'magistracy' => [
     'title' => 'Магистр'
   ],
   'tm_medicine' => [
     'title' => 'Телемедецина',
-    'slug' => 'tm-medicine'
+    'slug' => 'telemedicina-kg'
   ],
   'tm_services' => [
-    'title' => 'Телематика услуг',
-    'slug' => 'tm-services'
+    'title' => 'Телематика кызматтары',
+    'slug' => 'telematika-kyzmattary'
   ],
   'science' => [
-    'title' => 'Наука'
+    'title' => 'Илим'
   ],
   'directions' => [
-    'title' => 'Научные направления',
-    'slug' => 'directions'
+    'title' => 'Илимий багыттар',
+    'slug' => 'ilimij-bagyttar'
   ],
   'postgraduate' => [
     'title' => 'Аспирантура',
-    'slug' => 'postgraduate'
+    'slug' => 'aspirantura-kg'
   ],
   'enrollee' => [
     'title' => 'Абитуриент'
   ],
   'for_bachelor' => [
-    'title' => 'Для поступления в бакалавриат',
-    'slug' => 'for-bachelor'
+    'title' => 'Бакалавриатка тапшырыш үчүн',
+    'slug' => 'bakalavriatka-tapshyrysh-uchun'
   ],
   'for_magistracy' => [
-    'title' => 'Для  поступления в магистратуру',
-    'slug' => 'for-magistracy'
+    'title' => 'Магистратурага тапшырыш үчүну',
+    'slug' => 'magistraturaga-tapshyrysh-uchun'
   ],
   'employees' => [
-    'title' => 'Сотрудники',
+    'title' => 'Кызматкерлери',
     'slug' => 'employees'
   ],
   'news' => [
-    'title' => 'Новости',
+    'title' => 'Жаңылыктар',
     'slug' => 'news'
   ],
   'gallery' => [
     'title' => 'Фотогалерея',
     'slug' => 'gallery'
+  ],
+  'partners' => [
+    'title' => 'Өнөктөштөр',
+    'slug' => 'partners'
+  ],
+  'pages' => [
+    'title' => 'Барактар',
+    'slug' => 'pages'
   ]
   ];

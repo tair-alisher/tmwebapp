@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePartnersTable extends Migration
+class CreateEduProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePartnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('partners', function (Blueprint $table) {
+        Schema::create('edu_projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->default('');
-            $table->string('image_src')->default('');
-            $table->string('link')->default('');
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreatePartnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('edu_projects');
     }
 }

@@ -6,52 +6,48 @@ return [
   ],
   'projects' => [
     'title' => 'Учебные проекты',
-    'slug' => 'projects' 
+    'slug' => 'projects'
   ],
   'credits' => [
     'title' => 'Кредиты и системы оценки',
-    'slug' => 'credits' 
+    'slug' => 'кredity-i-sistema-ocenki'
   ],
-  'modules_1' => [
+  'modules' => [
     'title' => 'Модули дисциплин №1',
-    'slug' => 'modules_1'
-  ],
-  'modules_2' => [
-    'title' => 'Модули дисциплин №2',
-    'slug' => 'modules_2'
+    'slug' => 'modules'
   ],
   'magistracy' => [
     'title' => 'Магистр'
   ],
   'tm_medicine' => [
     'title' => 'Телемедецина',
-    'slug' => 'tm-medicine'
+    'slug' => 'telemedicina'
   ],
   'tm_services' => [
     'title' => 'Телематика услуг',
-    'slug' => 'tm-services'
+    'slug' => 'telematika-uslug'
   ],
   'science' => [
     'title' => 'Наука'
   ],
   'directions' => [
     'title' => 'Научные направления',
-    'slug' => 'directions'
+    'slug' => 'nauchnye-napravlenija'
   ],
   'postgraduate' => [
     'title' => 'Аспирантура',
-    'slug' => 'postgraduate'
+    'slug' => 'aspirantura'
   ],
   'enrollee' => [
     'title' => 'Абитуриент'
   ],
   'for_bachelor' => [
     'title' => 'Для поступления в бакалавриат',
-    'slug' => 'for-bachelor'
+    'slug' => 'dlja-postuplenija-v-bakalavriat'
   ],
   'for_magistracy' => [
     'title' => 'Для  поступления в магистратуру',
-    'slug' => 'for-magistracy'
+    'slug' => 'dlja-postuplenija-v-magistraturu'
   ],
   'employees' => [
     'title' => 'Сотрудники',

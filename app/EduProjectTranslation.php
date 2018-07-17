@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloqeuntSluggable\Sluggable;
 
-class PageTranslation extends Model
+class EduProjectTranslation extends Model
 {
     use Sluggable;
 
     public $timestamps = false;
-    protected $fillable = ['title', 'slug', 'content'];
+    protected $fillable = ['title', 'slug' => 'content'];
 
     public function sluggable()
     {

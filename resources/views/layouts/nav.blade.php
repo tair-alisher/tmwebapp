@@ -16,8 +16,7 @@
           <div class="dropdown-menu" aria-labelledby="bachelorDropdown">
             <a class="dropdown-item" href="{{ route('pages.show', trans('menu.projects.slug')) }}">{{ trans('menu.projects.title') }}</a>
             <a class="dropdown-item" href="{{ route('pages.show', trans('menu.credits.slug')) }}">{{ trans('menu.credits.title') }}</a>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.modules_1.slug')) }}">{{ trans('menu.modules_1.title') }}</a>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.modules_2.slug')) }}">{{ trans('menu.modules_2.title') }}</a>
+            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.modules.slug')) }}">{{ trans('menu.modules.title') }}</a>
           </div>
         </li>
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTranslationsTable extends Migration
+class CreateEduProjectTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreatePostTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_translations', function (Blueprint $table) {
+        Schema::create('edu_project_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned();
+            $table->integer('edu_project_id')->usnigned();
             $table->string('locale')->index();
 
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
 
-            $table->unique(['post_id', 'locale']);
+            $table->unique(['edu_project_id', 'locale']);
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreatePostTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_translations');
+        Schema::dropIfExists('edu_project_translations');
     }
 }

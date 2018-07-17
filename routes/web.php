@@ -30,6 +30,15 @@ Route::get('/partners', [
     'uses' => 'PagesController@partners'
 ]);
 
+Route::get('/edu_projects', [
+    'as' => 'edu_projects',
+    'uses' => 'PagesController@eduProjects'
+]);
+Route::get('/edu_projects/{slug}', [
+    'as' => 'edu_projects.show',
+    'uses' => 'PagesController@showEduProject'
+]);
+
 Route::get('/news/{slug}', [
     'as' => 'news.show',
     'uses' => 'PostsController@show'
