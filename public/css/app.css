@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik|Rubik+Mono+One');
 
-.content {
+.content,
+footer,
+.bottom {
   font-family: 'Roboto', 'Open Sans', sans-serif, 'Helvetica Neue', Helvetica, Arial;
   font-size: 1em;
 }
@@ -26,10 +28,12 @@
 }
 .intro-message > h1,
 .intro-message > h2 {
+  font-family: 'Roboto', 'Open Sans', sans-serif;
   margin: 0;
   font-size: 1.6em;
 }
 .intro-message > p {
+  font-family: 'Roboto', 'Open Sans', sans-serif;
   font-size: 1.2em;
   text-align: justify;
   word-wrap: normal;
@@ -102,4 +106,36 @@ p.tm-info-par {
 }
 .tm-info-ul {
   text-align: justify;
+}
+
+footer {
+  padding: 40px 0;
+  background-color: #323a45;
+  color: #777777;
+}
+footer a {
+  color: #88959f;
+  display: block;
+}
+footer a:hover {
+  color: #eeeeee;
+  text-decoration: none;
+}
+
+.footer-title {
+  margin-left: 5px;
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #eeeeee;
+}
+
+.bottom {
+  color: #88959F;
+  background-color: #18202B;
+  padding: 5px;
+}
+
+.bottom .sign {
+  margin: 0 auto;
+  width: 300px;
 }

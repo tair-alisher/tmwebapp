@@ -68,5 +68,9 @@ return [
   'partners' => [
     'title' => 'Партнеры',
     'slug' => 'partners'
+  ],
+  'pages' => [
+    'title' => 'Страницы',
+    'slug' => 'pages'
   ]
   ];
