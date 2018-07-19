@@ -58,6 +58,7 @@ return [
     'tm_nano_info' => 'Steuerung der Kleinst Objekte.',
 
     'news' => 'Nachrichten',
+    'pinned' => 'Wichtig',
 
     'tm_directions' => 'Forschungsrichtungen der Abteilung',
 

@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eluquent\Model;
+use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class PostTranslation extends Model

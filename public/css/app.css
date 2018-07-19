@@ -151,3 +151,26 @@ footer a:hover {
   border: 2px solid #f2f2f2;
   background: #ffffff;
 }
+
+
+/* ****************** News ****************** */
+.news {
+  height: 100%;
+  padding-bottom: 280px;
+}
+
+.news-block {
+  padding-bottom: 5px;
+  margin: 10px 0;
+  border: 2px solid #f2f2f2;
+  background: #ffffff;
+}
+.news-block > h4 {
+  color: #121212;
+}
+.news-info {
+  color: #66a3de;
+  padding: 0 10px 0 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
