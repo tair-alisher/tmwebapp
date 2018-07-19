@@ -10,10 +10,10 @@ return [
   ],
   'credits' => [
     'title' => 'Кредиты и системы оценки',
-    'slug' => 'кredity-i-sistema-ocenki'
+    'slug' => 'kredity-i-sistema-ocenki'
   ],
   'modules' => [
-    'title' => 'Модули дисциплин №1',
+    'title' => 'Модули дисциплин',
     'slug' => 'modules'
   ],
   'magistracy' => [

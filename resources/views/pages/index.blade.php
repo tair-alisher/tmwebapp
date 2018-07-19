@@ -27,14 +27,14 @@
 <div class="grey-row">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="col-lg-12 col-md-12">
         <h4 class="tm-info">{{ trans('app.info.tm_cath') }}</h4>
         <p class="tm-info-par">{{ trans('app.info.tm_cath_info') }}</p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="col-lg-6 col-md-6">
         <h4 class="tm-info">{{ trans('app.info.tm_cath_has') }}</h4>
         <ul class="list-group tm-info-ul">
           @foreach (trans('app.info.tm_cath_has_info') as $tm_info)
@@ -42,7 +42,7 @@
           @endforeach
         </ul>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="col-lg-6 col-md-6">
         <h4 class="tm-info">{{ trans('app.info.tm_tasks') }}</h4>
         <ul class="list-group tm-info-ul">
           @foreach (trans('app.info.tm_tasks_info') as $tm_task)
@@ -57,9 +57,9 @@
 <div class="white-row">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
+      <div class="col-lg-8 col-md-8">
         <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="col-lg-6 col-md-6">
             <h4 class="tm-1">{{ trans('app.info.what_is') }}</h4>
             <h4 class="tm-2">{{ trans('app.info.tm') }}</h4>
             <p class="tm-info-par">{{ trans('app.info.tm_info') }}</p>
@@ -77,7 +77,7 @@
             <p class="tm-info-par">{{ trans('app.info.tm_transport_info') }}</p>
           </div>
 
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="col-lg-6 col-md-6">
             <h4 class="tm-info">{{ trans('app.info.tm_automatic') }}</h4>
             <p class="tm-info-par">{{ trans('app.info.tm_automatic_info') }}</p>
 
@@ -90,7 +90,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="col-lg-4 col-md-4">
         <h4 class="title">{{ trans('app.contacts.title') }}</h4>
         <hr class="underline">
         <div class="clearfix"></div>
@@ -147,7 +147,7 @@
 <div class="grey-row">
   <div class="container">
     <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="col-lg-3 col-md-3">
         <h4 class="title">{{ trans('app.info.news') }}</h4>
         <hr class="underline">
         <div class="clearfix"></div>
@@ -177,7 +177,7 @@
         <hr>
       </div>
 
-      <div class="col-lg-9 col-md-9 col-sm-9">
+      <div class="col-lg-9 col-md-9">
         <h4 class="title">{{ trans('app.info.tm_directions') }}</h4>
         <hr class="underline">
         <div class="clearfix"></div>
@@ -234,7 +234,7 @@
 <div class="white-row">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="col-lg-12 col-md-12">
         <div class="partners">
           <h4 class="title">{{ trans('app.info.partners') }}</h4>
           <hr class="underline">

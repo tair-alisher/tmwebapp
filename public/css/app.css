@@ -100,6 +100,9 @@ p.tm-info-par {
   padding-left: 20px;
   margin-bottom: 10px;
 }
+.show-news-title {
+  margin-top: 10px;
+}
 
 .list {
   list-style: none;
