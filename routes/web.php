@@ -1,16 +1,57 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('lang/{language}', [
+    'as' => 'lang.switch',
+    'uses' => 'LanguagesController@switchLang'
+]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'PagesController@index'
+]);
+
+Route::get('/news', [
+    'as' => 'news',
+    'uses' => 'PostsController@index'
+]);
+
+Route::get('/gallery', [
+    'as' => 'gallery',
+    'uses' => 'GalleryController@index'
+]);
+
+Route::get('/employees', [
+    'as' => 'employees',
+    'uses' => 'EmployeesController@index'
+]);
+
+Route::get('/partners', [
+    'as' => 'partners',
+    'uses' => 'PagesController@partners'
+]);
+
+Route::get('/edu_projects', [
+    'as' => 'edu_projects',
+    'uses' => 'PagesController@eduProjects'
+]);
+Route::get('/edu_projects/{slug}', [
+    'as' => 'edu_projects.show',
+    'uses' => 'PagesController@showEduProject'
+]);
+
+Route::get('/news/{slug}', [
+    'as' => 'news.show',
+    'uses' => 'PostsController@show'
+]);
+
+Route::get('/pages/{slug}', [
+    'as' => 'pages.show',
+    'uses' => 'PagesController@show'
+]);
+
+Route::get(
+    trans('routes.about'),
+    [
+        'as' => 'about',
+        'uses' => 'PagesController@about'
+    ]);
