@@ -11,7 +11,7 @@ class PostsController extends Controller
     {
         $posts = Post::latest()
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(5);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -21,7 +21,7 @@ class PostsController extends Controller
             ->firstOrFail();
 
         if ( $post->translate()->where('slug', $slug)->first()->locale != app()->getLocale() ) {
-            return redirect()->route('posts.show', $post->translate()->slug);
+            return redirect()->route('news.show', $post->translate()->slug);
         }
         return view('posts.show')->with('post', $post);
     }

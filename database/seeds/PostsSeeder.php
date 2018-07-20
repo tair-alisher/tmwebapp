@@ -21,6 +21,7 @@ class PostsSeeder extends Seeder
             'post_id' => $post_id,
             'locale' => 'ru',
             'title' => 'Список стипендиатов по проекту ДААД 2015 года',
+            'description' => 'Предоставлен список стипендиатов ДААД за 2015 год',
             'slug' => 'spisok-stipendiatov-po-proektu-daad-2015-goda-ru',
             'content' => <<<HERE
 <table class="table table-hover">
@@ -319,6 +320,7 @@ HERE
             'post_id' => $post_id,
             'locale' => 'de',
             'title' => 'Liste der Stipendianten im Projekt von DAAD „Telematik“ 2015',
+            'description' => 'Liste der Stipendianten im Projekt von DAAD „Telematik“ 2015',
             'slug' => 'liste-der-stipendianten-im-projekt-von-daad-telematik-2015-de',
             'content' => <<<HERE
 <table class="table table-hover">
@@ -617,6 +619,7 @@ HERE
             'post_id' => $post_id,
             'locale' => 'kg',
             'title' => 'Список стипендиатов по проекту ДААД 2015 года',
+            'description' => 'Предоставлен список стипендиатов ДААД за 2015 год',
             'slug' => 'spisok-stipendiatov-po-proektu-daad-2015-goda-kg',
             'content' => <<<HERE
 <table class="table table-hover">
@@ -922,6 +925,7 @@ HERE
             'title' => 'Sommerschule „Deutsch und Telematik“
             совместно с техническим университетом Кёльна и КГТИ',
             'slug' => 'sommerschule-deutsch-und-telematik-sovmestno-s-tehnicheskim-universitetom-kjolna-i-kgti-ru',
+            'description' => 'Летняя школа для студентов КГТИ направления телематика 1-3 курс, 3-10 июня 2015г',
             'content' => <<<HERE
 <p>Иссык-Куль, 3-10 июня 2015г.
     <br> Летняя школа ориентирована для студентов КГТИ направления телематика 1-3 курс.
@@ -967,6 +971,7 @@ HERE
             'locale' => 'de',
             'title' => 'Sommerschule „Deutsch und Telematik“ zusammen mit der Fachhochschule Köln und KGTI',
             'slug' => 'sommerschule-deutsch-und-telematik-zusammen-mit-der-fachhochschule-koln-und-kgti-de',
+            'description' => 'Sommerschule für Studierende KGTI Richtung Telematik Platz 1-3 3-10 Juni 2015',
             'content' => <<<HERE
 <p>Issyk-Kul, von 03 bis 10 Juni 2015
     <br> Die Summer School richtet sich an Studierende KGTI Richtung Telematik 1-3 Kurs richtet.
@@ -1010,6 +1015,7 @@ HERE
             'title' => 'Sommerschule „Deutsch und Telematik“
             совместно с техническим университетом Кёльна и КГТИ',
             'slug' => 'sommerschule-deutsch-und-telematik-sovmestno-s-tehnicheskim-universitetom-kjolna-i-kgti-kg',
+            'description' => 'Летняя школа для студентов КГТИ направления телематика 1-3 курс, 3-10 июня 2015г',
             'content' => <<<HERE
 <p>Иссык-Куль, 3-10 июня 2015г.
     <br> Летняя школа ориентирована для студентов КГТИ направления телематика 1-3 курс.
@@ -1052,14 +1058,15 @@ HERE
         ]);
 
         $post_id = DB::table('posts')->insertGetId([
-            'created_at' => Carbon::parse(),
-            'updated_at' => Carbon::parse()
+            'created_at' => Carbon::parse('06.05.2015'),
+            'updated_at' => Carbon::parse('06.05.2015')
         ]);
         DB::table('post_translations')->insert([
             'post_id' => $post_id,
             'locale' => 'ru',
             'title' => 'Ausschreibung - Lernaufenthalt in Deutschland 2015 für Telematik-StudentInnen',
             'slug' => 'ausschreibung-lernaufenthalt-in-deutschland-2015-fur-telematik-studentinnen-ru',
+            'description' => '<b>Programm:</b><br>Deutschsprachige Studiengänge (DSG) des Deutschen Akademischen Austauschdienstes DAAD',
             'content' => <<<HERE
 <b>Programm:</b>
 <br> Deutschsprachige Studiengänge (DSG) des Deutschen Akademischen Austauschdienstes DAAD
@@ -1134,6 +1141,7 @@ HERE
             'locale' => 'de',
             'title' => 'Ausschreibung - Lernaufenthalt in Deutschland 2015 für Telematik-StudentInnen',
             'slug' => 'ausschreibung-lernaufenthalt-in-deutschland-2015-fur-telematik-studentinnen-de',
+            'description' => '<b>Programm:</b><br>Deutschsprachige Studiengänge (DSG) des Deutschen Akademischen Austauschdienstes DAAD',
             'content' => <<<HERE
 <b>Programm:</b>
 <br> Deutschsprachige Studiengänge (DSG) des Deutschen Akademischen Austauschdienstes DAAD
@@ -1208,6 +1216,7 @@ HERE
             'locale' => 'kg',
             'title' => 'Ausschreibung - Lernaufenthalt in Deutschland 2015 für Telematik-StudentInnen',
             'slug' => 'ausschreibung-lernaufenthalt-in-deutschland-2015-fur-telematik-studentinnen-kg',
+            'description' => '<b>Programm:</b><br>Deutschsprachige Studiengänge (DSG) des Deutschen Akademischen Austauschdienstes DAAD',
             'content' => <<<HERE
 <b>Programm:</b>
 <br> Deutschsprachige Studiengänge (DSG) des Deutschen Akademischen Austauschdienstes DAAD
@@ -1287,6 +1296,7 @@ HERE
             'locale' => 'ru',
             'title' => 'Визит профессора Михаила Бонгардса с 27.04.15 по 30.04.15',
             'slug' => 'vizit-professora-mihaila-bongardsa-s-270415-po-300415-ru',
+            'description' => 'Представлены списки.',
             'content' => <<<HERE
 <div>
     <span class="spoiler_links">
@@ -1738,6 +1748,7 @@ HERE
             'locale' => 'de',
             'title' => 'Der Besuch von Professor Michael Bongards von 27.04.15 bis 30.04.15',
             'slug' => 'der-besuch-von-professor-michael-bongards-von-270415-bis-300415-de',
+            'description' => 'Liste der Studenten',
             'content' => <<<HERE
 <span class="spoiler_links">
     <b>DAAD-Stipendium für das Projekt im Jahr 2015</b>
@@ -2188,6 +2199,7 @@ HERE
             'locale' => 'kg',
             'title' => 'Визит профессора Михаила Бонгардса с 27.04.15 по 30.04.15',
             'slug' => 'vizit-professora-mihaila-bongardsa-s-270415-po-300415-kg',
+            'description' => 'Представлены списки студентов',
             'content' => <<<HERE
 <div>
     <span class="spoiler_links">
@@ -2670,21 +2682,25 @@ HERE
             'locale' => 'ru',
             'title' => 'Online защита квалификационных работ на немецком языке. 2015.',
             'slug' => 'online-zashhita-kvalifikacionnyh-rabot-na-nemeckom-jazyke-2015-ru',
+            'description' => 'Представлен список результатов защиты квалификационных работ 2015.',
             'content' => <<<HERE
 <table class="table table-hover">
-    <tbody>
+    <thead>
         <tr>
-            <td>№</td>
-            <td>Ф.И.О.</td>
-            <td>Тема</td>
-            <td>Итоговая</td>
-            <td>Примечание</td>
+            <th>№</td>
+                <th>Ф.И.О.</th>
+                <th>Тема</th>
+                <th>Итоговая</th>
+                <th>Примечание</th>
         </tr>
+    </thead>
+    <tbody>
         <tr>
             <td>1</td>
             <td>Абдухалыков Айбек Джаркынбекович</td>
             <td>Разработка сайта для отдела Научно Методического Образовательного Центра НЦКИТ им. М.Миррахимова при Минздраве
-                КР</td>
+                КР
+            </td>
             <td>3</td>
             <td>74б</td>
         </tr>
@@ -2785,908 +2801,6 @@ HERE
             <td>Разработка сетевой программы компьютерного тестирования знаний</td>
             <td>4</td>
             <td>78б</td>
-        </tr>
-    </tbody>
-    </table
-HERE
-        ]);
-        DB::table('post_translations')->insert([
-            'post_id' => $post_id,
-            'locale' => 'de',
-            'title' => 'Schutz der Qualifikation Arbeiten auf Deutsch. 2015.',
-            'slug' => 'schutz-der-qualifikation-arbeiten-auf-deutsch-2015-de',
-            'content' => <<<HERE
-<table class="table table-hover" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-color:rgb(119, 119, 119); border-style:solid; color:rgb(92, 92, 92); font-family:helvetica,sans-serif,arial; font-size:15px; font-stretch:inherit; line-height:21px; margin:0px 0px 20px; padding:0px; vertical-align:baseline; width:760px">
-    <tbody>
-        <tr>
-            <td style="height:76px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">№</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:147px">
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:237px">
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thema</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;</span>
-                    </font>
-                </p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Rezension</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:38px">
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Zusammenfassung</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:41px">
-                <p>&nbsp;</p>
-
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Anwendung</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:76px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; 1</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Abduhalykov Aibek Zharkynbekovich</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Website-Entwicklung für das Department of Scientific Methodische Education Centre</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:38px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:76px; vertical-align:baseline; width:41px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp;74</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:33px; vertical-align:baseline; width:42px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp;2</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Asanov Asel Almazbekovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Anschluss des Sensors an das Arduino-Plattform</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:33px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; 87</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:34px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp;3</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Atakeev Amantur Muhtarovich</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Entwerfen eines Mobilfunknetzes auf Basis von WiMAX-Technologie</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 4</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; 80</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:49px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp;4</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Atayarova Rose Akzhigitovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Automatisierung der Arbeit der Belegschaft</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:41px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; 80</span>
-                    </font>
-                </p>
-
-                <p>&nbsp;</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:54px; vertical-align:baseline; width:42px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;</span>
-                    </font>
-                </p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Japarova Aelita Saparovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Entwicklung von Online-Shops verkaufen Instrumentierung für das Unternehmen</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:38px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:54px; vertical-align:baseline; width:41px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; 82</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:49px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;6</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Maxim V. Kuzmin</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Entwicklung OBD (On-Board-Diagnose) für Fahrzeuge, die vor 2001 gebaut wurden</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:38px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;5</span>
-                    </font>
-                </p>
-
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:49px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; 98</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:34px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;7</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Mars Akylai Marsovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Fernsteuerung des Arduino-Plattform</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:38px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:34px; vertical-align:baseline; width:41px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; 89</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:31px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp; 8</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Mirlanova Alina Mirlanovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Automatisierung von Arbeits Röntgen, Arztpraxen Chirurgie</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; 5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:31px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp;87</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:36px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;9</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Mukai Kyzy Aida</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Die Entwicklung des elektronischen Lehrbuch mit der Rate «G1S»</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp;70&nbsp;</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:36px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;10</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Omuralieva Begimai Melisovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Die Entwicklung von "Smart-Home" basiert Raspberry Pi</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp;98</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:36px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;11</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Sabyrova Aidai Rysbekovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Entwicklung des Fördersystems und die Verteilung des Krans auf der Grundlage der Industriesteuerung
-                            Siemens</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:41px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; 98</span>
-                    </font>
-                </p>
-
-                <p>&nbsp;</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:36px; vertical-align:baseline; width:42px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;&nbsp;</span>
-                    </font>
-                </p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;12</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Sadabaeva Altynay Pamirovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Optimierung von industriellen Öfen für Backwaren</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; 88</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:36px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;13</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Saurov Anwar Raimdzhanovich</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Modernisierung des Mobilkommunikationsnetzwerk der Region Omsk auf der Grundlage der Technologie
-                            LTE</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp;87</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:36px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;14</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Tahirahunov Alisher Rahmanovich</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Entwickelt von der Abteilung "Telematik"</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp;87</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="height:36px; vertical-align:baseline; width:42px">
-                <p>&nbsp;</p>
-
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp;&nbsp;15</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:147px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Ergeshova Asel Rustambekovna</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:237px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">Die Entwicklung eines Netzwerks von Computerwissen Prüfprogramm</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:51px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:61px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:77px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:66px">
-                <p>&nbsp;</p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:38px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4</span>
-                    </font>
-                </p>
-            </td>
-            <td style="height:36px; vertical-align:baseline; width:41px">
-                <p>
-                    <font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS">
-                        <span style="font-size:13px; line-height:20.8px">&nbsp; &nbsp; 78</span>
-                    </font>
-                </p>
-            </td>
         </tr>
     </tbody>
 </table>
@@ -3694,9 +2808,137 @@ HERE
         ]);
         DB::table('post_translations')->insert([
             'post_id' => $post_id,
+            'locale' => 'de',
+            'title' => 'Schutz der Qualifikation Arbeiten auf Deutsch. 2015.',
+            'slug' => 'schutz-der-qualifikation-arbeiten-auf-deutsch-2015-de',
+            'description' => 'Onlain Schutz der Qualifikation Arbeiten auf Deutsch. 2015.',
+            'content' => <<<HERE
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Name</th>
+                    <th>Thema</th>
+                    <th>Zusammenfassung</th>
+                    <th>Anwendung</th>
+                </tr>
+            </thead>
+            </tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Abduhalykov Aibek Zharkynbekovich</td>
+                    <td>Website-Entwicklung für das Department of Scientific Methodische Education Centre</td>
+                    <td>3</td>
+                    <td>74</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Asanov Asel Almazbekovna</td>
+                    <td>Anschluss des Sensors an das Arduino-Plattform</td>
+                    <td>5</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Atakeev Amantur Muhtarovich<</td>
+                    <td>Entwerfen eines Mobilfunknetzes auf Basis von WiMAX-Technologie</td>
+                    <td>4</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Atayarova Rose Akzhigitovna</td>
+                    <td>Automatisierung der Arbeit der Belegschaft</td>
+                    <td>4</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Japarova Aelita Saparovna</td>
+                    <td>Entwicklung von Online-Shops verkaufen Instrumentierung für das Unternehmen</td>
+                    <td>4</td>
+                    <td>82</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Maxim V. Kuzmin</td>
+                    <td>Entwicklung OBD (On-Board-Diagnose) für Fahrzeuge, die vor 2001 gebaut wurden</td>
+                    <td>5</td>
+                    <td>98</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Mars Akylai Marsovna</td>
+                    <td>Fernsteuerung des Arduino-Plattform</td>
+                    <td>5</td>
+                    <td>89</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Mirlanova Alina Mirlanovna</td>
+                    <td>Automatisierung von Arbeits Röntgen, Arztpraxen Chirurgie</td>
+                    <td>5</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Mukai Kyzy Aida</td>
+                    <td>Die Entwicklung des elektronischen Lehrbuch mit der Rate «G1S»</td>
+                    <td>3 </td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Omuralieva Begimai Melisovna</td>
+                    <td>Die Entwicklung von "Smart-Home" basiert Raspberry Pi</td>
+                    <td>5</td>
+                    <td>98</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Sabyrova Aidai Rysbekovna</td>
+                    <td>Entwicklung des Fördersystems und die Verteilung des Krans auf der Grundlage der Industriesteuerung Siemens</td>
+                    <td>5</td>
+                    <td>98</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Sadabaeva Altynay Pamirovna</td>
+                    <td>Optimierung von industriellen Öfen für Backwaren</td>
+                    <td>5</td>
+                    <td>88</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Saurov Anwar Raimdzhanovich</td>
+                    <td>Modernisierung des Mobilkommunikationsnetzwerk der Region Omsk auf der Grundlage der Technologie LTE</td>
+                    <td>5</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Tahirahunov Alisher Rahmanovich</td>
+                    <td>Entwickelt von der Abteilung "Telematik"</td>
+                    <td>5</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Ergeshova Asel Rustambekovna</td>
+                    <td>Die Entwicklung eines Netzwerks von Computerwissen Prüfprogramm</td>
+                    <td>4</td>
+                    <td>78</td>
+                </tr>
+            </tbody>
+        </table>
+HERE
+        ]);
+        DB::table('post_translations')->insert([
+            'post_id' => $post_id,
             'locale' => 'kg',
             'title' => 'Online защита квалификационных работ на немецком языке. 2015.',
             'slug' => 'online-zashhita-kvalifikacionnyh-rabot-na-nemeckom-jazyke-2015-kg',
+            'description' => 'Представлен список результатов защиты квалификационных работ 2015.',
             'content' => <<<HERE
 <table class="table table-hover">
     <tbody>
@@ -3814,7 +3056,7 @@ HERE
             <td>78б</td>
         </tr>
     </tbody>
-    </table
+/table>
 HERE
         ]);
 
@@ -3827,6 +3069,7 @@ HERE
             'locale' => 'ru',
             'title' => '21-28 июня. Студенческая практика по автоматизации в Вене (Австрия)',
             'slug' => '21-28-ijunja-studencheskaja-praktika-po-avtomatizacii-v-vene-avstrija-ru',
+            'description' => 'Студенты гр Тг 1-13 Кошева Ангелина, гр Тг 2-13 Амантаев Алиаскар.',
             'content' => <<<HERE
 <p>&nbsp;Студенты гр Тг&nbsp;1-13&nbsp;Кошева Ангелина,&nbsp;гр Тг&nbsp;2-13 Амантаев Алиаскар достойно представили делегацию
     по автоматизации из КГТИ в студенческой практике в Вене (Австрия) которая проходила с 21 по 28 июня в Венском Техническом
@@ -3838,6 +3081,7 @@ HERE
             'locale' => 'de',
             'title' => 'Von 21 bis 28 Juni. Praktikum fur Studenten von Automatisierung  in Wien (Österreich).',
             'slug' => 'von-21-bis-28-juni-praktikum-fur-studenten-von-automatisierung-in-wien-osterreich-de',
+            'description' => 'Von 21 bis 28 Juni. Praktikum fur Studenten von Automatisierung  in Wien (Österreich)',
             'content' => <<<HERE
 <p>Die Studenten Kosheva Angelina und Amantayev Aliaskarov adäquat präsentiert die Delegation über die Automatisierung der KGTI
     im Studenten Praxis in Wien (Österreich), die vom 21-28 Juni an der Technischen Universität Wien in Österreich übernahm.
@@ -3849,6 +3093,7 @@ HERE
             'locale' => 'kg',
             'title' => '21-28 июня. Студенческая практика по автоматизации в Вене (Австрия)',
             'slug' => '21-28-ijunja-studencheskaja-praktika-po-avtomatizacii-v-vene-avstrija-kg',
+            'description' => 'Студенты гр Тг 1-13 Кошева Ангелина, гр Тг 2-13 Амантаев Алиаскар.',
             'content' => <<<HERE
 <p>&nbsp;Студенты гр Тг&nbsp;1-13&nbsp;Кошева Ангелина,&nbsp;гр Тг&nbsp;2-13 Амантаев Алиаскар достойно представили делегацию
     по автоматизации из КГТИ в студенческой практике в Вене (Австрия) которая проходила с 21 по 28 июня в Венском Техническом
@@ -3865,6 +3110,7 @@ HERE
             'locale' => 'ru',
             'title' => 'Кафедра Телематика поздравляет своих выпускников с поступлением в магистратуру в Москве',
             'slug' => 'kafedra-telematika-pozdravljaet-svoih-vypusknikov-s-postupleniem-v-magistraturu-v-moskve-ru',
+            'description' => '',
             'content' => <<<HERE
 <p>
     <b>Московский Институт Стали и Сплавов:</b>
@@ -3894,6 +3140,7 @@ HERE
             'locale' => 'de',
             'title' => 'Lehrstuhl Telematik gratuliert den Absolventen mit Master in Moskau',
             'slug' => 'lehrstuhl-telematik-gratuliert-den-absolventen-mit-master-in-moskau-de',
+            'description' => '',
             'content' => <<<HERE
 <p>Moskauer Institut für Stahl und Legierungen:
     <br> 1. Akylbekov Adilet;
@@ -3914,6 +3161,7 @@ HERE
             'locale' => 'kg',
             'title' => 'Кафедра Телематика поздравляет своих выпускников с поступлением в магистратуру в Москве',
             'slug' => 'kafedra-telematika-pozdravljaet-svoih-vypusknikov-s-postupleniem-v-magistraturu-v-moskve-kg',
+            'description' => '',
             'content' => <<<HERE
 <p>
     <b>Московский Институт Стали и Сплавов:</b>
@@ -3948,6 +3196,7 @@ HERE
             'locale' => 'ru',
             'title' => 'Практика в Токтогуле',
             'slug' => 'praktika-v-toktogule-ru',
+            'description' => '21-24 июня наши студенты, вместе с представителем КГТУ и ведущим разработчиком сайта avn.kg Саитовым Нурланом побывали в Токтогуле, с целью преподавания HTML.',
             'content' => <<<HERE
 <p>Студенты кафедры Телематика, Талантбек Атай и Батырканов Нурсултан, вместе с представителем КГТУ и ведущим разработчиком
     сайта avn.kg&nbsp;Саитовым Нурланом поехали в Токтогул.&nbsp;</p>
@@ -3976,6 +3225,7 @@ HERE
             'locale' => 'de',
             'title' => 'Praxis in Toktogul',
             'slug' => 'praxis-in-toktogul-de',
+            'description' => 'Studenten der Abteilung Telematik, Talantbek Atay und Batyrkanov Nursultan, zusammen mit einem Vertreter einer der führenden Entwickler und KSTU Website avn.kg Saitov Nurlan ging nach Toktogul.',
             'content' => <<<HERE
 <p>Studenten der Abteilung Telematik, Talantbek Atay und Batyrkanov Nursultan, zusammen mit einem Vertreter einer der führenden
     Entwickler und KSTU Website avn.kg Saitov Nurlan ging nach Toktogul.</p>
@@ -4025,6 +3275,7 @@ HERE
             'locale' => 'kg',
             'title' => 'Практика в Токтогуле',
             'slug' => 'praktika-v-toktogule-kg',
+            'description' => '21-24 июня наши студенты, вместе с представителем КГТУ и ведущим разработчиком сайта avn.kg Саитовым Нурланом побывали в Токтогуле, с целью преподавания HTML.',
             'content' => <<<HERE
 <p>Студенты кафедры Телематика, Талантбек Атай и Батырканов Нурсултан, вместе с представителем КГТУ и ведущим разработчиком
     сайта avn.kg&nbsp;Саитовым Нурланом поехали в Токтогул.&nbsp;</p>
@@ -4058,6 +3309,7 @@ HERE
             'locale' => 'ru',
             'title' => 'On-Line лекция',
             'slug' => 'on-line-lekcija-ru',
+            'description' => 'On-Line лекция с Technische Hochschule Köln',
             'content' => <<<HERE
 <p>15.12.2015 г. проведена Оn-line лекция с Technische Hochschule Köln для студентов кафедры Телематика на тему "Vorlesung Automatisierungstechnik".
     <br>
@@ -4081,6 +3333,7 @@ HERE
             'locale' => 'de',
             'title' => 'Online-Vorlesung',
             'slug' => 'online-vorlesung-de',
+            'description' => 'Online-Vorlesung mit der technischen Hochschule Köln',
             'content' => <<<HERE
  Die Anlagen zur Online-Vorlesung:
 <br>
@@ -4102,6 +3355,7 @@ HERE
             'locale' => 'kg',
             'title' => 'On-Line лекция',
             'slug' => 'on-line-lekcija-kg',
+            'description' => 'On-Line лекция с Technische Hochschule Köln',
             'content' => <<<HERE
 <p>15.12.2015 г. проведена Оn-line лекция с Technische Hochschule Köln для студентов кафедры Телематика на тему "Vorlesung Automatisierungstechnik".
     <br>
@@ -4130,6 +3384,7 @@ HERE
             'locale' => 'ru',
             'title' => 'Зимние курсы',
             'slug' => 'zimnie-kursy-ru',
+            'description' => 'Курсы для школьников во время зимних каникул.',
             'content' => <<<HERE
 <p>С 11 по 22 января 2016г кафедра "Телематика" при поддержке ОФ "Технолэнд" проводит во время зимних каникул для школьников
     курсы по Электронике и Робототехнике.
@@ -4143,6 +3398,7 @@ HERE
             'locale' => 'de',
             'title' => 'Winterkursen',
             'slug' => 'winterkursen-de',
+            'description' => 'Kursen für die Schüler in den Winterferien.',
             'content' => <<<HERE
 <p>Von 11 bis 22 Januar 2016 der Lehrstuhl "Telematik" mit der Unterstützung "Technoland" während der Winterferien verbringt
     für die Schüler die Kursen in der Elektronik und Robotertechnik.
@@ -4156,6 +3412,7 @@ HERE
             'locale' => 'kg',
             'title' => 'Зимние курсы',
             'slug' => 'zimnie-kursy-kg',
+            'description' => 'Курсы для школьников во время зимних каникул.',
             'content' => <<<HERE
 <p>С 11 по 22 января 2016г кафедра "Телематика" при поддержке ОФ "Технолэнд" проводит во время зимних каникул для школьников
     курсы по Электронике и Робототехнике.

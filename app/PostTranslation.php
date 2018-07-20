@@ -10,7 +10,7 @@ class PostTranslation extends Model
   use Sluggable;
 
   public $timestamps = false;
-  protected $fillable = ['title', 'slug', 'content'];
+  protected $fillable = ['title', 'slug', 'description', 'content'];
 
   public function sluggable()
   {

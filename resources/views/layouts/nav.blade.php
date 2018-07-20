@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #338be2">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #31569d">
   <div class="container">
     <a class="navbar-brand" href="{{ route('home') }}">{{ trans('app.brand') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -8,7 +8,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="bachelor-nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="bachelorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             {{ trans('menu.bachelor.title') }}
@@ -20,7 +20,7 @@
           </div>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="magistracy-nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="magistracyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             {{ trans('menu.magistracy.title') }}
@@ -31,7 +31,7 @@
           </div>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="enrollee-nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="enrolleeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             {{ trans('menu.enrollee.title') }}
@@ -42,7 +42,7 @@
           </div>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="science-nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="scienceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             {{ trans('menu.science.title') }}
@@ -53,19 +53,19 @@
           </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="employees-nav-item">
           <a href="{{ route('employees') }}" class="nav-link">{{ trans('menu.employees.title') }}</a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item active" id="news-nav-item">
           <a class="nav-link" href="{{ route('news') }}">{{ trans('menu.news.title') }}</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="gallery-nav-item">
           <a class="nav-link" href="{{ route('gallery') }}">{{ trans('menu.gallery.title') }}</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="partners-nav-item">
           <a href="{{ route('partners') }}" class="nav-link">{{ trans('menu.partners.title') }}</a>
         </li>
       </ul>
