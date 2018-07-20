@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik|Rubik+Mono+One');
 
 .content {
-  padding-top: 70px;
+  padding-top: 50px;
 }
 .content,
 footer,
@@ -173,4 +173,15 @@ footer a:hover {
   padding: 0 10px 0 0;
   margin-bottom: 10px;
   font-size: 14px;
+}
+
+.news-content-block {
+  margin-top: 20px;
+}
+.pinned-news {
+  margin-top: 15px;
+}
+
+.one-news-info {
+  color: #338be2;
 }
