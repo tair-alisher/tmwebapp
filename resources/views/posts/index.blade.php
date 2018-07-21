@@ -17,6 +17,25 @@
       <div class="col-lg-3 col-md-3 order-lg-first order-md-first order-sm-first order-xs-first pinned-news">
         <h4 class="title">{{ trans('app.info.pinned') }}</h4>
         <hr>
+        @if (count($pinned_posts) <= 0)
+        <p class="text-muted"><i>{{ trans('app.info.pinned_not_found') }}</i></p>
+        @else
+        @foreach ($pinned_posts as $pinned_post)
+        <div class="card text-white main-app-background mb-3" style="max-width: 18rem;">
+          <div class="card-header">
+            <span class="oi oi-calendar"></span> {{ $pinned_post->created_at->format('d.m.Y') }}
+          </div>
+          <div class="card-body text-primary">
+            <a href="{{ route('news.show', $pinned_post->slug) }}" class="text-white">
+              <p class="card-text">{{ $pinned_post->title }}</p>
+            </a>
+          </div>
+          <div class="card-footer">
+            <span class="oi oi-eye"></span> {{ $pinned_post->views }}
+          </div>
+        </div>
+        @endforeach
+        @endif
       </div>
 
 
@@ -52,6 +71,15 @@
       <div class="col-lg-2 col-md-2 order-lg-last order-md-last order-sm-last order-xs-last pinned-news">
         <h4 class="title">{{ trans('app.info.archive') }}</h4>
         <hr>
+        <ul class="list-unstyled">
+          @foreach ($archives as $stats)
+          <li>
+            <a class="archive-items" href="?month={{ $stats['month'] }}&year={{ $stats['year'] }}">
+              {{ monthNumberToMonthName($stats['month']) . ' ' . $stats['year'] }}
+            </a>
+          </li>
+          @endforeach
+        </ul>
       </div>
 
     </div>

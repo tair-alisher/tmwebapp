@@ -151,7 +151,7 @@
         <h4 class="title">{{ trans('app.info.news') }}</h4>
         <hr class="underline">
         <div class="clearfix"></div>
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card text-white main-app-background mb-3" style="max-width: 18rem;">
           <div class="card-header">
             <span class="oi oi-calendar"></span> 28 Мая, 2018</div>
           <div class="card-body text-primary">
@@ -163,7 +163,7 @@
             <span class="oi oi-eye"></span> 327</div>
         </div>
         <hr>
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card text-white main-app-background mb-3" style="max-width: 18rem;">
           <div class="card-header">
             <span class="oi oi-calendar"></span> 28 Мая, 2018</div>
           <div class="card-body text-primary">
