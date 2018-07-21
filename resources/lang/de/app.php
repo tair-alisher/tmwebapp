@@ -58,6 +58,7 @@ return [
     'tm_nano_info' => 'Steuerung der Kleinst Objekte.',
 
     'news' => 'Nachrichten',
+    'pinned' => 'Wichtig',
 
     'tm_directions' => 'Forschungsrichtungen der Abteilung',
 
@@ -82,4 +83,37 @@ return [
 
   'employees' => 'Mitarbeiter',
   'footer' => 'Lehrstuhl "Telematik"',
+
+  'date' => 'Datum',
+  'views' => 'Ansichten',
+
+  'archive_months' => [
+    'january' => 'Januar',
+    'febraury' => 'Februar',
+    'march' => 'März',
+    'april' => 'April',
+    'may' => 'Mai',
+    'june' => 'Juni',
+    'july' => 'Juli',
+    'august' => 'August',
+    'september' => 'September',
+    'october' => 'Oktober',
+    'november' => 'November',
+    'december' => 'Dezember'
+  ],
+
+  'posts_months' => [
+    'january' => 'Januar',
+    'febraury' => 'Februar',
+    'march' => 'März',
+    'april' => 'April',
+    'may' => 'Mai',
+    'june' => 'Juni',
+    'july' => 'Juli',
+    'august' => 'August',
+    'september' => 'September',
+    'october' => 'Oktober',
+    'november' => 'November',
+    'december' => 'Dezember'
+  ],
 ];

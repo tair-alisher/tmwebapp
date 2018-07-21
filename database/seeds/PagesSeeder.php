@@ -23,8 +23,6 @@ class PagesSeeder extends Seeder
             'title' => 'Кредиты и система оценки',
             'slug' => 'kredity-i-sistema-ocenki',
             'content' => <<<HERE
-<h4 class="show-news-title">Кредиты и система оценки</h4>
-<hr>
 <p>
     <b>Кредит</b> – мера трудоемкости учебного курса.
     <br>
@@ -99,8 +97,6 @@ HERE
             'title' => 'Credits und Bewertungssystem',
             'slug' => 'credits-und-bewertungssystem',
             'content' => <<<HERE
-<h4 class="show-news-title">Кредиты и система оценки</h4>
-<hr>
 <p>
     <b>Кредит</b> – мера трудоемкости учебного курса.
     <br>
@@ -175,8 +171,6 @@ HERE
             'title' => 'Баалоо системи жана кредиттер',
             'slug' => 'baaloo-sistemi-zhana-kreditter',
             'content' => <<<HERE
-<h4 class="show-news-title">Кредиты и система оценки</h4>
-<hr>
 <p>
     <b>Кредит</b> – мера трудоемкости учебного курса.
     <br>
@@ -282,8 +276,6 @@ HERE
             'title' => 'Телемедицина',
             'slug' => 'telemedicina',
             'content' => <<<HERE
-<h4 class="show-news-title">Телемедицина</h4>
-<hr>
 <p>
     <b>Структура учебного плана</b>
     <br>
@@ -325,8 +317,6 @@ HERE
             'title' => 'Telemedizin',
             'slug' => 'telemedizin',
             'content' => <<<HERE
-<h4 class="show-news-title">Телемедицина</h4>
-<hr>
 <p>
     <b>Структура учебного плана</b>
     <br>
@@ -368,8 +358,6 @@ HERE
             'title' => 'Телемедицина',
             'slug' => 'telemedicina-kg',
             'content' => <<<HERE
-<h4 class="show-news-title">Телемедицина</h4>
-<hr>
 <p>
     <b>Структура учебного плана</b>
     <br>
@@ -442,8 +430,6 @@ HERE
             'title' => 'Научные направления',
             'slug' => 'nauchnye-napravlenija',
             'content' => <<<HERE
-<h4 class="show-news-title">Научные направления</h4>
-<hr>
 <p>
     <b>Основные научные направления, развиваемые на кафедре:</b>
     <br>
@@ -478,8 +464,6 @@ HERE
             'title' => 'Forschungsrichtungen',
             'slug' => 'forschungsrichtungen',
             'content' => <<<HERE
-<h4 class="show-news-title">Forschungsrichtungen</h4>
-<hr>
 <p>
     <b>Die am Institut entwickelten wissenschaftlichen Hauptrichtungen:</b>
     <br>
@@ -513,8 +497,6 @@ HERE
             'title' => 'Илимий багыттар',
             'slug' => 'ilimij-bagyttar',
             'content' => <<<HERE
-<h4 class="show-news-title">Научные направления</h4>
-<hr>
 <p>
     <b>Основные научные направления, развиваемые на кафедре:</b>
     <br>
@@ -554,8 +536,6 @@ HERE
             'title' => 'Аспирантура',
             'slug' => 'aspirantura',
             'content' => <<<HERE
-<h4 class="show-news-title">Аспирантура</h4>
-<hr>
 <p></p>
 <table class="table table-hover">
     <tbody>
@@ -643,8 +623,6 @@ HERE
             'title' => 'Aspirantur',
             'slug' => 'aspirantur',
             'content' => <<<HERE
-<h4 class="show-news-title">Aspirantur</h4>
-<hr>
 <p></p>
 <table>
     <tbody>
@@ -735,8 +713,6 @@ HERE
             'title' => 'Аспирантура',
             'slug' => 'aspirantura-kg',
             'content' => <<<HERE
-<h4 class="show-news-title">Аспирантура</h4>
-<hr>
 <p></p>
 <table class="table table-hover">
     <tbody>
@@ -829,8 +805,6 @@ HERE
             'title' => 'Для поступления в Бакалавриат',
             'slug' => 'dlja-postuplenija-v-bakalavriat',
             'content' => <<<HERE
-<h4 class="show-news-title">Для поступления в Бакалавриат</h4>
-<hr>
 <p>
     <b>Прием осуществляется по профилям:</b>
     <br> - Телематика услуг;
@@ -895,8 +869,6 @@ HERE
             'title' => 'Bakkalaureat',
             'slug' => 'bakkalaureat',
             'content' => <<<HERE
-<h4 class="show-news-title">Für die Zulassung zu Bachelor-</h4>
-<hr>
 <p>
     <b>Der Eintritt ist von Profilen:</b>
     <br> - Telematikdienste;
@@ -961,8 +933,6 @@ HERE
             'title' => 'Бакалавриатка тапшырыш үчүн',
             'slug' => 'bakalavriatka-tapshyrysh-uchun',
             'content' => <<<HERE
-<h4 class="show-news-title">Для поступления в Бакалавриат</h4>
-<hr>
 <p>
     <b>Прием осуществляется по профилям:</b>
     <br> - Телематика услуг;
@@ -1032,8 +1002,6 @@ HERE
             'title' => 'Для поступления в Магистратуру',
             'slug' => 'dlja-postuplenija-v-magistraturu',
             'content' => <<<HERE
-<h4 class="show-news-title">Для поступления в Магистратуру</h4>
-<hr>
 <p>Прием осуществляется по направлению телематика по следующим программам:
     <br>
 </p>
@@ -1081,8 +1049,6 @@ HERE
             'title' => 'Magistratur',
             'slug' => 'magistratur',
             'content' => <<<HERE
-<h4 class="show-news-title">Für Masterstudium</h4>
-<hr>
 <p>
     <b>Der Eintritt ist in der Richtung der Telematik in den folgenden Programmen durchgeführt:</b>
     <br>
@@ -1130,8 +1096,6 @@ HERE
             'title' => 'Магистратурага тапшырыш үчүн',
             'slug' => 'magistraturaga-tapshyrysh-uchun',
             'content' => <<<HERE
-<h4 class="show-news-title">Для поступления в Магистратуру</h4>
-<hr>
 <p>Прием осуществляется по направлению телематика по следующим программам:
     <br>
 </p>

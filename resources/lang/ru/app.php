@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'view_more' => 'читать далее',
+  'view_more' => 'Подробнее',
   'brand' => 'Телематика',
   'main_page' => 'Главная',
   'lang' => 'ru',
@@ -58,6 +58,10 @@ return [
     'tm_nano_info' => 'Управление сверхмалыми объектами.',
 
     'news' => 'Новости',
+    'pinned' => 'Важное',
+    'archive' => 'Архив',
+
+    'pinned_not_found' => 'Нет закрепленных записей',
 
     'tm_directions' => 'Направления кафедры',
 
@@ -82,4 +86,36 @@ return [
 
   'employees' => 'Сотрудники',
   'footer' => 'Кафедра "Телематика"',
+  'date' => 'Дата',
+  'views' => 'Просмотры',
+
+  'archive_months' => [
+    'january' => 'Январь',
+    'febraury' => 'Февраль',
+    'march' => 'Март',
+    'april' => 'Апрель',
+    'may' => 'Май',
+    'june' => 'Июнь',
+    'july' => 'Июль',
+    'august' => 'Август',
+    'september' => 'Сентябрь',
+    'october' => 'Октябрь',
+    'november' => 'Ноябрь',
+    'december' => 'Декабрь'
+  ],
+
+  'posts_months' => [
+    'january' => 'января',
+    'febraury' => 'февраля',
+    'march' => 'марта',
+    'april' => 'апреля',
+    'may' => 'мая',
+    'june' => 'июня',
+    'july' => 'июля',
+    'august' => 'августа',
+    'september' => 'сентября',
+    'october' => 'октября',
+    'november' => 'ноября',
+    'december' => 'декабря'
+  ],
 ];

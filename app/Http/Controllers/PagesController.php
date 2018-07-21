@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Page;
+use App\Post;
 
 class PagesController extends Controller
 {
     public function index()
     {
-        return view('pages.index');
+        $posts = Post::latest()
+            ->orderBy('created_at', 'desc')
+            ->limit(2)
+            ->get();
+        return view('pages.index')->with('posts', $posts);
     }
 
     public function show($slug)

@@ -12,6 +12,8 @@
   <div class="grey-row">
     <div class="container height more-block">
       <div class="info">
+        <h4 class="show-news-title">{{ $page->title }}</h4>
+        <hr>
         {!! $page->content !!}
       </div>
     </div>
