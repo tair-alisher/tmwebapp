@@ -151,30 +151,20 @@
         <h4 class="title">{{ trans('app.info.news') }}</h4>
         <hr class="underline">
         <div class="clearfix"></div>
+        @foreach ($posts as $post)
         <div class="card text-white main-app-background mb-3" style="max-width: 18rem;">
           <div class="card-header">
-            <span class="oi oi-calendar"></span> 28 Мая, 2018</div>
+            <span class="oi oi-calendar"></span> {{ customDateFormat($post->created_at) }}</div>
           <div class="card-body text-primary">
-            <a href="#" class="text-white">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="{{ route('news.show', $post->slug) }}" class="text-white">
+              <p class="card-text">{{ $post->title }}</p>
             </a>
           </div>
           <div class="card-footer">
-            <span class="oi oi-eye"></span> 327</div>
+            <span class="oi oi-eye"></span> {{ $post->views }}</div>
         </div>
         <hr>
-        <div class="card text-white main-app-background mb-3" style="max-width: 18rem;">
-          <div class="card-header">
-            <span class="oi oi-calendar"></span> 28 Мая, 2018</div>
-          <div class="card-body text-primary">
-            <a href="#" class="text-white">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </a>
-          </div>
-          <div class="card-footer">
-            <span class="oi oi-eye"></span> 327</div>
-        </div>
-        <hr>
+        @endforeach
       </div>
 
       <div class="col-lg-9 col-md-9">

@@ -23,7 +23,7 @@
         @foreach ($pinned_posts as $pinned_post)
         <div class="card text-white main-app-background mb-3" style="max-width: 18rem;">
           <div class="card-header">
-            <span class="oi oi-calendar"></span> {{ $pinned_post->created_at->format('d.m.Y') }}
+            <span class="oi oi-calendar"></span> {{ customDateFormat($pinned_post->created_at) }}
           </div>
           <div class="card-body text-primary">
             <a href="{{ route('news.show', $pinned_post->slug) }}" class="text-white">
@@ -51,7 +51,7 @@
               <a href="{{ route('news.show', $post->slug) }}">{{ $post->title }}</a>
             </h4>
             <span class="news-info">
-              <span class="oi oi-calendar"></span> {{ $post->created_at->format('d.m.Y') }}</span>
+              <span class="oi oi-calendar"></span> {{ customDateFormat($post->created_at) }}</span>
             <br>
             <span class="news-info">
               <span class="oi oi-eye"></span> {{ $post->views }}</span>

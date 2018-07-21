@@ -83,4 +83,37 @@ return [
 
   'employees' => 'Mitarbeiter',
   'footer' => 'Lehrstuhl "Telematik"',
+
+  'date' => 'Datum',
+  'views' => 'Ansichten',
+
+  'archive_months' => [
+    'january' => 'Januar',
+    'febraury' => 'Februar',
+    'march' => 'März',
+    'april' => 'April',
+    'may' => 'Mai',
+    'june' => 'Juni',
+    'july' => 'Juli',
+    'august' => 'August',
+    'september' => 'September',
+    'october' => 'Oktober',
+    'november' => 'November',
+    'december' => 'Dezember'
+  ],
+
+  'posts_months' => [
+    'january' => 'Januar',
+    'febraury' => 'Februar',
+    'march' => 'März',
+    'april' => 'April',
+    'may' => 'Mai',
+    'june' => 'Juni',
+    'july' => 'Juli',
+    'august' => 'August',
+    'september' => 'September',
+    'october' => 'Oktober',
+    'november' => 'November',
+    'december' => 'Dezember'
+  ],
 ];
