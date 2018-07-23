@@ -35,7 +35,7 @@ Route::get('/employees/{slug}', [
 
 Route::get('/partners', [
     'as' => 'partners',
-    'uses' => 'PagesController@partners'
+    'uses' => 'PartnersController@index'
 ]);
 
 Route::get('/edu_projects', [

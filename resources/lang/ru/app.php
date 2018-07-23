@@ -74,6 +74,7 @@ return [
 
     'partners' => 'Наши Партнеры',
     'gallery' => 'Фотогалерея',
+    'visit_page' => 'На сайт',
   ],
 
   'contacts' => [

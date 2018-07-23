@@ -105,39 +105,16 @@
         <hr class="underline">
         <div class="clearfix"></div>
         <ul class="list-group custom-list-group list">
-          <li>
-            <b>Кошоева Бибигуль Бейшенбековна</b>
-            <br>
-            <span class="oi oi-person"></span> Доцент, Канидидат Технических Наук
-            <br>
-            <span class="oi oi-envelope-closed"></span> bibgul200472@mail.ru
-            <hr>
-          </li>
-          <li>
-            <b>Султангазиева Рена Турдубековна</b>
-            <br>
-            <span class="oi oi-person"></span> Кандидат физических и математических наук, Доцент
-            <br>
-            <span class="oi oi-envelope-closed"></span> renasultangazieva@mail.ru
-            <hr>
-          </li>
-          <li>
-            <b>Медравлиева Бубусара Ниязбековна</b>
-            <br>
-            <span class="oi oi-person"></span> Академический советник, Доцент
-            <br>
-            <span class="oi oi-envelope-closed"></span> medralieva@mail.ru
-            <hr>
-          </li>
-          <li>
-            <b>Ешимбекова Рахат Сейтековна</b>
-            <br>
-            <span class="oi oi-person"></span> Старший преподаватель, куратор 3-го курса
-            <br>
-            <span class="oi oi-envelope-closed"></span> eshimbekova65@mail.ru
-            <hr>
-          </li>
-          <hr>
+          @foreach ($employees as $employee)
+            <li>
+              <b>{{ $employee->name }}</b>
+              <br>
+              <span class="oi oi-person"></span> {{ $employee->position }}. {{ $employee->degree }}
+              <br>
+              <span class="oi oi-envelope-closed"></span> {{ $employee->email }}
+              <hr>
+            </li>
+          @endforeach
         </ul>
       </div>
     </div>
@@ -231,46 +208,13 @@
           <div class="clearfix"></div>
 
           <div class="partners-logos">
+            @foreach ($partners as $partner)
             <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
+              <a href="{{ $partner->link }}" target="_blank">
+                <img class="partner-image img-responsive" src="{{ asset('images/partners') }}/{{ $partner->image }}" alt="{{ $partner->name }}">
               </a>
             </div>
-            <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
-              </a>
-            </div>
-            <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
-              </a>
-            </div>
-            <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
-              </a>
-            </div>
-            <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
-              </a>
-            </div>
-            <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
-              </a>
-            </div>
-            <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
-              </a>
-            </div>
-            <div class="slide">
-              <a href="#" target="_blank">
-                <img src="{{ asset('images/daad.gif') }}" alt="">
-              </a>
-            </div>
+            @endforeach
           </div>
 
         </div>

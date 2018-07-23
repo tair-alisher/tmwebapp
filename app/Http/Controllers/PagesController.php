@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Page;
 use App\Post;
+use App\Employee;
+use App\Partner;
 
 class PagesController extends Controller
 {
@@ -14,7 +16,15 @@ class PagesController extends Controller
             ->orderBy('created_at', 'desc')
             ->limit(2)
             ->get();
-        return view('pages.index')->with('posts', $posts);
+
+        $employees = Employee::all();
+
+        $partners = Partner::all();
+
+        return view('pages.index')
+            ->with('posts', $posts)
+            ->with('employees', $employees)
+            ->with('partners', $partners);
     }
 
     public function show($slug)
