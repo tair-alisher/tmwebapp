@@ -9,8 +9,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()
-            ->orderBy('created_at', 'desc');
+        $posts = Post::latest();
 
         if ($month = request('month')) {
             $posts->whereMonth('created_at', $month);
@@ -26,7 +25,7 @@ class PostsController extends Controller
             ->orderByRaw('min(created_at) desc')
             ->get()
             ->toArray();
-        
+
         $pinned_posts = Post::latest()
             ->where('pinned', true)
             ->orderBy('created_at', 'desc')
@@ -39,7 +38,7 @@ class PostsController extends Controller
     {
         $post = Post::whereTranslation('slug', $slug)
             ->firstOrFail();
-        
+
         $pinned_posts = Post::latest()
             ->where('pinned', true)
             ->orderBy('created_at', 'desc')

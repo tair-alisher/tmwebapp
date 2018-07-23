@@ -9,6 +9,6 @@ class Employee extends Model
 {
     use Translatable;
 
-    public $translatedAttributes = ['name', 'slug', 'info'];
-    protected $fillable = ['name', 'slug', 'info'];
+    public $translatedAttributes = ['name', 'slug', 'position', 'degree', 'info'];
+    protected $fillable = ['name', 'slug', 'position', 'degree', 'info'];
 }

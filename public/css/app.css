@@ -158,7 +158,8 @@ footer a:hover {
 
 
 /* ****************** News ****************** */
-.news {
+.news,
+.page-height {
   height: 100%;
   padding-bottom: 280px;
 }
@@ -179,7 +180,7 @@ footer a:hover {
   font-size: 14px;
 }
 
-.all-news {
+.white-background {
   background-color: #ffffff;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -187,10 +188,6 @@ footer a:hover {
 
 .news-content-block {
   margin-top: 20px;
-}
-.pinned-news,
-.all-news {
-  margin-top: 15px;
 }
 .pinned-news {
   padding-top: 10px;
@@ -255,4 +252,9 @@ ul.pagination > li.active > span {
 }
 .archive-items:hover {
   color: #31569d;
+}
+
+.employee-image {
+  height: 200px;
+  width: 135px;
 }
