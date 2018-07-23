@@ -253,3 +253,8 @@ ul.pagination > li.active > span {
 .archive-items:hover {
   color: #31569d;
 }
+
+.employee-image {
+  height: 200px;
+  width: 135px;
+}

@@ -14,6 +14,10 @@ Route::get('/news', [
     'as' => 'news',
     'uses' => 'PostsController@index'
 ]);
+Route::get('/news/{slug}', [
+    'as' => 'news.show',
+    'uses' => 'PostsController@show'
+]);
 
 Route::get('/gallery', [
     'as' => 'gallery',
@@ -23,6 +27,10 @@ Route::get('/gallery', [
 Route::get('/employees', [
     'as' => 'employees',
     'uses' => 'EmployeesController@index'
+]);
+Route::get('/employees/{slug}', [
+    'as' => 'employees.show',
+    'uses' => 'Employeescontroller@show'
 ]);
 
 Route::get('/partners', [
@@ -37,11 +45,6 @@ Route::get('/edu_projects', [
 Route::get('/edu_projects/{slug}', [
     'as' => 'edu_projects.show',
     'uses' => 'PagesController@showEduProject'
-]);
-
-Route::get('/news/{slug}', [
-    'as' => 'news.show',
-    'uses' => 'PostsController@show'
 ]);
 
 Route::get('/pages/{slug}', [

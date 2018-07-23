@@ -17,12 +17,23 @@
         <h4 class="title">{{ trans('app.employees') }}</h4>
         <hr>
 
-        <div class="row employee-block">
-          <div class="col-md-3">
-            <h4></h4>
+        @foreach ($employees as $employee)
+        <div class="employee-block">
+          <h4>{{ $employee->name }}</h4>
+          <div class="row employee-block">
+            <div class="col-md-2">
+              <img src="{{ asset('images/employees') }}/{{ $employee->image }}" class="img-responsive employee-image" alt=""><br><br>
+              <a href="{{ route('employees.show', $employee->slug) }}" class="news-details-btn">{{ trans('app.view_more') }}</a>
+            </div>
+            <div class="col-md-10">
+              <p>{{ $employee->position }}</p>
+              <p>{{ $employee->degree }}</p>
+              <p>{{ $employee->email }}</p>
+            </div>
           </div>
-          <div class="col-md-3"></div>
         </div>
+        <hr>
+        @endforeach
 
       </div>
     </div>
