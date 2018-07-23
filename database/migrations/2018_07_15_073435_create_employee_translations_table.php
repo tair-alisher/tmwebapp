@@ -20,6 +20,8 @@ class CreateEmployeeTranslationsTable extends Migration
 
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('position')->default('');
+            $table->string('degree')->default('');
             $table->text('info');
 
             $table->unique(['employee_id', 'locale']);

@@ -39,7 +39,7 @@
       </div>
 
 
-      <div class="col-lg-7 col-md-7 all-news">
+      <div class="col-lg-7 col-md-7 white-background">
         <h4 class="title">{{ trans('app.info.news') }}</h4>
 
         @foreach ($posts as $post)
