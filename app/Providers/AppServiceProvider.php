@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         app()->setLocale($request->segment(1));
+
+        view()->composer('layouts.footer', function ($view) {
+            $view->with('partners', \App\Partner::all());
+        });
     }
 
     /**

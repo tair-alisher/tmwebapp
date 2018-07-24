@@ -34,8 +34,9 @@
         <div class="col-lg-2 col-md-2 col-sm-2">
           <span class="footer-title">{{ trans('menu.partners.title') }}</span>
           <ul class="list-group custom-list-group list">
-            <li><a href="">test</a></li>
-            <li><a href="">test</a></li>
+            @foreach ($partners as $partner)
+            <li><a href="{{ $partner->link }}" target="_blank">{{ $partner->name }}</a></li>
+            @endforeach
           </ul>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2">

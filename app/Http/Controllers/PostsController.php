@@ -7,18 +7,11 @@ use App\Post;
 
 class PostsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest();
-
-        if ($month = request('month')) {
-            $posts->whereMonth('created_at', $month);
-        }
-        if ($year = request('year')) {
-            $posts->whereYear('created_at', $year);
-        }
-
-        $posts = $posts->paginate(5);
+        $posts = Post::latest()
+            ->filter(request(['month', 'year']))
+            ->paginate(5);
 
         $archives = Post::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
             ->groupBy('year', 'month')
@@ -26,10 +19,7 @@ class PostsController extends Controller
             ->get()
             ->toArray();
 
-        $pinned_posts = Post::latest()
-            ->where('pinned', true)
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $pinned_posts = Post::pinnedPosts();
 
         return view('posts.index', compact('posts', 'pinned_posts', 'archives'));
     }
@@ -39,10 +29,7 @@ class PostsController extends Controller
         $post = Post::whereTranslation('slug', $slug)
             ->firstOrFail();
 
-        $pinned_posts = Post::latest()
-            ->where('pinned', true)
-            ->orderBy('created_at', 'desc')
-            ->get();
+       $pinned_posts = Post::pinnedPosts();
 
         if ( $post->translate()->where('slug', $slug)->first()->locale != app()->getLocale() ) {
             return redirect()->route('news.show', $post->translate()->slug);
