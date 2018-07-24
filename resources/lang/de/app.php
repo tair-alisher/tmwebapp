@@ -71,6 +71,7 @@ return [
 
     'partners' => 'Unsere Partnern',
     'gallery' => 'Foto-Galerie',
+    'visit_page' => 'Website',
   ],
 
   'contacts' => [

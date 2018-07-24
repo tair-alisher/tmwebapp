@@ -258,3 +258,7 @@ ul.pagination > li.active > span {
   height: 200px;
   width: 135px;
 }
+.partner-image {
+  max-height: 70px;
+  max-width: 550px;
+}

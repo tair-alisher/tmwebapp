@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="grey-row">
-  <div class="container news">
+  <div class="container news height">
     <div class="row">
 
       <div class="col-lg-3 col-md-3 order-lg-first order-md-first order-sm-first order-xs-first pinned-news">
