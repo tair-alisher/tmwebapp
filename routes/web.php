@@ -21,7 +21,7 @@ Route::get('/news/{slug}', [
 
 Route::get('/gallery', [
     'as' => 'gallery',
-    'uses' => 'GalleryController@index'
+    'uses' => 'AlbumsController@index'
 ]);
 
 Route::get('/employees', [
