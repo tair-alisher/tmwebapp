@@ -62,7 +62,7 @@
         </li>
 
         <li class="nav-item" id="gallery-nav-item">
-          <a class="nav-link" href="{{ route('gallery') }}">{{ trans('menu.gallery.title') }}</a>
+          <a class="nav-link" href="{{ route('albums') }}">{{ trans('menu.gallery.title') }}</a>
         </li>
 
         <li class="nav-item" id="partners-nav-item">

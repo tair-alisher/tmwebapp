@@ -220,10 +220,15 @@ footer a:hover {
   background-color: #31569d;
   color: #ffffff;
 }
+/* 
+.pages {
+  position: relative;
+  overflow: hidden;
+} */
+
 ul.pagination {
   margin-top: 10px;
   position: relative;
-  left: 50%;
 }
 ul.pagination > li.disabled > span {
   color: #6c757d!important;

@@ -66,6 +66,10 @@
           </div>
         </div>
         @endforeach
+        <div class="pages">
+          <hr>
+          {{ $posts->links() }}
+      </div>
       </div>
 
       <div class="col-lg-2 col-md-2 order-lg-last order-md-last order-sm-last order-xs-last pinned-news">
@@ -81,11 +85,9 @@
           @endforeach
         </ul>
       </div>
-
+      
     </div>
-    <div>
-        {{ $posts->links() }}
-    </div>
+    
   </div>
 </div>
 @endsection
