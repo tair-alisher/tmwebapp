@@ -14,7 +14,7 @@
             {{ trans('menu.bachelor.title') }}
           </a>
           <div class="dropdown-menu" aria-labelledby="bachelorDropdown">
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.projects.slug')) }}">{{ trans('menu.projects.title') }}</a>
+            <a class="dropdown-item" href="{{ route('edu_projects') }}">{{ trans('menu.projects.title') }}</a>
             <a class="dropdown-item" href="{{ route('pages.show', trans('menu.credits.slug')) }}">{{ trans('menu.credits.title') }}</a>
             <a class="dropdown-item" href="{{ route('disciplines') }}">{{ trans('menu.modules.title') }}</a>
           </div>

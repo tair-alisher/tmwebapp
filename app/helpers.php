@@ -1,7 +1,5 @@
 <?php
 
-
-
 if ( !function_exists('monthNumberToMonthName') ) {
 
   function monthNumberToMonthName($monthNumber) {
@@ -55,6 +53,14 @@ if ( !function_exists('increaseViewsNumber') ) {
     $post = App\Post::find($post_id);
     $post->views += 1;
     $post->save();
+  }
+}
+
+if ( !function_exists('increaseProjectViewsNumber') ) {
+  function increaseProjectViewsNumber($project_id) {
+    $project = App\EduProject::find($project_id);
+    $project->views += 1;
+    $project->save();
   }
 }
 

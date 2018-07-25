@@ -51,10 +51,12 @@
               <a href="{{ route('news.show', $post->slug) }}">{{ $post->title }}</a>
             </h4>
             <span class="news-info">
-              <span class="oi oi-calendar"></span> {{ customDateFormat($post->created_at) }}</span>
+              <span class="oi oi-calendar"></span> {{ customDateFormat($post->created_at) }}
+            </span>
             <br>
             <span class="news-info">
-              <span class="oi oi-eye"></span> {{ $post->views }}</span>
+              <span class="oi oi-eye"></span> {{ $post->views }}
+            </span>
             <br>
             <br>
 

@@ -8,6 +8,7 @@ use App\Post;
 use App\Employee;
 use App\Partner;
 use App\Discipline;
+use App\EduProject;
 
 class PagesController extends Controller
 {
@@ -46,5 +47,25 @@ class PagesController extends Controller
 
         return view('pages.disciplines')
             ->with('disciplines', $disciplines);
+    }
+
+    public function eduProjects()
+    {
+        $projects = EduProject::latest()->paginate(10);
+
+        return view('pages.projects')
+            ->with('projects', $projects);
+    }
+
+    public function showEduProject($slug)
+    {
+        $project = EduProject::whereTranslation('slug', $slug)->firstOrFail();
+
+        if ( $project->translate()->where('slug', $slug)->first()->locale != app()->getLocale() ) {
+            return redirect()->route('edu_projects.show', $project->translate()->slug);
+        }
+
+        return view('pages.show_project')
+            ->with('project', $project);
     }
 }

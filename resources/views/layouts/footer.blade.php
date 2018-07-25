@@ -5,7 +5,7 @@
         <div class="col-lg-2 col-md-2 col-sm-2">
           <span class="footer-title">{{ trans('menu.bachelor.title') }}</span>
           <ul class="list-group custom-list-group list">
-            <li><a href="{{ route('pages.show', trans('menu.projects.slug')) }}">{{ trans('menu.projects.title') }}</a></li>
+            <li><a href="{{ route('edu_projects') }}">{{ trans('menu.projects.title') }}</a></li>
             <li><a href="{{ route('pages.show', trans('menu.credits.slug')) }}">{{ trans('menu.credits.title') }}</a></li>
             <li><a href="{{ route('disciplines') }}">{{ trans('menu.modules.title') }}</a></li>
           </ul>
