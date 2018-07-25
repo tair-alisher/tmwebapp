@@ -41,6 +41,9 @@
 
           @endforeach
         </div>
+        <div class="pages">
+          {{ $albums->links() }}
+        </div>
       </div>
     </div>
   </div>

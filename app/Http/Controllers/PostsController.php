@@ -11,7 +11,7 @@ class PostsController extends Controller
     {
         $posts = Post::latest()
             ->filter(request(['month', 'year']))
-            ->paginate(5);
+            ->paginate(6);
 
         $archives = Post::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
             ->groupBy('year', 'month')

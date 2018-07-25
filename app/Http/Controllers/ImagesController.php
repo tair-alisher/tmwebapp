@@ -17,7 +17,7 @@ class ImagesController extends Controller
             return redirect()->route('albums.show', $album->translate()->slug);
         }
 
-        $images = Image::where('album_id', $album->id)->get();
+        $images = Image::where('album_id', $album->id)->paginate(10);
 
         return view('gallery.show')
             ->with('album', $album)

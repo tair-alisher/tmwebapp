@@ -9,7 +9,7 @@ class AlbumsController extends Controller
 {
     public function index()
     {
-        $albums = Album::all();
+        $albums = Album::latest()->paginate(6);
 
         return view('gallery.index')
             ->with('albums', $albums);
