@@ -20,8 +20,12 @@ Route::get('/news/{slug}', [
 ]);
 
 Route::get('/gallery', [
-    'as' => 'gallery',
+    'as' => 'albums',
     'uses' => 'AlbumsController@index'
+]);
+Route::get('/gallery/{slug}', [
+    'as' => 'albums.show',
+    'uses' => 'ImagesController@show'
 ]);
 
 Route::get('/employees', [

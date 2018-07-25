@@ -119,4 +119,6 @@ return [
     'november' => 'ноября',
     'december' => 'декабря'
   ],
+
+  'updated' => 'Обновлен',
 ];
