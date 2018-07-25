@@ -29,7 +29,7 @@ class PostsSeeder extends Seeder
     <tbody>
         <tr>
             <td>№</td>
-            <td>Ф.И.о. студента</td>
+            <td>Ф.И.О. студента</td>
             <td>Местность</td>
             <td>Курс</td>
             <td>Средний бал</td>

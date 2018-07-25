@@ -62,6 +62,7 @@ return [
     'archive' => 'Архив',
 
     'pinned_not_found' => 'Нет закрепленных записей',
+    'projects_not_found' => 'Нет опубликовнных проектов',
 
     'tm_directions' => 'Направления кафедры',
 

@@ -60,6 +60,9 @@ return [
     'news' => 'Nachrichten',
     'pinned' => 'Wichtig',
 
+    'pinned_not_found' => 'Keine ausstehenden Datensätze',
+    'projects_not_found' => 'Keine veröffentlichten Projekte',
+
     'tm_directions' => 'Forschungsrichtungen der Abteilung',
 
     'plc_info' => 'Entwicklungsprojekte in Prozessleitsystem auf Basis von PLC',

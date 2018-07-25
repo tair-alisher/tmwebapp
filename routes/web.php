@@ -42,11 +42,11 @@ Route::get('/partners', [
     'uses' => 'PartnersController@index'
 ]);
 
-Route::get('/edu_projects', [
+Route::get('/pages/edu_projects', [
     'as' => 'edu_projects',
     'uses' => 'PagesController@eduProjects'
 ]);
-Route::get('/edu_projects/{slug}', [
+Route::get('/pages/edu_projects/{slug}', [
     'as' => 'edu_projects.show',
     'uses' => 'PagesController@showEduProject'
 ]);
