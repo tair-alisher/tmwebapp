@@ -51,6 +51,11 @@ Route::get('/edu_projects/{slug}', [
     'uses' => 'PagesController@showEduProject'
 ]);
 
+Route::get('/pages/discipline_modules', [
+    'as' => 'disciplines',
+    'uses' => 'PagesController@disciplines'
+]);
+
 Route::get('/pages/{slug}', [
     'as' => 'pages.show',
     'uses' => 'PagesController@show'

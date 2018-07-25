@@ -7,7 +7,7 @@
           <ul class="list-group custom-list-group list">
             <li><a href="{{ route('pages.show', trans('menu.projects.slug')) }}">{{ trans('menu.projects.title') }}</a></li>
             <li><a href="{{ route('pages.show', trans('menu.credits.slug')) }}">{{ trans('menu.credits.title') }}</a></li>
-            <li><a href="{{ route('pages.show', trans('menu.modules.slug')) }}">{{ trans('menu.modules.title') }}</a></li>
+            <li><a href="{{ route('disciplines') }}">{{ trans('menu.modules.title') }}</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2">

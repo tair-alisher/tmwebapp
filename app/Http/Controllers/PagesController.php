@@ -7,6 +7,7 @@ use App\Page;
 use App\Post;
 use App\Employee;
 use App\Partner;
+use App\Discipline;
 
 class PagesController extends Controller
 {
@@ -35,6 +36,15 @@ class PagesController extends Controller
             return redirect()->route('pages.show', $page->translate()->slug);
         }
 
-        return view('pages.show')->with('page', $page);
+        return view('pages.show')
+            ->with('page', $page);
+    }
+
+    public function disciplines()
+    {
+        $disciplines = Discipline::latest()->get();
+
+        return view('pages.disciplines')
+            ->with('disciplines', $disciplines);
     }
 }

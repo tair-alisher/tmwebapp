@@ -117,4 +117,7 @@ return [
     'november' => 'November',
     'december' => 'Dezember'
   ],
+
+  'updated' => 'Aktualisiert',
+  'download' => 'Download'
 ];
