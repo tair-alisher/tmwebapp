@@ -61,9 +61,18 @@ Route::get('/pages/{slug}', [
     'uses' => 'PagesController@show'
 ]);
 
-Route::get(
-    trans('routes.about'),
-    [
-        'as' => 'about',
-        'uses' => 'PagesController@about'
-    ]);
+
+Route::get('/admin/register', 'AuthController@register');
+Route::post('/admin/register', [
+    'as' => 'register',
+    'uses' => 'AuthController@registerUser'
+]);
+
+Route::get('/admin/login', 'AuthController@login');
+
+Route::get('/logout', 'AuthController@logout');
+
+Route::get('/admin', [
+    'as' => 'admin.home',
+    'uses' => 'AppController@index'
+]);
