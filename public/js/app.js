@@ -118,3 +118,7 @@ function removeActiveClassFromNavItems() {
     partnersNav.className -= ' active';
   }
 }
+
+function confirmAction() {
+  confirm('Вы уверены, что хотите удалить пользователя?');
+}

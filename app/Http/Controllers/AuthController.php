@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+use Mail;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -19,11 +21,22 @@ class AuthController extends Controller
     }
     public function registerUser(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:100',
-            'email' => 'required|email|max:100',
+        $rules = [
+            'name' => 'required||max:100',
+            'email' => 'required|email|unique:users|max:100',
             'password' => 'required|confirmed'
-        ]);
+        ];
+        $messages = [
+            'email.unique' => 'Пользователь с таким email адресом уже существует.',
+            'name.required' => 'Имя обязательно для заполнения.',
+            'password.required' => 'Пароль обязателен для заполнения.',
+            'name.max' => 'Длина имени не может превышать 100 символов.',
+            'email.required' => 'Заполните поле Email.',
+            'email.email' => 'Email адрес некорректен.',
+            'password.confirmed' => 'Пароли не совпадают.'
+        ];
+        
+        Validator::make($request->all(), $rules, $messages)->validate();
 
         $user = User::create([
             'name' => $request['name'],
@@ -31,9 +44,18 @@ class AuthController extends Controller
             'password' => bcrypt($request['password'])
         ]);
 
-        \Auth::login($user);
+        $data = array(
+            'password' => $request['password']
+        );
+        Mail::send('emails.mail', ['password' => $request['password']], function ($message) use ($request) {
+            $message->from('no-reply@mail.com', 'telematika.kstu.kg');
 
-        return redirect()->route('admin.home');
+            $message->to($request['email'], $request['name'])
+                ->subject('Пароль для входа на сайт telematika.kstu.kg');
+        });
+
+        return redirect()
+            ->route('admin.users');
     }
 
     public function login()
@@ -43,7 +65,18 @@ class AuthController extends Controller
 
     public function loginUser(Request $request)
     {
-        $this->validate($request, []);
+        $rules = [
+            'email' => 'required|max:100|email',
+            'password' => 'required|max:100'
+        ];
+        $messages = [
+            'email.required' => 'Email адрес обязателен для заполнения.',
+            'email.max' => 'Длина email адреса не может превышать 100 символов.',
+            'email.email' => 'Email адрес некорректен.',
+            'password.required' => 'Пароль обязателен для заполнения',
+            'password.max' => 'Длина пароля не может превышать 100 символов.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
 
         $credentials = [
             'email' => $request['email'],
@@ -51,7 +84,10 @@ class AuthController extends Controller
         ];
 
         if ( !auth()->attempt($credentials) ) {
-            return back();
+            return back()
+                ->withErrors([
+                  'message' => 'Проверьте вводимые данные.'  
+                ]);
         }
 
         return redirect()->route('admin.home');

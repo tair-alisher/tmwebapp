@@ -6,10 +6,11 @@
 <div class="grey-row">
   <div class="container height">
     <div class="row justify-content-lg-center justify-content-md-center">
-      <div class="col-lg-6 col-md-6 white-background">
+      <div class="col-lg-7 col-md-7 white-background">
         <h4 class="main-color">Авторизация</h4>
         <hr>
         <form action="{{ route('admin.login.check') }}" method="POST">
+          @include('layouts.errors')
           {{ csrf_field() }}
 
           <div class="form-group">

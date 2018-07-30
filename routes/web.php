@@ -61,6 +61,7 @@ Route::get('/pages/{slug}', [
     'uses' => 'PagesController@show'
 ]);
 
+/* ********** admin routes ********** */
 
 Route::get('/admin/register', [
     'as' => 'admin.register',
@@ -88,4 +89,31 @@ Route::get('/admin/logout', [
 Route::get('/admin', [
     'as' => 'admin.home',
     'uses' => 'AppController@index'
+]);
+
+Route::get('/admin/users', [
+    'as' => 'admin.users',
+    'uses' => 'AppController@users'
+]);
+Route::get('/admin/users/edit/{id}', [
+    'as' => 'admin.users.edit_form',
+    'uses' => 'AppController@editUserForm'
+]);
+Route::post('/admin/users/edit/{id}', [
+    'as' => 'admin.users.edit',
+    'uses' => 'AppController@editUser'
+]);
+
+Route::get('/admin/users/{id}/change_password', [
+    'as' => 'admin.users.change_password_form',
+    'uses' => 'AppController@changePasswordForm'
+]);
+Route::post('/admin/users/{id}/change_password', [
+    'as' => 'admin.users.change_password',
+    'uses' => 'AppController@changePassword'
+]);
+
+Route::get('/admin/users/{id}/delete', [
+    'as' => 'admin.users.delete',
+    'uses' => 'AppController@deleteUser'
 ]);
