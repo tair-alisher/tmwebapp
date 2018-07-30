@@ -117,3 +117,12 @@ Route::get('/admin/users/{id}/delete', [
     'as' => 'admin.users.delete',
     'uses' => 'AppController@deleteUser'
 ]);
+
+Route::get('/admin/pages/{slug}/edit', [
+    'as' => 'admin.pages.edit_form',
+    'uses' => 'PagesController@editForm'
+]);
+Route::post('/admin/pages/{slug}/edit', [
+    'as' => 'admin.pages.edit',
+    'uses' => 'PagesController@edit'
+]);

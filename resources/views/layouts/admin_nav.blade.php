@@ -17,23 +17,23 @@
             <span class="dropdown-item disabled disabled-menu-item">Бакалавр</span>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('edu_projects') }}"> Учебные проекты</a>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.credits.slug')) }}">Кредиты и системы оценки</a>
+            <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.credits.slug')) }}">Кредиты и системы оценки</a>
             <a class="dropdown-item" href="{{ route('disciplines') }}">Модули дисциплин</a>
             <div class="dropdown-divider"></div>
             <span class="dropdown-item disabled disabled-menu-item">Магистр</span>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.tm_medicine.slug')) }}">Телемедецина</a>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.tm_services.slug')) }}">Телематика услуг</a>
+            <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.tm_medicine.slug')) }}">Телемедецина</a>
+            <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.tm_services.slug')) }}">Телематика услуг</a>
             <div class="dropdown-divider"></div>
             <span class="dropdown-item disabled disabled-menu-item">Абитуриент</span>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.for_bachelor.slug')) }}">Для поступления в бакалавриат</a>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.for_magistracy.slug')) }}">Для поступления в магистратуру</a>
+            <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.for_bachelor.slug')) }}">Для поступления в бакалавриат</a>
+            <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.for_magistracy.slug')) }}">Для поступления в магистратуру</a>
             <div class="dropdown-divider"></div>
             <span class="dropdown-item disabled disabled-menu-item">Наука</span>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.directions.slug')) }}">Научные направления</a>
-            <a class="dropdown-item" href="{{ route('pages.show', trans('menu.postgraduate.slug')) }}">Аспирантура</a>
+            <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.directions.slug')) }}">Научные направления</a>
+            <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.postgraduate.slug')) }}">Аспирантура</a>
           </div>
         </li>
 
