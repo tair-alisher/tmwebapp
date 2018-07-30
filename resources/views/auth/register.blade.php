@@ -9,7 +9,7 @@
       <div class="col-lg-6 col-md-6 white-background">
         <h4 class="main-color">{{ trans('app.register') }}</h4>
         <hr>
-        <form action="{{ route('register') }}" method="POST">
+        <form action="{{ route('admin.register.check') }}" method="POST">
           {{ csrf_field() }}
 
           <div class="form-group">

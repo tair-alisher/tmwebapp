@@ -62,15 +62,28 @@ Route::get('/pages/{slug}', [
 ]);
 
 
-Route::get('/admin/register', 'AuthController@register');
+Route::get('/admin/register', [
+    'as' => 'admin.register',
+    'uses' => 'AuthController@register'
+]);
 Route::post('/admin/register', [
-    'as' => 'register',
+    'as' => 'admin.register.check',
     'uses' => 'AuthController@registerUser'
 ]);
 
-Route::get('/admin/login', 'AuthController@login');
+Route::get('/admin/login', [
+    'as' => 'admin.login',
+    'uses' => 'AuthController@login'
+]);
+Route::post('/admin/login', [
+    'as' => 'admin.login.check',
+    'uses' => 'AuthController@loginUser'
+]);
 
-Route::get('/logout', 'AuthController@logout');
+Route::get('/admin/logout', [
+    'as' => 'admin.logout',
+    'uses' => 'AuthController@logout'
+]);
 
 Route::get('/admin', [
     'as' => 'admin.home',

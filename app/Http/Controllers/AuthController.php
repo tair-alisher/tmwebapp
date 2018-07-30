@@ -7,6 +7,12 @@ use App\User;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['login', 'loginUser']);
+        $this->middleware('guest')->only(['login', 'loginUser']);
+    }
+
     public function register()
     {
         return view('auth.register');
@@ -22,7 +28,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => $request['password']
+            'password' => bcrypt($request['password'])
         ]);
 
         \Auth::login($user);
@@ -33,6 +39,23 @@ class AuthController extends Controller
     public function login()
     {
         return view('auth.login');
+    }
+
+    public function loginUser(Request $request)
+    {
+        $this->validate($request, []);
+
+        $credentials = [
+            'email' => $request['email'],
+            'password' => $request['password']
+        ];
+
+        if ( !auth()->attempt($credentials) ) {
+            return back();
+        }
+
+        return redirect()->route('admin.home');
+
     }
 
     public function logout()

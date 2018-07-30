@@ -9,6 +9,7 @@
 
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   <link rel="stylesheet" href="{{ asset('css/open-iconic/font/css/open-iconic-bootstrap.css') }}">
   @yield('styles')
 </head>
