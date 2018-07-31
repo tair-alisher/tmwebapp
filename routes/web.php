@@ -61,9 +61,68 @@ Route::get('/pages/{slug}', [
     'uses' => 'PagesController@show'
 ]);
 
-Route::get(
-    trans('routes.about'),
-    [
-        'as' => 'about',
-        'uses' => 'PagesController@about'
-    ]);
+/* ********** admin routes ********** */
+
+Route::get('/admin/register', [
+    'as' => 'admin.register',
+    'uses' => 'AuthController@register'
+]);
+Route::post('/admin/register', [
+    'as' => 'admin.register.check',
+    'uses' => 'AuthController@registerUser'
+]);
+
+Route::get('/admin/login', [
+    'as' => 'admin.login',
+    'uses' => 'AuthController@login'
+]);
+Route::post('/admin/login', [
+    'as' => 'admin.login.check',
+    'uses' => 'AuthController@loginUser'
+]);
+
+Route::get('/admin/logout', [
+    'as' => 'admin.logout',
+    'uses' => 'AuthController@logout'
+]);
+
+Route::get('/admin', [
+    'as' => 'admin.home',
+    'uses' => 'AppController@index'
+]);
+
+Route::get('/admin/users', [
+    'as' => 'admin.users',
+    'uses' => 'AppController@users'
+]);
+Route::get('/admin/users/edit/{id}', [
+    'as' => 'admin.users.edit_form',
+    'uses' => 'AppController@editUserForm'
+]);
+Route::post('/admin/users/edit/{id}', [
+    'as' => 'admin.users.edit',
+    'uses' => 'AppController@editUser'
+]);
+
+Route::get('/admin/users/{id}/change_password', [
+    'as' => 'admin.users.change_password_form',
+    'uses' => 'AppController@changePasswordForm'
+]);
+Route::post('/admin/users/{id}/change_password', [
+    'as' => 'admin.users.change_password',
+    'uses' => 'AppController@changePassword'
+]);
+
+Route::get('/admin/users/{id}/delete', [
+    'as' => 'admin.users.delete',
+    'uses' => 'AppController@deleteUser'
+]);
+
+Route::get('/admin/pages/{slug}/edit', [
+    'as' => 'admin.pages.edit_form',
+    'uses' => 'PagesController@editForm'
+]);
+Route::post('/admin/pages/{slug}/edit', [
+    'as' => 'admin.pages.edit',
+    'uses' => 'PagesController@edit'
+]);
