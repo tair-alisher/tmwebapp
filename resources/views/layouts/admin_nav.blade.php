@@ -53,7 +53,7 @@
           <a href="{{ route('partners') }}" class="nav-link">Партнеры</a>
         </li>
 
-        <li class="nav-item" id="partners-nav-item">
+        <li class="nav-item" id="users-nav-item">
           <a href="{{ route('admin.users') }}" class="nav-link">Пользователи</a>
         </li>
 

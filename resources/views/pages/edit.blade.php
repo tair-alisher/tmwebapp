@@ -14,13 +14,13 @@
       <div class="col-lg-3 col-md-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.pages.edit_form', $slug_ru) }}">На русском</a>
+            <a class="nav-link main-color" href="{{ route('admin.pages.edit_form', $slug_ru) }}">На русском</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.pages.edit_form', $slug_de) }}">На немецком</a>
+            <a class="nav-link main-color" href="{{ route('admin.pages.edit_form', $slug_de) }}">На немецком</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.pages.edit_form', $slug_kg) }}">На кыргызском</a>
+            <a class="nav-link main-color" href="{{ route('admin.pages.edit_form', $slug_kg) }}">На кыргызском</a>
           </li>
         </ul>
       </div>

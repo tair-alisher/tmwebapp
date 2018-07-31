@@ -44,15 +44,12 @@ class AuthController extends Controller
             'password' => bcrypt($request['password'])
         ]);
 
-        $data = array(
-            'password' => $request['password']
-        );
-        Mail::send('emails.mail', ['password' => $request['password']], function ($message) use ($request) {
-            $message->from('no-reply@mail.com', 'telematika.kstu.kg');
+        // Mail::send('emails.mail', ['password' => $request['password']], function ($message) use ($request) {
+        //     $message->from('no-reply@mail.com', 'telematika.kstu.kg');
 
-            $message->to($request['email'], $request['name'])
-                ->subject('Пароль для входа на сайт telematika.kstu.kg');
-        });
+        //     $message->to($request['email'], $request['name'])
+        //         ->subject('Пароль для входа на сайт telematika.kstu.kg');
+        // });
 
         return redirect()
             ->route('admin.users');
@@ -86,7 +83,7 @@ class AuthController extends Controller
         if ( !auth()->attempt($credentials) ) {
             return back()
                 ->withErrors([
-                  'message' => 'Проверьте вводимые данные.'  
+                    'message' => 'Проверьте вводимые данные.'  
                 ]);
         }
 

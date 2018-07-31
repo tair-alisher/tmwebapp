@@ -24,6 +24,25 @@ function logoCarousel()
   });
 }
 
+function adminHighlightActiveMenuItem() {
+  adminRemoveActiveClassFromNavItems();
+
+  var url = window.location.href;
+  if (url.indexOf('pages') >= 0) {
+    document.getElementById('pages-nav-item').className += ' active';
+  } else if (url.indexOf('employees') >= 0) {
+    document.getElementById('employees-nav-item').className += ' active';
+  } else if (url.indexOf('news') >= 0) {
+    document.getElementById('news-nav-item').className += ' active';
+  } else if (url.indexOf('gallery') >= 0) {
+    document.getElementById('gallery-nav-item').className += ' active';
+  } else if (url.indexOf('partners') >= 0) {
+    document.getElementById('partners-nav-item').className += ' active';
+  } else if (url.indexOf('users') >= 0) {
+    document.getElementById('users-nav-item').className += ' active';
+  }
+}
+
 function highlightActiveMenuItem() {
   removeActiveClassFromNavItems();
 
@@ -87,6 +106,29 @@ function highlightActiveMenuItem() {
     document.getElementById('gallery-nav-item').className += ' active';
   } else if (partnersPage == currentPage) {
     document.getElementById('partners-nav-item').className += ' active';
+  }
+}
+
+function adminRemoveActiveClassFromNavItems() {
+  var pagesNav = document.getElementById('pages-nav-item');
+  var employeesNav = document.getElementById('employees-nav-item');
+  var newsNav = document.getElementById('news-nav-item');
+  var galleryNav = document.getElementById('gallery-nav-item');
+  var partnersNav = document.getElementById('partners-nav-item');
+  var usersNav = document.getElementById('users-nav-item');
+
+  if (pagesNav.className.indexOf(' active') >= 0) {
+    pagesNav.className -= ' active';
+  } else if (employeesNav.className.indexOf(' active') >= 0) {
+    employeesNav.className -= ' active';
+  } else if (newsNav.className.indexOf(' active') >= 0) {
+    newsNav.className -= ' active';
+  } else if (galleryNav.className.indexOf(' active') >= 0) {
+    galleryNav.className -= ' active';
+  } else if (partnersNav.className.indexOf(' active') >= 0) {
+    partnersNav.className -= ' active';
+  } else if (usersNav.className.indexOf(' active') >= 0) {
+    usersNav.className -= ' active';
   }
 }
 
