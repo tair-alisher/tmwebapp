@@ -47,6 +47,7 @@ class PostsController extends Controller
             ->paginate(10);
 
         return view('posts.posts')
+            ->with('locale', $locale)
             ->with('posts', $posts);
     }
 
@@ -178,10 +179,33 @@ class PostsController extends Controller
             ->route('admin.posts.general_edit_form', $id);
     }
 
-    public function delete($id)
+    public function addPostForm($locale)
     {
-        $post = Post::find($id);
-        $post->delete();
+        return view('posts.add_post')
+            ->with('locale', $locale);
+    }
+
+    public function addPost(Request $request, PostsRepo $repo, $locale)
+    {
+        $post_id = $repo->createPostAndGetId();
+        $slug = Post::toSlug($request['title']) . '-' . $locale;
+
+        $repo->createPostTranslation([
+            'post_id' => $post_id,
+            'locale' => $locale,
+            'title' => $request['title'],
+            'slug' => $slug,
+            'description' => $request['description'],
+            'content' => $request['content']
+        ]);
+
+        return redirect()->route('admin.posts.edit_form', $slug);
+    }
+
+    public function delete(PostsRepo $repo, $id)
+    {
+        $repo->deletePost($id);
+        $repo->deletePostTranslations($id);
 
         return redirect()
             ->route('admin.posts', 'ru');

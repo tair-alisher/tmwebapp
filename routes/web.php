@@ -163,3 +163,12 @@ Route::get('/admin/posts/{id}/delete', [
     'as' => 'admin.posts.delete',
     'uses' => 'PostsController@delete'
 ]);
+
+Route::get('/admin/posts/create/{locale}', [
+    'as' => 'admin.posts.add_post_form',
+    'uses' => 'PostsController@addPostForm'
+]);
+Route::post('/admin/posts/create/{locale}', [
+    'as' => 'admin.posts.add_post',
+    'uses' => 'PostsController@addPost'
+]);

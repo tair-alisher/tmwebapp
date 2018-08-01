@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Post;
 
 class PostsRepo
@@ -69,5 +70,27 @@ class PostsRepo
       ->join('posts', 'post_translations.post_id', '=', 'posts.id')
       ->where('post_translations.locale', $locale)
       ->orderBy('posts.created_at', 'desc');
+  }
+
+  public function createPostAndGetId()
+  {
+    return DB::table('posts')->insertGetId([
+      'created_at' => Carbon::today(),
+      'updated_at' => Carbon::today()
+    ]);
+  }
+
+  public function deletePost($post_id)
+  {
+    DB::table('posts')
+      ->where('id', $post_id)
+      ->delete();
+  }
+
+  public function deletePostTranslations($post_id)
+  {
+    DB::table('post_translations')
+      ->where('post_id', $post_id)
+      ->delete();
   }
 }
