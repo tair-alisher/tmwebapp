@@ -126,3 +126,49 @@ Route::post('/admin/pages/{slug}/edit', [
     'as' => 'admin.pages.edit',
     'uses' => 'PagesController@edit'
 ]);
+
+Route::get('/admin/posts/{locale}', [
+    'as' => 'admin.posts',
+    'uses' => 'PostsController@posts'
+]);
+
+Route::get('/admin/posts/{slug}/edit', [
+    'as' => 'admin.posts.edit_form',
+    'uses' => 'PostsController@editForm'
+]);
+Route::post('/admin/posts/{slug}/edit', [
+    'as' => 'admin.posts.edit',
+    'uses' => 'PostsController@edit'
+]);
+
+Route::get('/admin/posts/create/{locale}/{post_id}', [
+    'as' => 'admin.posts.create_form',
+    'uses' => 'PostsController@createForm'
+]);
+Route::post('/admin/posts/create/{locale}/{post_id}', [
+    'as' => 'admin.posts.create',
+    'uses' => 'PostsController@create'
+]);
+
+Route::get('/admin/posts/edit/{id}', [
+    'as' => 'admin.posts.general_edit_form',
+    'uses' => 'PostsController@generalEditForm'
+]);
+Route::post('/admin/posts/edit/{id}', [
+    'as' => 'admin.posts.general_edit',
+    'uses' => 'PostsController@generalEdit'
+]);
+
+Route::get('/admin/posts/{id}/delete', [
+    'as' => 'admin.posts.delete',
+    'uses' => 'PostsController@delete'
+]);
+
+Route::get('/admin/posts/create/{locale}', [
+    'as' => 'admin.posts.add_post_form',
+    'uses' => 'PostsController@addPostForm'
+]);
+Route::post('/admin/posts/create/{locale}', [
+    'as' => 'admin.posts.add_post',
+    'uses' => 'PostsController@addPost'
+]);

@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d04a78d33b579bf1e283eb6f31712f96",
+    "content-hash": "86e8bbf2d052a2d247df0b69246b1d6d",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -286,6 +286,42 @@
                 "string"
             ],
             "time": "2015-11-06T14:35:42+00:00"
+        },
+        {
+            "name": "elforastero/transliterate",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElForastero/Transliterate.git",
+                "reference": "da1e4df2e658e5d0b0adc7a35de3c0e5136b48f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ElForastero/Transliterate/zipball/da1e4df2e658e5d0b0adc7a35de3c0e5136b48f0",
+                "reference": "da1e4df2e658e5d0b0adc7a35de3c0e5136b48f0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElForastero\\Transliterate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Dzhumak",
+                    "email": "elforastero@ya.ru"
+                }
+            ],
+            "description": "Transliteration package for laravel 5",
+            "time": "2017-06-10T16:57:18+00:00"
         },
         {
             "name": "erusev/parsedown",

@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Dimsav\Translatable\Translatable;
+use Transliterate;
 
 class Post extends Model
 {
@@ -28,5 +30,25 @@ class Post extends Model
             ->where('pinned', true)
             ->orderBy('created_at', 'desc')
             ->get();
+    }
+
+    public static function toSlug($string)
+    {
+        return Transliterate::make(
+            $string,
+            [
+                'type' => 'url',
+                'lowercase' => true
+            ]
+        );
+    }
+
+    public static function getArchives()
+    {
+        return static::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) desc')
+            ->get()
+            ->toArray();
     }
 }

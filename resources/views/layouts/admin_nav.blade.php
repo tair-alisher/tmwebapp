@@ -42,7 +42,7 @@
         </li>
 
         <li class="nav-item active" id="news-nav-item">
-          <a class="nav-link" href="{{ route('news') }}">Новости</a>
+          <a class="nav-link" href="{{ route('admin.posts', 'ru') }}">Новости</a>
         </li>
 
         <li class="nav-item" id="gallery-nav-item">

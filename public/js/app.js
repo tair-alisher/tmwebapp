@@ -32,7 +32,7 @@ function adminHighlightActiveMenuItem() {
     document.getElementById('pages-nav-item').className += ' active';
   } else if (url.indexOf('employees') >= 0) {
     document.getElementById('employees-nav-item').className += ' active';
-  } else if (url.indexOf('news') >= 0) {
+  } else if (url.indexOf('posts') >= 0) {
     document.getElementById('news-nav-item').className += ' active';
   } else if (url.indexOf('gallery') >= 0) {
     document.getElementById('gallery-nav-item').className += ' active';
@@ -162,5 +162,9 @@ function removeActiveClassFromNavItems() {
 }
 
 function confirmAction() {
-  confirm('Вы уверены, что хотите удалить пользователя?');
+  return confirm('Вы уверены, что хотите удалить запись?');
+}
+
+function confirmPostDelete() {
+  return confirm('Будут удалены варианты на всех языках.\nВы уверены что хотите удалить данную запись?');
 }

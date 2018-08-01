@@ -122,5 +122,6 @@ return [
   ],
 
   'updated' => 'Aktualisiert',
-  'download' => 'Download'
+  'download' => 'Download',
+  'not_found' => 'Seite nicht gefunden'
 ];

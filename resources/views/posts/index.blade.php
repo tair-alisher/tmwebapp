@@ -21,6 +21,7 @@
         <p class="text-muted"><i>{{ trans('app.info.pinned_not_found') }}</i></p>
         @else
         @foreach ($pinned_posts as $pinned_post)
+        @if( !empty($pinned_post->slug) )
         <div class="card text-white main-app-background mb-3" style="max-width: 18rem;">
           <div class="card-header">
             <span class="oi oi-calendar"></span> {{ customDateFormat($pinned_post->created_at) }}
@@ -34,6 +35,7 @@
             <span class="oi oi-eye"></span> {{ $pinned_post->views }}
           </div>
         </div>
+        @endif
         @endforeach
         @endif
       </div>
