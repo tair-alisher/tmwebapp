@@ -16,7 +16,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <span class="dropdown-item disabled disabled-menu-item">Бакалавр</span>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('edu_projects') }}"> Учебные проекты</a>
+            <a class="dropdown-item" href="{{ route('admin.projects', ['locale' => 'ru']) }}"> Учебные проекты</a>
             <a class="dropdown-item" href="{{ route('admin.pages.edit_form', trans('menu.credits.slug')) }}">Кредиты и системы оценки</a>
             <a class="dropdown-item" href="{{ route('disciplines') }}">Модули дисциплин</a>
             <div class="dropdown-divider"></div>

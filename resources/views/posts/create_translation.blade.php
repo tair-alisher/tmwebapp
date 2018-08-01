@@ -9,12 +9,29 @@
 @section('content')
 <div class="grey-row">
   <div class="container news height">
-    <div class="row justify-content-lg-center justify-content-md-center">
+    <div class="row">
+
+      <div class="col-lg-3 col-md-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link main-color" href="{{ empty($slug_ru) ? route('admin.posts.create_translation_form', ['locale' => 'ru',  'post_id' => $post_id]) : route('admin.posts.edit_translation_form', $slug_ru) }}">На русском</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link main-color" href="{{ empty($slug_de) ? route('admin.posts.create_translation_form', ['locale' => 'de',  'post_id' => $post_id]) : route('admin.posts.edit_translation_form', $slug_de) }}">На немецком</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link main-color" href="{{ empty($slug_kg) ? route('admin.posts.create_translation_form', ['locale' => 'kg',  'post_id' => $post_id]) : route('admin.posts.edit_translation_form', $slug_kg) }}">На кыргызском</a>
+          </li>
+        </ul>
+      </div>
+
 
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Создание записи<br><b>{{ $locale }}</b></h4>
         <hr>
-        <form action="{{ route('admin.posts.create', ['locale' => $locale]) }}" method="POST">
+        <p class="text-center"><a href="{{ route('admin.posts.edit_form', $post_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, <b>количество просмотров</b>, <b>закрепить&#8726открепить</b> запись, нажмите здесь</a></p>
+        <hr>
+        <form action="{{ route('admin.posts.create_translation', ['locale' => $locale, 'post_id' => $post_id]) }}" method="POST">
           @include('layouts.errors')
           {{ csrf_field() }}
 
@@ -34,7 +51,7 @@
           </div>
 
           <div class="form-group">
-            <button class="btn btn-link main-color" type="submit">Создать</button>
+            <button class="btn btn-link main-color" type="submit">Сохранить</button>
           </div>
         </form>
       </div>   

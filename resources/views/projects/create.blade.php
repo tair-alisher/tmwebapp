@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 
-@section('title', 'Создание страницы')
+@section('title', 'Создание проекта')
 
 @section('styles')
   <link rel="stylesheet" href="{{ asset('js/summernote/summernote-bs4.css') }}">
@@ -12,20 +12,15 @@
     <div class="row justify-content-lg-center justify-content-md-center">
 
       <div class="col-lg-9 col-md-9 white-background">
-        <h4 class="main-color">Создание страницы<br><b>{{ $locale }}</b></h4>
+        <h4 class="main-color">Создание проекта<br><b>{{ $locale }}</b></h4>
         <hr>
-        <form action="{{ route('admin.posts.add_post', ['locale' => $locale]) }}" method="POST">
+        <form action="{{ route('admin.projects.create', ['locale' => $locale]) }}" method="POST">
           @include('layouts.errors')
           {{ csrf_field() }}
 
           <div class="form-group">
             <label for="title">Название</label>
             <input type="text" class="form-control" name="title" id="title" required="required" placeholder="Введите название">
-          </div>
-
-          <div class="form-group">
-            <label for="description">Описание</label>
-            <input type="text" class="form-control" name="description" id="description" placeholder="Введите описание">
           </div>
 
           <div class="form-group">
