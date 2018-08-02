@@ -87,7 +87,11 @@ function highlightActiveMenuItem() {
 
   var urlParts = window.location.href.split('/');
   // var urlParams = urlParts[urlParts.length - 1].split('?');
-  var urlParams = urlParts[4].split('?');
+  if (!(urlParts.length < 5)) {
+    var urlParams = urlParts[4].split('?');
+  } else {
+    return false;
+  }
   var currentPage = urlParams[0];
 
   if (bachelorPages.includes(currentPage)) {

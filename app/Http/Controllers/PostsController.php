@@ -165,7 +165,7 @@ class PostsController extends Controller
         ];
         $messages = [
             'views.required' => 'Поле "Просмотры" обязательно для заполнения.',
-            'views.numeric' => 'Поле "Просмотры" должно содержать числовое значение.',
+            'views.numeric' => 'Поле "Просмотры" должно содержать целочисленное значение.',
             'created_at.date' => 'Дата указана в неверном формате.'
         ];
         Validator::make($request->all(), $rules, $messages)->validate();

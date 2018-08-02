@@ -18,8 +18,12 @@ class PagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only([
-            'editForm', 'edit'
+        $this->middleware('auth')->except([
+            'index',
+            'show',
+            'disciplines',
+            'eduProjects',
+            'showEduProject'
         ]);
     }
 
@@ -225,8 +229,15 @@ class PagesController extends Controller
 
     public function editProject(Request $request, ProjectsRepo $repo, $id)
     {
-        $rules = [];
-        $messages = [];
+        $rules = [
+            'views' => 'required|numeric|max:10',
+            'created_at' => 'date'
+        ];
+        $messages = [
+            'views.required' => 'Поле "Просмотры" обязательно для заполнения.',
+            'views.numeric' => 'Поле "Просмотры" должно содержать целочисленное значение.',
+            'created_at.date' => 'Дата указа в неверном формате.'
+        ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
         if ($request['created_at'] == null) {

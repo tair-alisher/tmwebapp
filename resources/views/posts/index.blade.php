@@ -88,7 +88,7 @@
         <ul class="list-unstyled">
           @foreach ($archives as $stats)
           <li>
-            <a class="text-secondary" href="?month={{ $stats->month }}&year={{ $stats->year }}">
+            <a class="main-color" href="?month={{ $stats->month }}&year={{ $stats->year }}">
               {{ monthNumberToMonthName($stats->month) . ' ' . $stats->year }} ({{ $stats->published }})
             </a>
           </li>
