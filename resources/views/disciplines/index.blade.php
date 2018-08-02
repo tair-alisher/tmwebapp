@@ -17,9 +17,9 @@
         <h4 class="title">{{ trans('menu.modules.title') }}</h4>
         <hr>
 
-        @foreach ($disciplines as $discipline)
+        @foreach ($files as $file)
         <div class="discipline-block">
-          <p>{{ $discipline->title }} <a href="{{ asset('files/disciplines') . '/' . $discipline->file_title }}" class="btn btn-link" download>{{ trans('app.download') }}</a></p>
+          <p>{{ $file->title }} <a href="{{ asset('files/disciplines') . '/' . $file->file_title }}" class="btn btn-link" download>{{ trans('app.download') }}</a></p>
           
         </div>
         @endforeach

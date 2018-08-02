@@ -27,7 +27,7 @@
             <span class="oi oi-calendar"></span> {{ customDateFormat($pinned_post->created_at) }}
           </div>
           <div class="card-body text-primary">
-            <a href="{{ route('news.show', $pinned_post->slug) }}" class="text-white">
+            <a href="{{ route('posts.show', $pinned_post->slug) }}" class="text-white">
               <p class="card-text">{{ $pinned_post->title }}</p>
             </a>
           </div>
@@ -55,7 +55,7 @@
           <div class="col-lg-12 col-md-12 news-block">
 
             <h4 class="news-block-title">
-              <a href="{{ route('news.show', $post->slug) }}">{{ $post->title }}</a>
+              <a href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a>
             </h4>
             <span class="news-info">
               <span class="oi oi-calendar"></span> {{ customDateFormat($post->created_at) }}
@@ -71,7 +71,7 @@
               {!! $post->description !!}
             </p>
 
-            <a href="{{ route('news.show', $post->slug) }}" class="news-details-btn">{{ trans('app.view_more') }}</a>
+            <a href="{{ route('posts.show', $post->slug) }}" class="news-details-btn">{{ trans('app.view_more') }}</a>
           </div>
         </div>
         @endforeach

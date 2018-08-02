@@ -52,7 +52,7 @@ class PostsController extends Controller
     public function posts(PostsRepo $repo, $locale)
     {
         $posts = $repo
-            ->getPostsWithRelationsByLocale($locale)
+            ->getItemsByLocale($locale)
             ->paginate(10);
 
         return view('posts.posts')
@@ -62,7 +62,7 @@ class PostsController extends Controller
 
     public function editTranslationForm(PostsRepo $repo, $slug)
     {
-        $post = $repo->getPostTranslationBySlug($slug);
+        $post = $repo->findTranslation($slug);
 
         $slug_ru = $repo->getSlugByLocaleAndPostId('ru', $post->post_id);
         $slug_de = $repo->getSlugByLocaleAndPostId('de', $post->post_id);
@@ -93,7 +93,7 @@ class PostsController extends Controller
         $locale = $repo->getLocaleBySlug($slug);  
         $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
 
-        $repo->updatePostTranslation($slug, [
+        $repo->updateTranslation($slug, [
                 'title' => $request['title'],
                 'slug' => $new_slug,
                 'description' => $request['description'] == null ? '' : $request['description'],
@@ -136,7 +136,7 @@ class PostsController extends Controller
 
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
 
-        $repo->createPostTranslation([
+        $repo->createTranslation([
                 'post_id' => $post_id,
                 'locale' => $locale,
                 'title' => $request['title'],
@@ -151,7 +151,7 @@ class PostsController extends Controller
 
     public function editForm(PostsRepo $repo, $id)
     {
-        $post = $repo->getPostById($id);
+        $post = $repo->find($id);
         
         return view('posts.edit')
             ->with('post', $post);
@@ -178,7 +178,7 @@ class PostsController extends Controller
 
         $pinned = $request['pinned'] == null ? false : true;
 
-        $repo->updatePost($id, [
+        $repo->update($id, [
                 'views' => $request['views'],
                 'created_at' => $created_at,
                 'pinned' => $pinned
@@ -196,10 +196,10 @@ class PostsController extends Controller
 
     public function create(Request $request, PostsRepo $repo, $locale)
     {
-        $post_id = $repo->createPostAndGetId();
+        $post_id = $repo->create();
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
 
-        $repo->createPostTranslation([
+        $repo->createTranslation([
             'post_id' => $post_id,
             'locale' => $locale,
             'title' => $request['title'],
@@ -208,13 +208,14 @@ class PostsController extends Controller
             'content' => $request['content']
         ]);
 
-        return redirect()->route('admin.posts.edit_translation_form', $slug);
+        return redirect()
+            ->route('admin.posts.edit_translation_form', $slug);
     }
 
     public function delete(PostsRepo $repo, $post_id)
     {
-        $repo->deletePost($post_id);
-        $repo->deletePostTranslations($post_id);
+        $repo->delete($post_id);
+        $repo->deleteTranslations($post_id);
 
         return redirect()
             ->route('admin.posts', 'ru');

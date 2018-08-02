@@ -9,7 +9,13 @@ use Validator;
 
 class ProjectsController extends Controller
 {
-    public function eduProjects(ProjectsRepo $repo)
+    public function __construct()
+    {
+        $this->middleware('auth')->except([
+            'index', 'show'
+        ]);
+    }
+    public function index(ProjectsRepo $repo)
     {
         $projects = $repo
             ->projectsListOrderedByDate(app()->getLocale())
@@ -19,7 +25,7 @@ class ProjectsController extends Controller
             ->with('projects', $projects);
     }
 
-    public function showEduProject($slug)
+    public function show($slug)
     {
         $project = EduProject::whereTranslation('slug', $slug)->firstOrFail();
 
@@ -32,10 +38,10 @@ class ProjectsController extends Controller
     }
     /* ********** admin projects ********** */
 
-    public function allProjects(ProjectsRepo $repo, $locale)
+    public function projects(ProjectsRepo $repo, $locale)
     {
         $projects = $repo
-            ->getProjectsByLocale($locale)
+            ->getItemsByLocale($locale)
             ->paginate(10);
         
         return view('projects.projects')
@@ -43,9 +49,9 @@ class ProjectsController extends Controller
             ->with('projects', $projects);
     }
 
-    public function editProjectTranslationForm(ProjectsRepo $repo, $slug)
+    public function editTranslationForm(ProjectsRepo $repo, $slug)
     {
-        $project = $repo->getProjectTranslationBySlug($slug);
+        $project = $repo->findTranslation($slug);
 
         $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project->edu_project_id);
         $slug_de = $repo->getSlugByLocaleAndProjectId('de', $project->edu_project_id);
@@ -58,7 +64,7 @@ class ProjectsController extends Controller
             ->with('slug_kg', $slug_kg);
     }
 
-    public function editProjectTranslation(Request $request, ProjectsRepo $repo, $slug)
+    public function editTranslation(Request $request, ProjectsRepo $repo, $slug)
     {
         $rules = [
             'title' => 'required|max:191',
@@ -74,7 +80,7 @@ class ProjectsController extends Controller
         $locale = $repo->getLocaleBySlug($slug);
         $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
 
-        $repo->updateProjectTranslation($slug, [
+        $repo->updateTranslation($slug, [
             'title' => $request['title'],
             'slug' => $new_slug,
             'content' => $request['content']
@@ -84,7 +90,7 @@ class ProjectsController extends Controller
             ->route('admin.projects.edit_translation_form', $new_slug);
     }
 
-    public function createProjectTranslationForm(ProjectsRepo $repo, $locale, $project_id)
+    public function createTranslationForm(ProjectsRepo $repo, $locale, $project_id)
     {
         $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project_id);
         $slug_de = $repo->getSlugByLocaleAndProjectId('de', $project_id);
@@ -98,7 +104,7 @@ class ProjectsController extends Controller
             ->with('project_id', $project_id);
     }
 
-    public function createProjectTranslation(ProjectsRepo $repo, Request $request, $locale, $project_id)
+    public function createTranslation(ProjectsRepo $repo, Request $request, $locale, $project_id)
     {
         $rules = [
             'title' => 'required|max:191',
@@ -112,7 +118,7 @@ class ProjectsController extends Controller
         Validator::make($request->all(), $rules, $messages)->validate();
 
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
-        $repo->createProjectTranslation([
+        $repo->createTranslation([
             'edu_project_id' => $project_id,
             'locale' => $locale,
             'title' => $request['title'],
@@ -124,15 +130,15 @@ class ProjectsController extends Controller
             ->route('admin.projects.edit_translation_form', $slug);
     }
 
-    public function editProjectForm(ProjectsRepo $repo, $id)
+    public function editForm(ProjectsRepo $repo, $id)
     {
-        $project = $repo->getProjectById($id);
+        $project = $repo->find($id);
 
         return view('projects.edit')
             ->with('project', $project);
     }
 
-    public function editProject(Request $request, ProjectsRepo $repo, $id)
+    public function edit(Request $request, ProjectsRepo $repo, $id)
     {
         $rules = [
             'views' => 'required|numeric|max:10',
@@ -151,7 +157,7 @@ class ProjectsController extends Controller
             $created_at = $request['created_at'];
         }
 
-        $repo->updateProject($id, [
+        $repo->update($id, [
             'views' => $request['views'],
             'created_at' => $created_at
         ]);
@@ -160,13 +166,13 @@ class ProjectsController extends Controller
             ->route('admin.projects.edit_form', $id);
     }
 
-    public function createProjectForm($locale)
+    public function createForm($locale)
     {
         return view('projects.create')
             ->with('locale', $locale);
     }
 
-    public function createProject(Request $request, ProjectsRepo $repo, $locale)
+    public function create(Request $request, ProjectsRepo $repo, $locale)
     {
         $rules = [
             'title' => 'required|max:191',
@@ -179,10 +185,10 @@ class ProjectsController extends Controller
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
-        $project_id = $repo->createProjectAndGetId();
+        $project_id = $repo->create();
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
 
-        $repo->createProjectTranslation([
+        $repo->createTranslation([
             'edu_project_id' => $project_id,
             'locale' => $locale,
             'title' => $request['title'],
@@ -194,10 +200,10 @@ class ProjectsController extends Controller
             ->route('admin.projects.edit_translation_form', $slug);
     }
 
-    public function deleteProject(ProjectsRepo $repo, $project_id)
+    public function delete(ProjectsRepo $repo, $project_id)
     {
-        $repo->deleteProject($project_id);
-        $repo->deleteProjectTranslations($project_id);
+        $repo->delete($project_id);
+        $repo->deleteTranslations($project_id);
 
         return redirect()
             ->route('admin.projects', 'ru');

@@ -133,7 +133,7 @@
           <div class="card-header">
             <span class="oi oi-calendar"></span> {{ customDateFormat($post->created_at) }}</div>
           <div class="card-body text-primary">
-            <a href="{{ route('news.show', $post->slug) }}" class="text-white">
+            <a href="{{ route('posts.show', $post->slug) }}" class="text-white">
               <p class="card-text">{{ $post->title }}</p>
             </a>
           </div>

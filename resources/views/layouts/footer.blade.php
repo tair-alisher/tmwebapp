@@ -43,7 +43,7 @@
           <span class="footer-title">{{ trans('menu.pages.title') }}</span>
           <ul class="list-group custom-list-group list">
             <li><a href="{{ route('employees') }}">{{ trans('menu.employees.title') }}</a></li>
-            <li><a href="{{ route('news') }}">{{ trans('menu.news.title') }}</a></li>
+            <li><a href="{{ route('posts') }}">{{ trans('menu.news.title') }}</a></li>
             <li><a href="{{ route('albums') }}">{{ trans('menu.gallery.title') }}</a></li>
           </ul>
         </div>

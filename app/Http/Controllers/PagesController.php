@@ -17,11 +17,7 @@ class PagesController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except([
-            'index',
-            'show',
-            'disciplines',
-            'eduProjects',
-            'showEduProject'
+            'index', 'show'
         ]);
     }
 
