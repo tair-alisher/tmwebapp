@@ -44,16 +44,16 @@ Route::get('/partners', [
 
 Route::get('/pages/edu_projects', [
     'as' => 'edu_projects',
-    'uses' => 'PagesController@eduProjects'
+    'uses' => 'ProjectsController@eduProjects'
 ]);
 Route::get('/pages/edu_projects/{slug}', [
     'as' => 'edu_projects.show',
-    'uses' => 'PagesController@showEduProject'
+    'uses' => 'ProjectsController@showEduProject'
 ]);
 
 Route::get('/pages/discipline_modules', [
     'as' => 'disciplines',
-    'uses' => 'PagesController@disciplines'
+    'uses' => 'DisciplinesController@disciplines'
 ]);
 
 Route::get('/pages/{slug}', [
@@ -183,46 +183,53 @@ Route::get('/admin/posts/{id}/delete', [
 
 Route::get('/admin/projects/{locale}', [
     'as' => 'admin.projects',
-    'uses' => 'PagesController@allProjects'
+    'uses' => 'ProjectsController@allProjects'
 ]);
 
 Route::get('/admin/projects/{slug}/edit', [
     'as' => 'admin.projects.edit_translation_form',
-    'uses' => 'PagesController@editProjectTranslationForm'
+    'uses' => 'ProjectsController@editProjectTranslationForm'
 ]);
 Route::post('/admin/projects/{slug}/edit', [
     'as' => 'admin.projects.edit_translation',
-    'uses' => 'PagesController@editProjectTranslation'
+    'uses' => 'ProjectsController@editProjectTranslation'
 ]);
 
 Route::get('/admin/projects/create/{locale}/{project_id}', [
     'as' => 'admin.projects.create_translation_form',
-    'uses' => 'PagesController@createProjectTranslationForm'
+    'uses' => 'ProjectsController@createProjectTranslationForm'
 ]);
 Route::post('/admin/projects/create/{locale}/{project_id}', [
     'as' => 'admin.projects.create_translation',
-    'uses' => 'PagesController@createProjectTranslation'
+    'uses' => 'ProjectsController@createProjectTranslation'
 ]);
 
 Route::get('/admin/projects/edit/{id}', [
     'as' => 'admin.projects.edit_form',
-    'uses' => 'PagesController@editProjectForm'
+    'uses' => 'ProjectsController@editProjectForm'
 ]);
 Route::post('/admin/projects/edit/{id}', [
     'as' => 'admin.projects.edit',
-    'uses' => 'PagesController@editProject'
+    'uses' => 'ProjectsController@editProject'
 ]);
 
 Route::get('/admin/projects/create/{locale}', [
     'as' => 'admin.projects.create_form',
-    'uses' => 'PagesController@createProjectForm'
+    'uses' => 'ProjectsController@createProjectForm'
 ]);
 Route::post('/admin/projects/create/{locale}', [
     'as' => 'admin.projects.create',
-    'uses' => 'PagesController@createProject'
+    'uses' => 'ProjectsController@createProject'
 ]);
 
 Route::get('/admin/projects/{id}/delete', [
     'as' => 'admin.projects.delete',
-    'uses' => 'PagesController@deleteProject'
+    'uses' => 'ProjectsController@deleteProject'
+]);
+
+/* ********** admin disciplines ********** */
+
+Route::get('/admin/disciplines/{locale}', [
+    'as' => 'admin.disciplines',
+    'uses' => 'PagesController@allDisciplines'
 ]);
