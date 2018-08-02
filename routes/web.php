@@ -91,6 +91,8 @@ Route::get('/admin', [
     'uses' => 'AppController@index'
 ]);
 
+/* ********** admin users ********** */
+
 Route::get('/admin/users', [
     'as' => 'admin.users',
     'uses' => 'AppController@users'
@@ -118,6 +120,8 @@ Route::get('/admin/users/{id}/delete', [
     'uses' => 'AppController@deleteUser'
 ]);
 
+/* ********** admin pages ********** */
+
 Route::get('/admin/pages/{slug}/edit', [
     'as' => 'admin.pages.edit_form',
     'uses' => 'PagesController@editForm'
@@ -127,36 +131,47 @@ Route::post('/admin/pages/{slug}/edit', [
     'uses' => 'PagesController@edit'
 ]);
 
+/* ********** admin posts ********** */
+
 Route::get('/admin/posts/{locale}', [
     'as' => 'admin.posts',
     'uses' => 'PostsController@posts'
 ]);
 
 Route::get('/admin/posts/{slug}/edit', [
+    'as' => 'admin.posts.edit_translation_form',
+    'uses' => 'PostsController@editTranslationForm'
+]);
+Route::post('/admin/posts/{slug}/edit', [
+    'as' => 'admin.posts.edit_translation',
+    'uses' => 'PostsController@editTranslation'
+]);
+
+Route::get('/admin/posts/create/{locale}/{post_id}', [
+    'as' => 'admin.posts.create_translation_form',
+    'uses' => 'PostsController@createTranslationForm'
+]);
+Route::post('/admin/posts/create/{locale}/{post_id}', [
+    'as' => 'admin.posts.create_translation',
+    'uses' => 'PostsController@createTranslation'
+]);
+
+Route::get('/admin/posts/edit/{id}', [
     'as' => 'admin.posts.edit_form',
     'uses' => 'PostsController@editForm'
 ]);
-Route::post('/admin/posts/{slug}/edit', [
+Route::post('/admin/posts/edit/{id}', [
     'as' => 'admin.posts.edit',
     'uses' => 'PostsController@edit'
 ]);
 
-Route::get('/admin/posts/create/{locale}/{post_id}', [
+Route::get('/admin/posts/create/{locale}', [
     'as' => 'admin.posts.create_form',
     'uses' => 'PostsController@createForm'
 ]);
-Route::post('/admin/posts/create/{locale}/{post_id}', [
+Route::post('/admin/posts/create/{locale}', [
     'as' => 'admin.posts.create',
     'uses' => 'PostsController@create'
-]);
-
-Route::get('/admin/posts/edit/{id}', [
-    'as' => 'admin.posts.general_edit_form',
-    'uses' => 'PostsController@generalEditForm'
-]);
-Route::post('/admin/posts/edit/{id}', [
-    'as' => 'admin.posts.general_edit',
-    'uses' => 'PostsController@generalEdit'
 ]);
 
 Route::get('/admin/posts/{id}/delete', [
@@ -164,11 +179,50 @@ Route::get('/admin/posts/{id}/delete', [
     'uses' => 'PostsController@delete'
 ]);
 
-Route::get('/admin/posts/create/{locale}', [
-    'as' => 'admin.posts.add_post_form',
-    'uses' => 'PostsController@addPostForm'
+/* ********** admin projects ********** */
+
+Route::get('/admin/projects/{locale}', [
+    'as' => 'admin.projects',
+    'uses' => 'PagesController@allProjects'
 ]);
-Route::post('/admin/posts/create/{locale}', [
-    'as' => 'admin.posts.add_post',
-    'uses' => 'PostsController@addPost'
+
+Route::get('/admin/projects/{slug}/edit', [
+    'as' => 'admin.projects.edit_translation_form',
+    'uses' => 'PagesController@editProjectTranslationForm'
+]);
+Route::post('/admin/projects/{slug}/edit', [
+    'as' => 'admin.projects.edit_translation',
+    'uses' => 'PagesController@editProjectTranslation'
+]);
+
+Route::get('/admin/projects/create/{locale}/{project_id}', [
+    'as' => 'admin.projects.create_translation_form',
+    'uses' => 'PagesController@createProjectTranslationForm'
+]);
+Route::post('/admin/projects/create/{locale}/{project_id}', [
+    'as' => 'admin.projects.create_translation',
+    'uses' => 'PagesController@createProjectTranslation'
+]);
+
+Route::get('/admin/projects/edit/{id}', [
+    'as' => 'admin.projects.edit_form',
+    'uses' => 'PagesController@editProjectForm'
+]);
+Route::post('/admin/projects/edit/{id}', [
+    'as' => 'admin.projects.edit',
+    'uses' => 'PagesController@editProject'
+]);
+
+Route::get('/admin/projects/create/{locale}', [
+    'as' => 'admin.projects.create_form',
+    'uses' => 'PagesController@createProjectForm'
+]);
+Route::post('/admin/projects/create/{locale}', [
+    'as' => 'admin.projects.create',
+    'uses' => 'PagesController@createProject'
+]);
+
+Route::get('/admin/projects/{id}/delete', [
+    'as' => 'admin.projects.delete',
+    'uses' => 'PagesController@deleteProject'
 ]);

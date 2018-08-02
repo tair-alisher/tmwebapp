@@ -44,6 +44,11 @@
       <div class="col-lg-7 col-md-7 white-background">
         <h4 class="title">{{ trans('app.info.news') }}</h4>
 
+        @if(count($posts) <= 0)
+        <hr>
+        <p class="text-muted text-center">{{ trans('app.no_results') }}</p>
+        <hr>
+        @else
         @foreach ($posts as $post)
         <hr>
         <div class="row">
@@ -74,6 +79,7 @@
           <hr>
           {{ $posts->links() }}
       </div>
+        @endif
       </div>
 
       <div class="col-lg-2 col-md-2 order-lg-last order-md-last order-sm-last order-xs-last pinned-news">
@@ -82,8 +88,8 @@
         <ul class="list-unstyled">
           @foreach ($archives as $stats)
           <li>
-            <a class="archive-items" href="?month={{ $stats['month'] }}&year={{ $stats['year'] }}">
-              {{ monthNumberToMonthName($stats['month']) . ' ' . $stats['year'] }}
+            <a class="main-color" href="?month={{ $stats->month }}&year={{ $stats->year }}">
+              {{ monthNumberToMonthName($stats->month) . ' ' . $stats->year }} ({{ $stats->published }})
             </a>
           </li>
           @endforeach

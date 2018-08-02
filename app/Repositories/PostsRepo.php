@@ -6,13 +6,51 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Post;
 
-class PostsRepo
+class PostsRepo extends Repository
 {
   public function getPostById($id)
   {
     return DB::table('posts')
       ->where('id', $id)
       ->first();
+  }
+
+  public function getTwoLast($locale)
+  {
+    return DB::table('post_translations as pt')
+      ->leftJoin('posts as p', 'pt.post_id', '=', 'p.id')
+      ->selectRaw('p.created_at created_at, p.views views, pt.title title, pt.slug slug')
+      ->where('locale', $locale)
+      ->orderBy('p.created_at', 'desc')
+      ->limit(2)
+      ->get();
+  }
+
+  public function postsListOrderedByDate($locale)
+  {
+    return DB::table('post_translations as pt')
+      ->leftJoin('posts as p', 'pt.post_id', '=', 'p.id')
+      ->select(
+        'pt.title as title',
+        'pt.slug as slug',
+        'pt.description as description',
+        'p.created_at as created_at',
+        'p.views as views'
+        )
+      ->where('locale', $locale)
+      ->orderBy('created_at', 'desc');
+  }
+
+  public function filter($query, $filters)
+  {
+    if ($month = $filters['month']) {
+      $query = $query->whereRaw('MONTH(p.created_at) = ' . $month);
+    }
+    if ($year = $filters['year']) {
+      $query = $query->whereRaw('YEAR(p.created_at) = ' . $year);
+    }
+
+    return $query;
   }
 
   public function getPostTranslationBySlug($slug)

@@ -24,13 +24,13 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Новости</h4>
         <hr>
-        <a href="{{ route('admin.posts.add_post_form', ['locale' => $locale]) }}" class="btn btn-link main-color">Добавить запись</a>
+        <a href="{{ route('admin.posts.create_form', ['locale' => $locale]) }}" class="btn btn-link main-color">Добавить запись</a>
 
         <ul class="list-group">
           @foreach ($posts as $post)
           <li class="list-group-item">
             {{ $post->title }}<br>
-            <a href="{{ route('admin.posts.edit_form', $post->slug) }}" class="btn btn-link main-color">Редактировать</a>
+            <a href="{{ route('admin.posts.edit_translation_form', $post->slug) }}" class="btn btn-link main-color">Редактировать</a>
             <span class="main-color">&#8726</span>
             <a onclick="return confirmPostDelete()" href="{{ route('admin.posts.delete', $post->id) }}" class="btn btn-link main-color">Удалить</a>
           </li>

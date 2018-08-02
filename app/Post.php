@@ -32,22 +32,14 @@ class Post extends Model
             ->get();
     }
 
-    public static function toSlug($string)
+    public static function getArchives($locale)
     {
-        return Transliterate::make(
-            $string,
-            [
-                'type' => 'url',
-                'lowercase' => true
-            ]
-        );
-    }
-
-    public static function getArchives()
-    {
-        return static::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
+        return DB::table('posts as p')
+            ->join('post_translations as pt', 'p.id', '=', 'pt.post_id')
+            ->selectRaw('year(p.created_at) year, month(p.created_at) month, count(pt.id) published')
+            ->where('pt.locale', $locale)
             ->groupBy('year', 'month')
-            ->orderByRaw('min(created_at) desc')
+            ->orderByRaw('min(p.created_at) desc')
             ->get()
             ->toArray();
     }
