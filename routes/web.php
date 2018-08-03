@@ -282,3 +282,33 @@ Route::get('/admin/disciplines/delete/{discipline_id}', [
     'as' => 'admin.disciplines.delete',
     'uses' => 'DisciplinesController@delete'
 ]);
+
+/* ********** admin partners ********** */
+
+Route::get('/admin/partners', [
+    'as' => 'admin.partners',
+    'uses' => 'PartnersController@partners'
+]);
+
+Route::get('/admin/partners/create', [
+    'as' => 'admin.partners.create_form',
+    'uses' => 'PartnersController@createForm'
+]);
+Route::post('/admin/partners/create', [
+    'as' => 'admin.partners.create',
+    'uses' => 'PartnersController@create'
+]);
+
+Route::get('/admin/partners/{id}/edit', [
+    'as' => 'admin.partners.edit_form',
+    'uses' => 'PartnersController@editForm'
+]);
+Route::post('/admin/partners/{id}/edit', [
+    'as' => 'admin.partners.edit',
+    'uses' => 'PartnersController@edit'
+]);
+
+Route::get('/admin/partners/{id}/delete', [
+    'as' => 'admin.partners.delete',
+    'uses' => 'PartnersController@delete'
+]);

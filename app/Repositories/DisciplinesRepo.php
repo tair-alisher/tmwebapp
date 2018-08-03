@@ -66,9 +66,7 @@ class DisciplinesRepo extends Repository
 
     foreach ($files as $file) {
       $filepath = public_path('files/disciplines') . '/' . $file->title;
-      if (file_exists($filepath)) {
-        unlink($filepath);
-      }
+      $this->deleteFile($filepath);
     }
 
     DB::table('discipline_translations')
@@ -120,15 +118,5 @@ class DisciplinesRepo extends Repository
     return DB::table('discipline_translations')
       ->where('id', $discipline_id)
       ->value('created_at');
-  }
-
-  public function makeUniqueFilename($file)
-  {
-    $originalNameParts = explode('.', $file->getClientOriginalName());
-    array_pop($originalNameParts);
-    $originalName = implode('.', $originalNameParts);
-    $filename = $this->toSlug($originalName) . '-' . time() . '.' . $file->getClientOriginalExtension();
-
-    return $filename;
   }
 }
