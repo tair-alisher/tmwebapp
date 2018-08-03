@@ -7,7 +7,63 @@ use Carbon\Carbon;
 
 class ProjectsRepo extends Repository
 {
-  public function getProjectsByLocale($locale)
+  public function find($id)
+  {
+    return DB::table('edu_projects')
+      ->where('id', $id)
+      ->first();
+  }
+
+  public function create()
+  {
+    return DB::table('edu_projects')->insertGetId([
+      'created_at' => Carbon::today(),
+      'updated_at' => Carbon::today()
+    ]);
+  }
+
+  public function update($id, $data)
+  {
+    DB::table('edu_projects')
+      ->where('id', $id)
+      ->update($data);
+  }
+
+  public function delete($project_id)
+  {
+    DB::table('edu_projects')
+      ->where('id', $project_id)
+      ->delete();
+  }
+
+  public function findTranslation($slug)
+  {
+    return DB::table('edu_project_translations')
+      ->where('slug', $slug)
+      ->first();
+  }
+
+  public function createTranslation($data)
+  {
+    DB::table('edu_project_translations')
+      ->insert($data);
+  }
+
+  public function updateTranslation($slug, $data)
+  {
+    DB::table('edu_project_translations')
+      ->where('slug', $slug)
+      ->update($data);
+  }
+
+  public function deleteTranslations($project_id)
+  {
+    DB::table('edu_project_translations')
+      ->where('edu_project_id', $project_id)
+      ->delete();
+  }
+
+  public function getItemsByLocale($locale)
   {
     return DB::table('edu_project_translations')
       ->join('edu_projects', 'edu_project_translations.edu_project_id', '=', 'edu_projects.id')
@@ -22,13 +78,6 @@ class ProjectsRepo extends Repository
       ->selectRaw('pt.slug slug, pt.title title, p.created_at created_at, p.views views')
       ->where('locale', $locale)
       ->orderBy('created_at', 'desc');
-  }
-
-  public function getProjectTranslationBySlug($slug)
-  {
-    return DB::table('edu_project_translations')
-      ->where('slug', $slug)
-      ->first();
   }
 
   public function getSlugByLocaleAndProjectId($locale, $project_id)
@@ -46,59 +95,10 @@ class ProjectsRepo extends Repository
       ->value('locale');
   }
 
-  public function updateProjectTranslation($slug, $data)
-  {
-    DB::table('edu_project_translations')
-      ->where('slug', $slug)
-      ->update($data);
-  }
-
-  public function createProjectTranslation($data)
-  {
-    DB::table('edu_project_translations')
-      ->insert($data);
-  }
-
-  public function getProjectById($id)
-  {
-    return DB::table('edu_projects')
-      ->where('id', $id)
-      ->first();
-  }
-
   public function getCreatedAtById($id)
   {
     return DB::table('edu_projects')
       ->where('id', $id)
       ->value('created_at');
-  }
-
-  public function updateProject($id, $data)
-  {
-    DB::table('edu_projects')
-      ->where('id', $id)
-      ->update($data);
-  }
-
-  public function createProjectAndGetId()
-  {
-    return DB::table('edu_projects')->insertGetId([
-      'created_at' => Carbon::today(),
-      'updated_at' => Carbon::today()
-    ]);
-  }
-
-  public function deleteProject($project_id)
-  {
-    DB::table('edu_projects')
-      ->where('id', $project_id)
-      ->delete();
-  }
-
-  public function deleteProjectTranslations($project_id)
-  {
-    DB::table('edu_project_translations')
-      ->where('edu_project_id', $project_id)
-      ->delete();
   }
 }

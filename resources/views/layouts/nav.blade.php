@@ -58,7 +58,7 @@
         </li>
 
         <li class="nav-item active" id="news-nav-item">
-          <a class="nav-link" href="{{ route('news') }}">{{ trans('menu.news.title') }}</a>
+          <a class="nav-link" href="{{ route('posts') }}">{{ trans('menu.news.title') }}</a>
         </li>
 
         <li class="nav-item" id="gallery-nav-item">

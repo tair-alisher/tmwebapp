@@ -81,7 +81,7 @@ function highlightActiveMenuItem() {
     'aspirantura-kg'
   ];
   var employeesPage = 'employees';
-  var newsPage = 'news';
+  var newsPage = 'posts';
   var galleryPage = 'gallery';
   var partnersPage = 'partners';
 
@@ -170,5 +170,5 @@ function confirmAction() {
 }
 
 function confirmPostDelete() {
-  return confirm('Будут удалены варианты на всех языках.\nВы уверены что хотите удалить данную запись?');
+  return confirm('Будут удалены варианты на всех языках.\nВы уверены, что хотите удалить данную запись?');
 }

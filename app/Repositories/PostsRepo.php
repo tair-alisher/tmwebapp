@@ -4,15 +4,70 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Post;
 
 class PostsRepo extends Repository
 {
-  public function getPostById($id)
+  public function find($id)
   {
     return DB::table('posts')
       ->where('id', $id)
       ->first();
+  }
+
+  public function create()
+  {
+    return DB::table('posts')->insertGetId([
+      'created_at' => Carbon::today(),
+      'updated_at' => Carbon::today()
+    ]);
+  }
+
+  public function update($id, $data)
+  {
+    DB::table('posts')
+      ->where('id', $id)
+      ->update($data);
+  }
+
+  public function delete($post_id)
+  {
+    DB::table('posts')
+      ->where('id', $post_id)
+      ->delete();
+  }
+
+  public function findTranslation($slug)
+  {
+    return DB::table('post_translations')
+      ->where('slug', $slug)
+      ->first();
+  }
+
+  public function createTranslation($data)
+  {
+    DB::table('post_translations')
+      ->insert($data);
+  }
+
+  public function updateTranslation($slug, $data)
+  {
+    DB::table('post_translations')
+      ->where('slug', $slug)
+      ->update($data);
+  }
+
+  public function deleteTranslations($post_id)
+  {
+    DB::table('post_translations')
+      ->where('post_id', $post_id)
+      ->delete();
+  }
+
+  public function getCreatedAtById($id)
+  {
+    return DB::table('posts')
+      ->where('id', $id)
+      ->value('created_at');
   }
 
   public function getTwoLast($locale)
@@ -53,46 +108,12 @@ class PostsRepo extends Repository
     return $query;
   }
 
-  public function getPostTranslationBySlug($slug)
-  {
-    return DB::table('post_translations')
-      ->where('slug', $slug)
-      ->first();
-  }
-
   public function getSlugByLocaleAndPostId($locale, $post_id)
   {
     return DB::table('post_translations')
       ->where('post_id', $post_id)
       ->where('locale', $locale)
       ->value('slug');
-  }
-
-  public function getCreatedAtById($id)
-  {
-    return DB::table('posts')
-      ->where('id', $id)
-      ->value('created_at');
-  }
-
-  public function createPostTranslation($data)
-  {
-    DB::table('post_translations')
-      ->insert($data);
-  }
-
-  public function updatePost($id, $data)
-  {
-    DB::table('posts')
-      ->where('id', $id)
-      ->update($data);
-  }
-
-  public function updatePostTranslation($slug, $data)
-  {
-    DB::table('post_translations')
-      ->where('slug', $slug)
-      ->update($data);
   }
 
   public function getLocaleBySlug($slug)
@@ -102,33 +123,11 @@ class PostsRepo extends Repository
       ->value('locale');
   }
 
-  public function getPostsWithRelationsByLocale($locale)
+  public function getItemsByLocale($locale)
   {
     return DB::table('post_translations')
       ->join('posts', 'post_translations.post_id', '=', 'posts.id')
       ->where('post_translations.locale', $locale)
       ->orderBy('posts.created_at', 'desc');
-  }
-
-  public function createPostAndGetId()
-  {
-    return DB::table('posts')->insertGetId([
-      'created_at' => Carbon::today(),
-      'updated_at' => Carbon::today()
-    ]);
-  }
-
-  public function deletePost($post_id)
-  {
-    DB::table('posts')
-      ->where('id', $post_id)
-      ->delete();
-  }
-
-  public function deletePostTranslations($post_id)
-  {
-    DB::table('post_translations')
-      ->where('post_id', $post_id)
-      ->delete();
   }
 }
