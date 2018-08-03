@@ -22,14 +22,20 @@
           @foreach ($partners as $partner)
 
           <div class="partner-block col-lg-6 col-md-6">
+            @if (strlen($partner->image) > 0)
             <img class="partner-image" src="{{ asset('images/partners') }}/{{ $partner->image }}" alt=""><br>
+            @else
+            <h4 class="main-color">{{ $partner->name }}</h4>
+            @endif
+            @if (strlen($partner->link) > 0)
             <a target="_blank" href="{{ $partner->link }}">{{ trans('app.info.visit_page') }}</a>
+            @endif
           </div>
 
           @php ($i += 1)
 
           @if ($i % 2 == 0 && $i != $amount)
-        </div><div class="row">
+        </div><hr><div class="row">
           @endif
 
           @endforeach

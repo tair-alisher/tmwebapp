@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Repositories\PostsRepo;
 use App\Repositories\PagesRepo;
+use App\Repositories\PartnersRepo;
 use App\Page;
 use App\Post;
 use App\Employee;
@@ -21,13 +22,13 @@ class PagesController extends Controller
         ]);
     }
 
-    public function index(PostsRepo $repo)
+    public function index(PostsRepo $postsRepo, PartnersRepo $partnersRepo)
     {        
-        $posts = $repo->getTwoLast(app()->getLocale());
+        $posts = $postsRepo->getTwoLast(app()->getLocale());
 
         $employees = Employee::all();
 
-        $partners = Partner::all();
+        $partners = $partnersRepo->getPartnersWithImage();
 
         return view('pages.index')
             ->with('posts', $posts)

@@ -18,4 +18,21 @@ class Repository
       ]
     );
   }
+
+  public function makeUniqueFilename($file)
+  {
+    $originalNameParts = explode('.', $file->getClientOriginalName());
+    array_pop($originalNameParts);
+    $originalName = implode('.', $originalNameParts);
+    $filename = $this->toSlug($originalName) . '-' . time() . '.' . $file->getClientOriginalExtension();
+
+    return $filename;
+  }
+
+  public function deleteFile($filepath)
+  {
+    if (file_exists($filepath)) {
+      unlink($filepath);
+    }
+  }
 }

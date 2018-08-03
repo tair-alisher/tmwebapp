@@ -50,7 +50,7 @@
         </li>
 
         <li class="nav-item" id="partners-nav-item">
-          <a href="{{ route('partners') }}" class="nav-link">Партнеры</a>
+          <a href="{{ route('admin.partners') }}" class="nav-link">Партнеры</a>
         </li>
 
         <li class="nav-item" id="users-nav-item">
