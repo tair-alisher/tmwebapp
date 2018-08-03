@@ -19,7 +19,7 @@
 
         @foreach ($files as $file)
         <div class="discipline-block">
-          <p>{{ $file->title }} <a href="{{ asset('files/disciplines') . '/' . $file->file_title }}" class="btn btn-link" download>{{ trans('app.download') }}</a></p>
+          <p>{{ $file->title }} ({{ customDateFormat($file->created_at) }}) <a href="{{ asset('files/disciplines') . '/' . $file->file_title }}" class="btn btn-link" download>{{ trans('app.download') }}</a></p>
           
         </div>
         @endforeach

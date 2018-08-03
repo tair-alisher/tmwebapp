@@ -29,7 +29,7 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Добавление файла<br><b>{{ $locale }}</b></h4>
         <hr>
-        <p class="text-center"><a href="{{ route('admin.projects.edit_form', $discipline_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, <b>количество просмотров</b>, <b>закрепить&#8726открепить</b> запись, нажмите здесь</a></p>
+        <p class="text-center"><a href="{{ route('admin.disciplines.edit_form', ['discipline_id' => $discipline_id]) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, нажмите здесь</a></p>
         <hr>
         <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplines.add_file', ['locale' => $locale, 'discipline_id' => $discipline_id]) }}">
           @include('layouts.errors')
@@ -41,12 +41,12 @@
           </div>
 
           <div class="form-group">
-            <label for="content">Содержимое страницы</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control" required="required"></textarea>
+            <label for="file">Загрузить другой файл</label>
+            <input type="file" class="form-control-file" id="file" name="file">
           </div>
 
           <div class="form-group">
-            <button class="btn btn-link main-color" type="submit">Сохранить</button>
+            <button class="btn btn-outline-primary" type="submit">Сохранить</button>
           </div>
         </form>
       </div>   

@@ -13,9 +13,9 @@ class DisciplinesController extends Controller
     {
         $this->middleware('auth')->except(['index']);
     }
-    public function index()
+    public function index(DisciplinesRepo $repo)
     {
-        $files = Discipline::latest()->get();
+        $files = $repo->filesListOrderedByDate(app()->getLocale());
 
         return view('disciplines.index')
             ->with('files', $files);
@@ -49,18 +49,18 @@ class DisciplinesController extends Controller
 
     public function editFile(Request $request, DisciplinesRepo $repo, $file_id)
     {
-        $rules = [];
-        $messages = [];
+        $rules = ['title' => 'required|max:191'];
+        $messages = [
+            'title.required' => 'Название обязательно для заполнения.',
+            'title.max' => 'Название слишком длинное.'
+        ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
         $oldFilename = $repo->getFilename($file_id);
 
         if ($request->hasFile('file') && $request->file('file')->isValid()) {
             $file = $request->file('file');
-            $originalNameParts = explode('.', $file->getClientOriginalName());
-            array_pop($originalNameParts);
-            $originalName = implode('.', $originalNameParts);
-            $filename = $repo->toSlug($originalName) . '-' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = $repo->makeUniqueFilename($file);
             $file->move(public_path('files/disciplines'), $filename);
 
             $filepath = public_path('files/disciplines') . '/' . $oldFilename;
@@ -93,5 +93,116 @@ class DisciplinesController extends Controller
             ->with('discipline_id', $discipline_id);
     }
 
-    public function addFile() {}
+    public function addFile(Request $request, DisciplinesRepo $repo, $locale, $discipline_id)
+    {
+        $rules = [
+            'title' => 'required|max:191',
+            'file' => 'required'
+        ];
+        $messages = [
+            'title.required' => 'Название обязательно для заполнения.',
+            'title.max' => 'Название слишком длинное.',
+            'file.required' => 'Файл обязателен для загрузки.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $file = $request->file('file');
+            $filename = $repo->makeUniqueFilename($file);
+            $file->move(public_path('files/disciplines'), $filename);
+
+            $file_id = $repo->addFile([
+                'discipline_id' => $discipline_id,
+                'locale' => $locale,
+                'title' => $request['title'],
+                'file_title' => $filename
+            ]);
+
+            return redirect()
+                ->route('admin.disciplines.edit_file_form', ['file_id' => $file_id]);
+        }
+        
+        return back()->withErrors([
+            'message' => 'Произошла ошибка. Попробуйте еще раз.'
+        ]);
+    }
+
+    public function editForm(DisciplinesRepo $repo, $discipline_id)
+    {
+        $discipline = $repo->find($discipline_id);
+
+        return view('disciplines.edit')
+            ->with('discipline', $discipline);
+    }
+
+    public function edit(Request $request, DisciplinesRepo $repo, $discipline_id)
+    {
+        $rules = ['created_at' => 'date'];
+        $messages = ['created_at.date' => 'Дата указана в неверном формате.'];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        if ($request['created_at'] == null) {
+            $created_at = $repo->getCreatedAtValue($discipline_id);
+        } else {
+            $created_at = $request['created_at'];
+        }
+
+        $repo->update($discipline_id, [
+            'created_at' => $created_at
+        ]);
+
+        return redirect()
+            ->route('admin.disciplines.edit_form', $discipline_id);
+    }
+
+    public function createForm($locale)
+    {
+        return view('disciplines.create')
+            ->with('locale', $locale);
+    }
+
+    public function create(Request $request, DisciplinesRepo $repo, $locale)
+    {
+        $rules = [
+            'title' => 'required|max:191',
+            'file' => 'required'
+        ];
+        $messages = [
+            'title.required' => 'Название обязательно для заполнения.',
+            'title.max' => 'Название слишком длинное.',
+            'file.required' => 'Файл обязателен для загрузки.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $discipline_id = $repo->create();
+
+            $file = $request->file('file');
+            $filename = $repo->makeUniqueFilename($file);
+            $file->move(public_path('files/disciplines'), $filename);
+
+            $file_id = $repo->addFile([
+                'discipline_id' => $discipline_id,
+                'locale' => $locale,
+                'title' => $request['title'],
+                'file_title' => $filename
+            ]);
+
+            return redirect()
+                ->route('admin.disciplines.edit_file_form', ['file_id' => $file_id]);
+        }
+
+        return back()->withErrors([
+            'message' => 'Произошла ошибка при загрузке файла. Попробуйте еще раз.'
+        ]);
+    }
+
+    public function delete(DisciplinesRepo $repo, $discipline_id)
+    {
+        $repo->delete($discipline_id);
+        $repo->deleteFiles($discipline_id);
+
+        return redirect()
+            ->route('admin.disciplines', 'ru');
+    }
 }

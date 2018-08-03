@@ -24,7 +24,7 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Модули дисциплин</h4>
         <hr>
-        <a href="{{ route('admin.projects.create_form', ['locale' => $locale]) }}" class="btn btn-link main-color">Добавить файл</a>
+        <a href="{{ route('admin.disciplines.create_form', ['locale' => $locale]) }}" class="btn btn-link main-color">Добавить файл</a>
 
         <ul class="list-group">
           @foreach ($files as $file)
@@ -32,7 +32,7 @@
             {{ $file->title }}<br>
             <a href="{{ route('admin.disciplines.edit_file_form', $file->file_id) }}" class="btn btn-link main-color">Редактировать</a>
             <span class="main-color">&#8726</span>
-            <a onclick="return confirmPostDelete()" href="{{ route('admin.projects.delete', $file->discipline_id) }}" class="btn btn-link main-color">Удалить</a>
+            <a onclick="return confirmPostDelete()" href="{{ route('admin.disciplines.delete', $file->discipline_id) }}" class="btn btn-link main-color">Удалить</a>
           </li>
           @endforeach
         </ul>

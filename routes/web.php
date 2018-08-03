@@ -259,3 +259,26 @@ Route::post('/admin/disciplines/add_file/{locale}/{discipline_id}', [
     'as' => 'admin.disciplines.add_file',
     'uses' => 'DisciplinesController@addFile'
 ]);
+
+Route::get('/admin/disciplines/edit/{discipline_id}', [
+    'as' => 'admin.disciplines.edit_form',
+    'uses' => 'DisciplinesController@editForm'
+]);
+Route::post('/admin/disciplines/edit/{discipline_id}', [
+    'as' => 'admin.disciplines.edit',
+    'uses' => 'DisciplinesController@edit'
+]);
+
+Route::get('/admin/disciplines/create/{locale}', [
+    'as' => 'admin.disciplines.create_form',
+    'uses' => 'DisciplinesController@createForm'
+]);
+Route::post('/admin/disciplines/create/{locale}', [
+    'as' => 'admin.disciplines.create',
+    'uses' => 'DisciplinesController@create'
+]);
+
+Route::get('/admin/disciplines/delete/{discipline_id}', [
+    'as' => 'admin.disciplines.delete',
+    'uses' => 'DisciplinesController@delete'
+]);

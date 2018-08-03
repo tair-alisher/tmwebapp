@@ -2,10 +2,6 @@
 
 @section('title', 'Редактирование файла')
 
-@section('styles')
-  <link rel="stylesheet" href="{{ asset('js/summernote/summernote-bs4.css') }}">
-@endsection
-
 @section('content')
 <div class="grey-row">
   <div class="container news height">
@@ -29,7 +25,7 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Редактирование файла: {{ $file->title }}<br><b>{{ $file->locale }}</b></h4>
         <hr>
-        <p class="text-center"><a href="{{ route('admin.projects.edit_form', 1) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, нажмите здесь</a></p>
+        <p class="text-center"><a href="{{ route('admin.disciplines.edit_form', ['discipline_id' => $file->discipline_id]) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, нажмите здесь</a></p>
         <hr>
         
         <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplines.edit_file', $file->id) }}">
