@@ -21,7 +21,7 @@
           </div>
 
           <div class="form-group">
-            <label for="link">Ссылка на сайт (в формате: <b>http(s)://</b>ссылка)</label>
+            <label for="link">Ссылка на сайт (в формате: <b>http(s)://</b>ссылка) (не обязательно)</label>
             <input type="text" class="form-control" name="link" id="link"{{ strlen($partner->link) > 0 ? ' value='. $partner->link : '' }}>
           </div>
 

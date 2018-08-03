@@ -312,3 +312,51 @@ Route::get('/admin/partners/{id}/delete', [
     'as' => 'admin.partners.delete',
     'uses' => 'PartnersController@delete'
 ]);
+
+/* ********** admin employees ********** */
+
+Route::get('/admin/employees/{locale}', [
+    'as' => 'admin.employees',
+    'uses' => 'EmployeesController@employees'
+]);
+
+Route::get('/admin/employees/create/{locale}', [
+    'as' => 'admin.employees.create_form',
+    'uses' => 'EmployeesController@createForm'
+]);
+Route::post('/admin/employees/create/{locale}', [
+    'as' => 'admin.employees.create',
+    'uses' => 'EmployeesController@create'
+]);
+
+Route::get('/admin/employees/{employee_id}/edit', [
+    'as' => 'admin.employees.edit_form',
+    'uses' => 'EmployeesController@editForm'
+]);
+Route::post('/admin/employees/{employee_id}/edit', [
+    'as' => 'admin.employees.edit',
+    'uses' => 'EmployeesController@edit'
+]);
+
+Route::get('/admin/employees/create/{locale}/{employee_id}', [
+    'as' => 'admin.employees.create_translation_form',
+    'uses' => 'EmployeesController@createTranslationForm'
+]);
+Route::post('/admin/employees/create/{locale}/{employee_id}', [
+    'as' => 'admin.employees.create_translation',
+    'uses' => 'EmployeesController@createTranslation'
+]);
+
+Route::get('/admin/employees/edit/{translation_id}', [
+    'as' => 'admin.employees.edit_translation_form',
+    'uses' => 'EmployeesController@editTranslationForm',
+]);
+Route::post('/admin/employees/edit/{translation_id}', [
+    'as' => 'admin.employees.edit_translation',
+    'uses' => 'EmployeesController@editTranslation'
+]);
+
+Route::get('/admin/employees/{employee_id}/delete', [
+    'as' => 'admin.employees.delete',
+    'uses' => 'EmployeesController@delete'
+]);

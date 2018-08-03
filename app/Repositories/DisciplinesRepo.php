@@ -25,6 +25,8 @@ class DisciplinesRepo extends Repository
 
   public function update($discipline_id, $data)
   {
+    $data['updated_at'] = Carbon::today();
+
     DB::table('disciplines')
       ->where('id', $discipline_id)
       ->update($data);

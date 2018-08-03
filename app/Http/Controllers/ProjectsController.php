@@ -36,6 +36,7 @@ class ProjectsController extends Controller
         return view('projects.show')
             ->with('project', $project);
     }
+
     /* ********** admin projects ********** */
 
     public function projects(ProjectsRepo $repo, $locale)

@@ -24,6 +24,8 @@ class PostsRepo extends Repository
 
   public function update($id, $data)
   {
+    $data['updated_at'] = Carbon::today();
+
     DB::table('posts')
       ->where('id', $id)
       ->update($data);

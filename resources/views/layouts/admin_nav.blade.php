@@ -38,7 +38,7 @@
         </li>
 
         <li class="nav-item" id="employees-nav-item">
-          <a href="{{ route('employees') }}" class="nav-link">Сотрудники</a>
+          <a href="{{ route('admin.employees', 'ru') }}" class="nav-link">Сотрудники</a>
         </li>
 
         <li class="nav-item active" id="news-nav-item">
