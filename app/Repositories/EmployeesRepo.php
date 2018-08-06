@@ -15,6 +15,36 @@ class EmployeesRepo extends Repository
     return DB::table('employees')
       ->insertGetId($data);
   }
+
+  public function findTranslation($translation_id)
+  {
+    return DB::table('employee_translations')
+      ->where('id', $translation_id)
+      ->first();
+  }
+
+  public function getTranslationId($locale, $employee_id)
+  {
+    return DB::table('employee_translations')
+      ->where('locale', $locale)
+      ->where('employee_id', $employee_id)
+      ->value('id');
+  }
+
+  public function updateTranslation($translation_id, $data)
+  {
+    DB::table('employee_translations')
+      ->where('id', $translation_id)
+      ->update($data);
+  }
+
+  public function getLocale($translation_id)
+  {
+    return DB::table('employee_translations')
+      ->where('id', $translation_id)
+      ->value('locale');
+  }
+
   public function getItemsByLocale($locale)
   {
     return DB::table('employee_translations as et')

@@ -96,4 +96,40 @@ class EmployeesController extends Controller
         return redirect()
             ->route('admin.employees.edit_translation_form', ['translation_id' => $translation_id]);
     }
+
+    public function editTranslationForm(EmployeesRepo $repo, $translation_id)
+    {
+        $employee = $repo->findTranslation($translation_id);
+
+        $translation_ru = $repo->getTranslationId('ru', $employee->employee_id);
+        $translation_de = $repo->getTranslationId('de', $employee->employee_id);
+        $translation_kg = $repo->getTranslationId('kg', $employee->employee_id);
+
+        return view('employees.edit_translation')
+            ->with('employee', $employee)
+            ->with('translation_ru', $translation_ru)
+            ->with('translation_de', $translation_de)
+            ->with('translation_kg', $translation_kg);
+    }
+
+    public function editTranslation(Request $request, EmployeesRepo $repo, $translation_id)
+    {
+        $rules = [];
+        $messages = [];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $locale = $repo->getLocale($translation_id);
+        $new_slug = $repo->toSlug($request['name']) . '-' . $locale;
+
+        $repo->updateTranslation($translation_id, [
+            'name' => $request['name'],
+            'slug' => $new_slug,
+            'position' => $request['position'],
+            'degree' => $request['degree'] == null ? '' : $request['degree'],
+            'info' => $request['info']
+        ]);
+
+        return redirect()
+            ->route('admin.employees.edit_translation_form', ['translation_id' => $translation_id]);
+    }
 }
