@@ -13,9 +13,9 @@ class EmployeesController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
-    public function index()
+    public function index(EmployeesRepo $repo)
     {
-        $employees = Employee::all();
+        $employees = $repo->getItemsByLocale(app()->getLocale());
 
         return view('employees.index')
             ->with('employees', $employees);
@@ -25,6 +25,8 @@ class EmployeesController extends Controller
     {
         $employee = Employee::whereTranslation('slug', $slug)
             ->firstOrFail();
+
+        if (!$employee->slug) { abort(404); }
 
         if ( $employee->translate()->where('slug', $slug)->first()->locale != app()->getLocale() ) {
             return redirect()->route('employees.show', $employee->translate()->slug);
@@ -39,8 +41,7 @@ class EmployeesController extends Controller
     public function employees(EmployeesRepo $repo, $locale)
     {
         $employees = $repo
-            ->getItemsByLocale($locale)
-            ->paginate(10);
+            ->getItemsByLocale($locale);
         
         return view('employees.employees')
             ->with('locale', $locale)
@@ -72,25 +73,118 @@ class EmployeesController extends Controller
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
-        $filename = '';
+        $filename = 'default.png';
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
             $filename = $repo->makeUniqueFilename($image);
             $image->move(public_path('images/employees'), $filename);
         }
 
-        $employees_id = $repo->create([
+        $employee_id = $repo->create([
             'email' => $request['email'],
             'image' => $filename
         ]);
 
         $slug = $repo->toSlug($request['name']) . '-' . $locale;
 
-        $translation_id = $repo->create([
+        $translation_id = $repo->createTranslation([
+            'employee_id' => $employee_id,
+            'locale' => $locale,
             'name' => $request['name'],
             'slug' => $slug,
+            'info' => '',
             'position' => $request['position'],
-            'degree' => $request['degree']
+            'degree' => $request['degree'] == null ? '' : $request['degree']
+        ]);
+
+        return redirect()
+            ->route('admin.employees.edit_translation_form', ['translation_id' => $translation_id]);
+    }
+
+    public function editForm(EmployeesRepo $repo, $employee_id)
+    {
+        $employee = $repo->find($employee_id);
+
+        return view('employees.edit')
+            ->with('employee', $employee);
+    }
+
+    public function edit(Request $request, EmployeesRepo $repo, $employee_id)
+    {
+        $rules = [
+            'email' => 'required|max:191',
+            'created_at' => 'required'
+        ];
+        $messages = [
+            'email.required' => 'Email адрес обязателен для заполнения.',
+            'email.max' => 'Длина email адреса превышает допустимую.',
+            'created_at.required' => 'Дата создания необходима для заполнения.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $oldFileName = $repo->getImage($employee_id);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $filename = $repo->makeUniqueFilename($image);
+            $image->move(public_path('images/employees'), $filename);
+
+            if (strlen($oldFileName) > 0 && $oldFileName != 'default.png') {
+                $filepath = public_path('images/employees/') . $oldFileName;
+                $repo->deleteFile($filepath);
+            }
+        } else {
+            $filename = $oldFileName;
+        }
+
+        $repo->update($employee_id, [
+            'email' => $request['email'],
+            'created_at' => $request['created_at'],
+            'image' => $filename
+        ]);
+
+        return redirect()->route('admin.employees.edit_form', $employee_id);
+    }
+
+    public function createTranslationForm(EmployeesRepo $repo, $locale, $employee_id)
+    {
+        $translation_ru = $repo->getTranslationId('ru', $employee_id);
+        $translation_de = $repo->getTranslationId('de', $employee_id);
+        $translation_kg = $repo->getTranslationId('kg', $employee_id);
+
+        return view('employees.create_translation')
+            ->with('locale', $locale)
+            ->with('employee_id', $employee_id)
+            ->with('translation_ru', $translation_ru)
+            ->with('translation_de', $translation_de)
+            ->with('translation_kg', $translation_kg);
+    }
+
+    public function createTranslation(Request $request, EmployeesRepo $repo, $locale, $employee_id)
+    {
+        $rules = [
+            'name' => 'required|max:191',
+            'position' => 'required|max:191',
+            'degree' => 'max:191',
+            'info' => 'required'
+        ];
+        $messages = [
+            'name.required' => 'Имя обязательно для заполнения.',
+            'name.max' => 'Имя слишком длинное.',
+            'position.required' => 'Наименование должности слишком длинное.',
+            'degree.max' => 'Наиенование степени слишком длинное.',
+            'info' => 'Информация о сотруднике обязательна для заполнения.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $slug = $repo->toSlug($request['name']) . '-' . $locale;
+        $translation_id = $repo->createTranslation([
+            'employee_id' => $employee_id,
+            'locale' => $locale,
+            'slug' => $slug,
+            'name' => $request['name'],
+            'position' => $request['position'],
+            'degree' => $request['degree'] == null ? '' : $request['degree'],
+            'info' => $request['info']
         ]);
 
         return redirect()
@@ -114,8 +208,18 @@ class EmployeesController extends Controller
 
     public function editTranslation(Request $request, EmployeesRepo $repo, $translation_id)
     {
-        $rules = [];
-        $messages = [];
+        $rules = [
+            'name' => 'required|max:191',
+            'position' => 'required|max:191',
+            'degree' => 'max:191',
+            'info' => 'required'
+        ];
+        $messages = [
+            'name.required' => 'Имя обязательно для заполнения.',
+            'name.max' => 'Имя слишком длинное.',
+            'degree.max' => 'Название степени слишком длинное.',
+            'info.required' => 'Основаня информация необходима для заполнения.'
+        ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
         $locale = $repo->getLocale($translation_id);
@@ -131,5 +235,13 @@ class EmployeesController extends Controller
 
         return redirect()
             ->route('admin.employees.edit_translation_form', ['translation_id' => $translation_id]);
+    }
+
+    public function delete(EmployeesRepo $repo, $employee_id)
+    {
+        $repo->delete($employee_id);
+        $repo->deleteTranslations($employee_id);
+
+        return redirect()->route('admin.employees', 'ru');
     }
 }

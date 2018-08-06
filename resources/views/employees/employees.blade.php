@@ -32,13 +32,10 @@
             {{ $employee->name }}<br>
             <a href="{{ route('admin.employees.edit_translation_form', $employee->id) }}" class="btn btn-link main-color">Редактировать</a>
             <span class="main-color">&#8726</span>
-            <a onclick="return confirmPostDelete()" href="{{ route('admin.employees.delete', $employee->id) }}" class="btn btn-link main-color">Удалить</a>
+            <a onclick="return confirmPostDelete()" href="{{ route('admin.employees.delete', ['employee_id' => $employee->employee_id]) }}" class="btn btn-link main-color">Удалить</a>
           </li>
           @endforeach
         </ul>
-        <div class="pages">
-          {{ $employees->links() }}
-        </div>
       </div>
     </div>
   </div>

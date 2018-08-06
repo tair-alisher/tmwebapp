@@ -105,7 +105,7 @@ class ProjectsController extends Controller
             ->with('project_id', $project_id);
     }
 
-    public function createTranslation(ProjectsRepo $repo, Request $request, $locale, $project_id)
+    public function createTranslation(Request $request, ProjectsRepo $repo, $locale, $project_id)
     {
         $rules = [
             'title' => 'required|max:191',
