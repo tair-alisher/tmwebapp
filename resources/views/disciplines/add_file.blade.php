@@ -29,7 +29,7 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Добавление файла<br><b>{{ $locale }}</b></h4>
         <hr>
-        <p class="text-center"><a href="{{ route('admin.disciplines.edit_form', ['discipline_id' => $discipline_id]) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, нажмите здесь</a></p>
+        <p class="text-center"><a href="{{ route('admin.disciplines.edit_form', ['discipline_id' => $discipline_id]) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, нажмите здесь <span class="oi oi-external-link"></span></a></p>
         <hr>
         <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplines.add_file', ['locale' => $locale, 'discipline_id' => $discipline_id]) }}">
           @include('layouts.errors')

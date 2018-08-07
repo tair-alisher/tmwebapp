@@ -51,23 +51,14 @@ class ProjectsController extends Controller
             ->with('projects', $projects);
     }
 
-    public function editTranslationForm(ProjectsRepo $repo, $slug)
+    public function createForm($locale)
     {
         \Auth::user()->userIs('projects_admin');
-        $project = $repo->findTranslation($slug);
-
-        $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project->edu_project_id);
-        $slug_de = $repo->getSlugByLocaleAndProjectId('de', $project->edu_project_id);
-        $slug_kg = $repo->getSlugByLocaleAndProjectId('kg', $project->edu_project_id);
-
-        return view('projects.edit_translation')
-            ->with('project', $project)
-            ->with('slug_ru', $slug_ru)
-            ->with('slug_de', $slug_de)
-            ->with('slug_kg', $slug_kg);
+        return view('projects.create')
+            ->with('locale', $locale);
     }
 
-    public function editTranslation(Request $request, ProjectsRepo $repo, $slug)
+    public function create(Request $request, ProjectsRepo $repo, $locale)
     {
         \Auth::user()->userIs('projects_admin');
         $rules = [
@@ -75,55 +66,15 @@ class ProjectsController extends Controller
             'content' => 'required'
         ];
         $messages = [
-            'title.required' => 'Название обязательно для заполнения.',
-            'title.max' => 'Название слишком длинное.',
-            'content.required' => 'Информация обязательна для заполнения.'
-        ];
-        Validator::make($request->all(), $rules, $messages)->validate();
-
-        $locale = $repo->getLocaleBySlug($slug);
-        $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
-
-        $repo->updateTranslation($slug, [
-            'title' => $request['title'],
-            'slug' => $new_slug,
-            'content' => $request['content']
-        ]);
-
-        return redirect()
-            ->route('admin.projects.edit_translation_form', $new_slug);
-    }
-
-    public function createTranslationForm(ProjectsRepo $repo, $locale, $project_id)
-    {
-        \Auth::user()->userIs('projects_admin');
-        $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project_id);
-        $slug_de = $repo->getSlugByLocaleAndProjectId('de', $project_id);
-        $slug_kg = $repo->getSlugByLocaleAndProjectId('kg', $project_id);
-
-        return view('projects.create_translation')
-            ->with('slug_ru', $slug_ru)
-            ->with('slug_de', $slug_de)
-            ->with('slug_kg', $slug_kg)
-            ->with('locale', $locale)
-            ->with('project_id', $project_id);
-    }
-
-    public function createTranslation(Request $request, ProjectsRepo $repo, $locale, $project_id)
-    {
-        \Auth::user()->userIs('projects_admin');
-        $rules = [
-            'title' => 'required|max:191',
-            'content' => 'required'
-        ];
-        $messages = [
-            'title.required' => 'Название необходимо для заполнения.',
+            'title.required' => 'Название необходимо для заполнения',
             'title.max' => 'Название слишком длинное.',
             'content.required' => 'Информация о проекте необходима для заполнения.'
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
+        $project_id = $repo->create();
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
+
         $repo->createTranslation([
             'edu_project_id' => $project_id,
             'locale' => $locale,
@@ -174,14 +125,22 @@ class ProjectsController extends Controller
             ->route('admin.projects.edit_form', $id);
     }
 
-    public function createForm($locale)
+    public function createTranslationForm(ProjectsRepo $repo, $locale, $project_id)
     {
         \Auth::user()->userIs('projects_admin');
-        return view('projects.create')
-            ->with('locale', $locale);
+        $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project_id);
+        $slug_de = $repo->getSlugByLocaleAndProjectId('de', $project_id);
+        $slug_kg = $repo->getSlugByLocaleAndProjectId('kg', $project_id);
+
+        return view('projects.create_translation')
+            ->with('slug_ru', $slug_ru)
+            ->with('slug_de', $slug_de)
+            ->with('slug_kg', $slug_kg)
+            ->with('locale', $locale)
+            ->with('project_id', $project_id);
     }
 
-    public function create(Request $request, ProjectsRepo $repo, $locale)
+    public function createTranslation(Request $request, ProjectsRepo $repo, $locale, $project_id)
     {
         \Auth::user()->userIs('projects_admin');
         $rules = [
@@ -189,15 +148,13 @@ class ProjectsController extends Controller
             'content' => 'required'
         ];
         $messages = [
-            'title.required' => 'Название необходимо для заполнения',
+            'title.required' => 'Название необходимо для заполнения.',
             'title.max' => 'Название слишком длинное.',
             'content.required' => 'Информация о проекте необходима для заполнения.'
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
-        $project_id = $repo->create();
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
-
         $repo->createTranslation([
             'edu_project_id' => $project_id,
             'locale' => $locale,
@@ -208,6 +165,49 @@ class ProjectsController extends Controller
 
         return redirect()
             ->route('admin.projects.edit_translation_form', $slug);
+    }
+
+    public function editTranslationForm(ProjectsRepo $repo, $slug)
+    {
+        \Auth::user()->userIs('projects_admin');
+        $project = $repo->findTranslation($slug);
+
+        $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project->edu_project_id);
+        $slug_de = $repo->getSlugByLocaleAndProjectId('de', $project->edu_project_id);
+        $slug_kg = $repo->getSlugByLocaleAndProjectId('kg', $project->edu_project_id);
+
+        return view('projects.edit_translation')
+            ->with('project', $project)
+            ->with('slug_ru', $slug_ru)
+            ->with('slug_de', $slug_de)
+            ->with('slug_kg', $slug_kg);
+    }
+
+    public function editTranslation(Request $request, ProjectsRepo $repo, $slug)
+    {
+        \Auth::user()->userIs('projects_admin');
+        $rules = [
+            'title' => 'required|max:191',
+            'content' => 'required'
+        ];
+        $messages = [
+            'title.required' => 'Название обязательно для заполнения.',
+            'title.max' => 'Название слишком длинное.',
+            'content.required' => 'Информация обязательна для заполнения.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $locale = $repo->getLocaleBySlug($slug);
+        $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
+
+        $repo->updateTranslation($slug, [
+            'title' => $request['title'],
+            'slug' => $new_slug,
+            'content' => $request['content']
+        ]);
+
+        return redirect()
+            ->route('admin.projects.edit_translation_form', $new_slug);
     }
 
     public function delete(ProjectsRepo $repo, $project_id)

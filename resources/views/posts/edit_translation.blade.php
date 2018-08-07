@@ -29,7 +29,7 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Редактирование записи: {{ $post->title }}<br><b>{{ $post->locale }}</b></h4>
         <hr>
-        <p class="text-center"><a href="{{ route('admin.posts.edit_form', $post->post_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, <b>количество просмотров</b>, <b>закрепить&#8726открепить</b> запись, нажмите здесь</a></p>
+        <p class="text-center"><a href="{{ route('admin.posts.edit_form', $post->post_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, <b>количество просмотров</b>, <b>закрепить&#8726открепить</b> запись, нажмите здесь <span class="oi oi-external-link"></span></a></p>
         <hr>
         <form action="{{ route('admin.posts.edit_translation', $post->slug) }}" method="POST">
           @include('layouts.errors')
