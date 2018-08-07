@@ -23,6 +23,17 @@
           </div>
 
           <div class="form-group">
+          @foreach ($roles as $role)
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}" id="role-{{ $role->id }}" {{ $user->hasRole($role->name) ? ' checked' : '' }}>
+              <label class="form-check-label" for="role-{{ $role->id }}">
+                {{ $role->description }}
+              </label>
+            </div>
+          @endforeach
+          </div>
+
+          <div class="form-group">
             <button class="btn btn-link main-color" type="submit">Сохранить</button>
           </div>
         </form>

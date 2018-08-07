@@ -51,6 +51,7 @@ class PostsController extends Controller
 
     public function posts(PostsRepo $repo, $locale)
     {
+        \Auth::user()->userIs('posts_admin');
         $posts = $repo
             ->getItemsByLocale($locale)
             ->paginate(10);
@@ -62,6 +63,7 @@ class PostsController extends Controller
 
     public function editTranslationForm(PostsRepo $repo, $slug)
     {
+        \Auth::user()->userIs('posts_admin');
         $post = $repo->findTranslation($slug);
 
         $slug_ru = $repo->getSlugByLocaleAndPostId('ru', $post->post_id);
@@ -77,6 +79,7 @@ class PostsController extends Controller
 
     public function editTranslation(Request $request, PostsRepo $repo, $slug)
     {
+        \Auth::user()->userIs('posts_admin');
         $rules = [
             'title' => 'required|max:191',
             'description' => 'max:255',
@@ -106,7 +109,7 @@ class PostsController extends Controller
 
     public function createTranslationForm(PostsRepo $repo, $locale, $post_id)
     {
-        
+        \Auth::user()->userIs('posts_admin');
         $slug_ru = $repo->getSlugByLocaleAndPostId('ru', $post_id);
         $slug_de = $repo->getSlugByLocaleAndPostId('de', $post_id);
         $slug_kg = $repo->getSlugByLocaleAndPostId('kg', $post_id);
@@ -121,6 +124,7 @@ class PostsController extends Controller
 
     public function createTranslation(Request $request, PostsRepo $repo, $locale, $post_id)
     {
+        \Auth::user()->userIs('posts_admin');
         $rules = [
             'title' => 'required|max:191',
             'description' => 'max:255',
@@ -151,6 +155,7 @@ class PostsController extends Controller
 
     public function editForm(PostsRepo $repo, $id)
     {
+        \Auth::user()->userIs('posts_admin');
         $post = $repo->find($id);
         
         return view('posts.edit')
@@ -159,6 +164,7 @@ class PostsController extends Controller
 
     public function edit(Request $request, PostsRepo $repo, $id)
     {
+        \Auth::user()->userIs('posts_admin');
         $rules = [
             'views' => 'required|numeric',
             'created_at' => 'date'
@@ -190,12 +196,14 @@ class PostsController extends Controller
 
     public function createForm($locale)
     {
+        \Auth::user()->userIs('posts_admin');
         return view('posts.create')
             ->with('locale', $locale);
     }
 
     public function create(Request $request, PostsRepo $repo, $locale)
     {
+        \Auth::user()->userIs('posts_admin');
         $post_id = $repo->create();
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
 
@@ -214,6 +222,7 @@ class PostsController extends Controller
 
     public function delete(PostsRepo $repo, $post_id)
     {
+        \Auth::user()->userIs('posts_admin');
         $repo->delete($post_id);
         $repo->deleteTranslations($post_id);
 

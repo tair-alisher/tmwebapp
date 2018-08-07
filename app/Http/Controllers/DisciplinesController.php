@@ -25,6 +25,7 @@ class DisciplinesController extends Controller
 
     public function disciplines(DisciplinesRepo $repo, $locale)
     {
+        \Auth::user()->userIs('pages_admin');
         $files = $repo->getItemsByLocale($locale);
 
         return view('disciplines.disciplines')
@@ -34,12 +35,14 @@ class DisciplinesController extends Controller
 
     public function createForm($locale)
     {
+        \Auth::user()->userIs('pages_admin');
         return view('disciplines.create')
             ->with('locale', $locale);
     }
 
     public function create(Request $request, DisciplinesRepo $repo, $locale)
     {
+        \Auth::user()->userIs('pages_admin');
         $rules = [
             'title' => 'required|max:191',
             'file' => 'required'
@@ -76,6 +79,7 @@ class DisciplinesController extends Controller
 
     public function editForm(DisciplinesRepo $repo, $discipline_id)
     {
+        \Auth::user()->userIs('pages_admin');
         $discipline = $repo->find($discipline_id);
 
         return view('disciplines.edit')
@@ -84,6 +88,7 @@ class DisciplinesController extends Controller
 
     public function edit(Request $request, DisciplinesRepo $repo, $discipline_id)
     {
+        \Auth::user()->userIs('pages_admin');
         $rules = ['created_at' => 'date'];
         $messages = ['created_at.date' => 'Дата указана в неверном формате.'];
         Validator::make($request->all(), $rules, $messages)->validate();
@@ -104,6 +109,7 @@ class DisciplinesController extends Controller
 
     public function addFileForm(DisciplinesRepo $repo, $locale, $discipline_id)
     {
+        \Auth::user()->userIs('pages_admin');
         $file_id_ru = $repo->getFileId('ru', $discipline_id);
         $file_id_de = $repo->getFileId('de', $discipline_id);
         $file_id_kg = $repo->getFileId('kg', $discipline_id);
@@ -118,6 +124,7 @@ class DisciplinesController extends Controller
 
     public function addFile(Request $request, DisciplinesRepo $repo, $locale, $discipline_id)
     {
+        \Auth::user()->userIs('pages_admin');
         $rules = [
             'title' => 'required|max:191',
             'file' => 'required'
@@ -152,6 +159,7 @@ class DisciplinesController extends Controller
 
     public function editFileForm(DisciplinesRepo $repo, $file_id)
     {
+        \Auth::user()->userIs('pages_admin');
         $file = $repo->findFile($file_id);
 
         $file_id_ru = $repo->getFileId('ru', $file->discipline_id);
@@ -167,6 +175,7 @@ class DisciplinesController extends Controller
 
     public function editFile(Request $request, DisciplinesRepo $repo, $file_id)
     {
+        \Auth::user()->userIs('pages_admin');
         $rules = ['title' => 'required|max:191'];
         $messages = [
             'title.required' => 'Название обязательно для заполнения.',
@@ -197,6 +206,7 @@ class DisciplinesController extends Controller
 
     public function delete(DisciplinesRepo $repo, $discipline_id)
     {
+        \Auth::user()->userIs('pages_admin');
         $repo->delete($discipline_id);
         $repo->deleteFiles($discipline_id);
 

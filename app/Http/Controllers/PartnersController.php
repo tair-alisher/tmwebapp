@@ -26,6 +26,7 @@ class PartnersController extends Controller
 
     public function partners()
     {
+        \Auth::user()->userIs('partners_admin');
         $partners = Partner::all();
 
         return view('partners.partners')
@@ -34,11 +35,13 @@ class PartnersController extends Controller
 
     public function createForm()
     {
+        \Auth::user()->userIs('partners_admin');
         return view('partners.create');
     }
 
     public function create(Request $request, PartnersRepo $repo)
     {
+        \Auth::user()->userIs('partners_admin');
         $rules = [
             'name' => 'required|max:191',
             'link' => 'max:191'
@@ -70,6 +73,7 @@ class PartnersController extends Controller
     
     public function editForm(PartnersRepo $repo, $id)
     {
+        \Auth::user()->userIs('partners_admin');
         $partner = $repo->find($id);
 
         return view('partners.edit')
@@ -78,6 +82,7 @@ class PartnersController extends Controller
 
     public function edit(Request $request, PartnersRepo $repo, $id)
     {
+        \Auth::user()->userIs('partners_admin');
         $rules = [
             'name' => 'required|max:191',
             'link' => 'max:191'
@@ -115,6 +120,7 @@ class PartnersController extends Controller
     
     public function delete(PartnersRepo $repo, $id)
     {
+        \Auth::user()->userIs('partners_admin');
         $repo->delete($id);
 
         return redirect()
