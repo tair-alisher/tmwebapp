@@ -6,6 +6,7 @@ use Validator;
 use Mail;
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 
 class AuthController extends Controller
 {
@@ -17,10 +18,14 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        \Auth::user()->userIs('users_admin');
+        $roles = Role::all();
+
+        return view('auth.register')->with('roles', $roles);;
     }
     public function registerUser(Request $request)
     {
+        \Auth::user()->userIs('users_admin');
         $rules = [
             'name' => 'required||max:100',
             'email' => 'required|email|unique:users|max:100',
@@ -43,6 +48,14 @@ class AuthController extends Controller
             'email' => $request['email'],
             'password' => bcrypt($request['password'])
         ]);
+
+        if (($roles = $request->roles) != null) {
+            foreach ($roles as $role) {
+                $user
+                    ->roles()
+                    ->attach(Role::where('id', $role)->first());
+            }
+        }
 
         // Mail::send('emails.mail', ['password' => $request['password']], function ($message) use ($request) {
         //     $message->from('no-reply@mail.com', 'telematika.kstu.kg');

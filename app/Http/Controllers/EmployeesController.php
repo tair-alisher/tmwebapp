@@ -13,6 +13,7 @@ class EmployeesController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
+
     public function index(EmployeesRepo $repo)
     {
         $employees = $repo->getItemsByLocale(app()->getLocale());
@@ -40,6 +41,7 @@ class EmployeesController extends Controller
 
     public function employees(EmployeesRepo $repo, $locale)
     {
+        \Auth::user()->userIs('employees_admin');
         $employees = $repo
             ->getItemsByLocale($locale);
         
@@ -50,12 +52,14 @@ class EmployeesController extends Controller
 
     public function createForm($locale)
     {
+        \Auth::user()->userIs('employees_admin');
         return view('employees.create')
             ->with('locale', $locale);
     }
 
     public function create(Request $request, EmployeesRepo $repo, $locale)
     {
+        \Auth::user()->userIs('employees_admin');
         $rules = [
             'name' => 'required|max:191',
             'position' => 'required|max:191',
@@ -103,6 +107,7 @@ class EmployeesController extends Controller
 
     public function editForm(EmployeesRepo $repo, $employee_id)
     {
+        \Auth::user()->userIs('employees_admin');
         $employee = $repo->find($employee_id);
 
         return view('employees.edit')
@@ -111,6 +116,7 @@ class EmployeesController extends Controller
 
     public function edit(Request $request, EmployeesRepo $repo, $employee_id)
     {
+        \Auth::user()->userIs('employees_admin');
         $rules = [
             'email' => 'required|max:191',
             'created_at' => 'required'
@@ -147,6 +153,7 @@ class EmployeesController extends Controller
 
     public function createTranslationForm(EmployeesRepo $repo, $locale, $employee_id)
     {
+        \Auth::user()->userIs('employees_admin');
         $translation_ru = $repo->getTranslationId('ru', $employee_id);
         $translation_de = $repo->getTranslationId('de', $employee_id);
         $translation_kg = $repo->getTranslationId('kg', $employee_id);
@@ -161,6 +168,7 @@ class EmployeesController extends Controller
 
     public function createTranslation(Request $request, EmployeesRepo $repo, $locale, $employee_id)
     {
+        \Auth::user()->userIs('employees_admin');
         $rules = [
             'name' => 'required|max:191',
             'position' => 'required|max:191',
@@ -193,6 +201,7 @@ class EmployeesController extends Controller
 
     public function editTranslationForm(EmployeesRepo $repo, $translation_id)
     {
+        \Auth::user()->userIs('employees_admin');
         $employee = $repo->findTranslation($translation_id);
 
         $translation_ru = $repo->getTranslationId('ru', $employee->employee_id);
@@ -208,6 +217,7 @@ class EmployeesController extends Controller
 
     public function editTranslation(Request $request, EmployeesRepo $repo, $translation_id)
     {
+        \Auth::user()->userIs('employees_admin');
         $rules = [
             'name' => 'required|max:191',
             'position' => 'required|max:191',
@@ -239,6 +249,7 @@ class EmployeesController extends Controller
 
     public function delete(EmployeesRepo $repo, $employee_id)
     {
+        \Auth::user()->userIs('employees_admin');
         $repo->delete($employee_id);
         $repo->deleteTranslations($employee_id);
 

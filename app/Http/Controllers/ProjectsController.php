@@ -41,6 +41,7 @@ class ProjectsController extends Controller
 
     public function projects(ProjectsRepo $repo, $locale)
     {
+        \Auth::user()->userIs('projects_admin');
         $projects = $repo
             ->getItemsByLocale($locale)
             ->paginate(10);
@@ -52,6 +53,7 @@ class ProjectsController extends Controller
 
     public function editTranslationForm(ProjectsRepo $repo, $slug)
     {
+        \Auth::user()->userIs('projects_admin');
         $project = $repo->findTranslation($slug);
 
         $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project->edu_project_id);
@@ -67,6 +69,7 @@ class ProjectsController extends Controller
 
     public function editTranslation(Request $request, ProjectsRepo $repo, $slug)
     {
+        \Auth::user()->userIs('projects_admin');
         $rules = [
             'title' => 'required|max:191',
             'content' => 'required'
@@ -93,6 +96,7 @@ class ProjectsController extends Controller
 
     public function createTranslationForm(ProjectsRepo $repo, $locale, $project_id)
     {
+        \Auth::user()->userIs('projects_admin');
         $slug_ru = $repo->getSlugByLocaleAndProjectId('ru', $project_id);
         $slug_de = $repo->getSlugByLocaleAndProjectId('de', $project_id);
         $slug_kg = $repo->getSlugByLocaleAndProjectId('kg', $project_id);
@@ -107,6 +111,7 @@ class ProjectsController extends Controller
 
     public function createTranslation(Request $request, ProjectsRepo $repo, $locale, $project_id)
     {
+        \Auth::user()->userIs('projects_admin');
         $rules = [
             'title' => 'required|max:191',
             'content' => 'required'
@@ -133,6 +138,7 @@ class ProjectsController extends Controller
 
     public function editForm(ProjectsRepo $repo, $id)
     {
+        \Auth::user()->userIs('projects_admin');
         $project = $repo->find($id);
 
         return view('projects.edit')
@@ -141,6 +147,7 @@ class ProjectsController extends Controller
 
     public function edit(Request $request, ProjectsRepo $repo, $id)
     {
+        \Auth::user()->userIs('projects_admin');
         $rules = [
             'views' => 'required|numeric|max:10',
             'created_at' => 'date'
@@ -169,12 +176,14 @@ class ProjectsController extends Controller
 
     public function createForm($locale)
     {
+        \Auth::user()->userIs('projects_admin');
         return view('projects.create')
             ->with('locale', $locale);
     }
 
     public function create(Request $request, ProjectsRepo $repo, $locale)
     {
+        \Auth::user()->userIs('projects_admin');
         $rules = [
             'title' => 'required|max:191',
             'content' => 'required'
@@ -203,6 +212,7 @@ class ProjectsController extends Controller
 
     public function delete(ProjectsRepo $repo, $project_id)
     {
+        \Auth::user()->userIs('projects_admin');
         $repo->delete($project_id);
         $repo->deleteTranslations($project_id);
 

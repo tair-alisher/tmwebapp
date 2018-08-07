@@ -23,7 +23,7 @@ class PagesController extends Controller
     }
 
     public function index(PostsRepo $postsRepo, PartnersRepo $partnersRepo)
-    {        
+    {
         $posts = $postsRepo->getTwoLast(app()->getLocale());
 
         $employees = Employee::all();
@@ -52,6 +52,7 @@ class PagesController extends Controller
 
     public function editForm(PagesRepo $repo, $slug)
     {
+        \Auth::user()->userIs('pages_admin');
         $page = $repo->getTranslationBySlug($slug);
 
         $slug_ru = $repo->getSlugByLocaleAndPageId('ru', $page->page_id);
@@ -67,6 +68,7 @@ class PagesController extends Controller
 
     public function edit(Request $request, PagesRepo $repo, $slug)
     {
+        \Auth::user()->userIs('pages_admin');
         $rules = [
             'content' => 'required'
         ];

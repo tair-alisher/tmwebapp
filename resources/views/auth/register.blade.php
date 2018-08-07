@@ -31,7 +31,18 @@
           <div class="form-group">
               <label for="password_confirmation">Повторите пароль</label>
               <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Повторите пароль" required="required">
+          </div>
+
+          <div class="form-group">
+          @foreach ($roles as $role)
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}" id="role-{{ $role->id }}">
+              <label class="form-check-label" for="role-{{ $role->id }}">
+                {{ $role->description }}
+              </label>
             </div>
+          @endforeach
+          </div>
 
           <div class="form-group">
             <button class="btn btn-link main-color" type="submit">Зарегистрировать</button>
