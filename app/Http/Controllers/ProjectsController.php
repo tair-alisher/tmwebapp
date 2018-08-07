@@ -36,6 +36,7 @@ class ProjectsController extends Controller
         return view('projects.show')
             ->with('project', $project);
     }
+
     /* ********** admin projects ********** */
 
     public function projects(ProjectsRepo $repo, $locale)
@@ -104,7 +105,7 @@ class ProjectsController extends Controller
             ->with('project_id', $project_id);
     }
 
-    public function createTranslation(ProjectsRepo $repo, Request $request, $locale, $project_id)
+    public function createTranslation(Request $request, ProjectsRepo $repo, $locale, $project_id)
     {
         $rules = [
             'title' => 'required|max:191',

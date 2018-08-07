@@ -20,12 +20,12 @@
           </div>
 
           <div class="form-group">
-            <label for="link">Ссылка на сайт (в формате: <b>http(s)://</b>ссылка)</label>
+            <label for="link">Ссылка на сайт (в формате: <b>http(s)://</b>ссылка) (не обязательно)</label>
             <input type="text" class="form-control" name="link" id="link" placeholder="http(s)://">
           </div>
 
           <div class="form-group">
-            <label for="file">Загрузить логотип</label>
+            <label for="file">Загрузить логотип (не обязательно)</label>
             <input type="file" class="form-control-file" id="image" name="image">
           </div>
 

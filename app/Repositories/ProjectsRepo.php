@@ -24,6 +24,8 @@ class ProjectsRepo extends Repository
 
   public function update($id, $data)
   {
+    $data['updated_at'] = Carbon::today();
+
     DB::table('edu_projects')
       ->where('id', $id)
       ->update($data);
