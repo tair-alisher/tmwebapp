@@ -16,11 +16,11 @@
           @foreach ($albums as $album)
           <li class="list-group-item">
             {{ $album->title }}<br>
-            <a href="{{ route('admin.albums.edit_form', $album->id) }}" class="btn btn-link main-color">Редактировать</a>
+            <a href="{{ route('admin.albums.edit_translation_form', $album->id) }}" class="btn btn-link main-color">Редактировать</a>
             <span class="main-color">&#8726</span>
-            <a href="{{ route('admin.albums.show', $album->id) }}" class="btn btn-link main-color">Изображения</a>
+            <a href="{{ route('admin.albums.show', $album->album_id) }}" class="btn btn-link main-color">Изображения</a>
             <span class="main-color">&#8726</span>
-            <a onclick="return confirmAction()" href="{{ route('admin.albums.delete', $album->id) }}" class="btn btn-link main-color">Удалить</a>
+            <a onclick="return confirmAction()" href="{{ route('admin.albums.delete', $album->album_id) }}" class="btn btn-link main-color">Удалить</a>
           </li>
         @endforeach
         </ul>

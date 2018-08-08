@@ -19,10 +19,10 @@ class AlbumsController extends Controller
 
     /* ********** admin albums ********** */
 
-    public function albums()
+    public function albums(AlbumsRepo $repo)
     {
         \Auth::user()->userIs('gallery_admin');
-        $albums = Album::latest()->paginate(10);
+        $albums = $repo->getRuAlbums()->paginate(10);
 
         return view('albums.albums')
             ->with('albums', $albums);
@@ -51,7 +51,7 @@ class AlbumsController extends Controller
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
             $filename = $repo->makeUniqueFilename($image);
-            $image->move(public_path('images/gallery/albums'), $filename);
+            $image->move(public_path('images/gallery/thumbs'), $filename);
         } else {
             return back()->withErrors([
                 'message' => 'Произошла ошибка при загрузке изображения. Попробуйте еще раз.'
@@ -88,16 +88,14 @@ class AlbumsController extends Controller
         \Auth::user()->userIs('gallery_admin');
         $rules = [
             'views' => 'required|numeric|max:10',
-            'created_at' => 'required|date',
-            'image' => 'required'
+            'created_at' => 'required|date'
         ];
         $messages = [
             'views.required' => 'Поле "Просмотры" обязательно для заполнения.',
             'views.numeric' => 'Поле "Просмотры" должно содержать целочисленное значение.',
             'views.max' => 'Значение в поле "Просмотры" слишком велико.',
             'created_at.required' => 'Дата обязательня для заполнения.',
-            'created_at.date' => 'Дата указана в неверном формате.',
-            'image.required' => 'Загрузите обложку (изображение) альбома.'
+            'created_at.date' => 'Дата указана в неверном формате.'
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
@@ -105,10 +103,10 @@ class AlbumsController extends Controller
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
             $filename = $repo->makeUniqueFilename($image);
-            $image->move(public_path('images/gallery/albums'), $filename);
+            $image->move(public_path('images/gallery/thumbs'), $filename);
 
             if (strlen($oldFileName) > 0) {
-                $filepath = public_path('images/gallery/albums/') . $oldFileName;
+                $filepath = public_path('images/gallery/thumbs/') . $oldFileName;
                 $repo->deleteFile($filepath);
             }
         } else {
@@ -148,7 +146,7 @@ class AlbumsController extends Controller
             'title.required' => 'Название альбома обязательно для заполнения.',
             'title.max' => 'Название альбома слишком длинное.'
         ];
-        Validator::make($request->all(), $rules, $messages)->valiate();
+        Validator::make($request->all(), $rules, $messages)->validate();
 
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
         $translation_id = $repo->createTranslation([

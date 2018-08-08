@@ -70,7 +70,7 @@
         </li>
         @if (Auth::check())
         <li class="nav-item">
-          <a href="/admin" class="nav-link">Админ панель</a>
+          <a href="/admin" class="nav-link">Админ</a>
         </li>
         @endif
       </ul>

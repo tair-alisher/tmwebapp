@@ -25,7 +25,7 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Добавление альбома<br><b>{{ $locale }}</b></h4>
         <hr>
-        <p class="text-center"><a href="{{ route('admin.albums.edit_form', $album->album_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>обложку</b>, <b>дату создания</b>, или <b>количество просмотров</b>, нажмите здесь <span class="oi oi-external-link"></span></a></p>
+        <p class="text-center"><a href="{{ route('admin.albums.edit_form', $album_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>обложку</b>, <b>дату создания</b>, или <b>количество просмотров</b>, нажмите здесь <span class="oi oi-external-link"></span></a></p>
         <hr>
         <form action="{{ route('admin.albums.create_translation', ['locale' => $locale, 'album_id' => $album_id]) }}" method="POST">
           @include('layouts.errors')

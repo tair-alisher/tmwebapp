@@ -7,6 +7,18 @@ use Carbon\Carbon;
 
 class AlbumsRepo extends Repository
 {
+  public function getRuAlbums()
+  {
+    return DB::table('album_translations as at')
+      ->join('albums as a', 'at.album_id', '=', 'a.id')
+      ->selectRaw('
+        at.title title,
+        at.id id,
+        at.album_id album_id
+      ')
+      ->where('locale', 'ru')
+      ->orderBy('a.created_at', 'desc');
+  }
   public function find($id)
   {
     return DB::table('albums')
@@ -41,7 +53,7 @@ class AlbumsRepo extends Repository
       ->delete();
     
     if (strlen($image) > 0) {
-      $filepath = public_path('images/gallery/albums') . '/' . $image;
+      $filepath = public_path('images/gallery/thumbs') . '/' . $image;
       $this->deleteFile($filepath);
     }
   }
@@ -71,6 +83,14 @@ class AlbumsRepo extends Repository
     DB::table('album_translations')
       ->where('album_id', $album_id)
       ->delete();
+  }
+
+  public function getAlbumTranslation($locale, $album_id)
+  {
+    return DB::table('album_translations')
+      ->where('album_id', $album_id)
+      ->where('locale', $locale)
+      ->first();
   }
 
   public function getTranslationId($locale, $album_id)

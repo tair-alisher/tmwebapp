@@ -271,3 +271,7 @@ ul.pagination > li.active > span {
   max-height: 70px;
   max-width: 550px;
 }
+.album-image {
+  max-height: 200px;
+  max-width: 200px;
+}

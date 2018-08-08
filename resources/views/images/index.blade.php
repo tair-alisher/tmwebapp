@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
 @section('meta')
-
+<meta name="description" content="{{ trans('app.info.gallery') }}. {{ trans('app.brand') }}">
+<meta name="keywords" content="{{ trans('app.info.gallery') }}, {{ trans('app.brand') }}">
+<meta name="robots" content="all" />
+<meta http-equiv="content-language" content="{{ trans('app.lang') }}" />
 @endsection
 
 @section('title', $album->title)
@@ -22,8 +25,8 @@
           @foreach ($images as $image)
 
           <div class="card">
-            <a href="{{ asset('images/gallery/images/') }}/{{ $image->image }}" title="{{ $album->title }}">
-              <img class="card-img" src="{{ asset('images/gallery/images/thumbs') }}/{{ $image->image }}" alt="{{ $album->title }}">
+            <a href="{{ asset('images/gallery/') }}/{{ $image->image }}" title="{{ $album->title }}">
+              <img class="card-img" src="{{ asset('images/gallery/thumbs') }}/{{ $image->image }}" alt="{{ $album->title }}">
             </a>
           </div>
 
@@ -45,15 +48,15 @@ $(document).ready(function() {
 	$('.popup-gallery').magnificPopup({
 		delegate: 'a',
 		type: 'image',
-		tLoading: 'Loading image #%curr%...',
+		tLoading: 'Загрузка изображения #%curr%...',
 		mainClass: 'mfp-img-mobile',
 		gallery: {
 			enabled: true,
 			navigateByImgClick: true,
-			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+			preload: [0,1]
 		},
 		image: {
-			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+			tError: '<a href="%url%">Изображение #%curr%</a> не было загружено.'
 		}
 	});
 });

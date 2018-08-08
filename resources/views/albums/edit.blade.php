@@ -26,7 +26,7 @@
           @if(strlen($album->image) > 0)
           <div class="form-group">
             <label for="old_file">Старое фото</label>
-             <img class="img-responsive album-image" src="{{ asset('images/gallery/albums') . '/' . $album->image }}" alt="">
+             <img class="img-responsive album-image" src="{{ asset('images/gallery/thumbs') . '/' . $album->image }}" alt="">
           </div>
           @endif
 
