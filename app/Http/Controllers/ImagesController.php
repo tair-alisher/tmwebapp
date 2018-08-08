@@ -7,6 +7,8 @@ use App\Repositories\AlbumsRepo;
 use App\Repositories\ImagesRepo;
 use App\Album;
 use App\Image;
+use Intervention;
+use Validator;
 
 class ImagesController extends Controller
 {
@@ -33,10 +35,24 @@ class ImagesController extends Controller
         \Auth::user()->userIs('gallery_admin');
         $album = $albumsRepo->getAlbumTranslation('ru', $id);
 
-        $images = Image::where('album_id', $album->album_id)->paginate(10);
+        $images = Image::where('album_id', $album->album_id)->latest()->paginate(10);
 
         return view('images.images')
             ->with('album', $album)
             ->with('images', $images);
+    }
+
+    public function addImages(Request $request, ImagesRepo $repo, $album_id)
+    {
+        $rules = [];
+        $messages = [];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        if ( $request->hasFile('images') ) {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $repo->addImage($album_id, $file);
+            }
+        }
     }
 }

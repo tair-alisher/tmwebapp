@@ -17,7 +17,12 @@
       <div class="col-lg-12 col-md-12 white-background">
         <h4 class="main-color">Альбом: {{ $album->title }}</h4>
         <hr>
-        <a href="{{ route('admin.albums.create_form') }}" class="btn btn-link main-color">Добавить изображение</a>
+        <form action="{{ route('admin.images.add', ['id' => $album->album_id]) }} " method="POST" enctype="multipart/form-data">
+          @include('layouts.errors')
+          {{ csrf_field() }}
+          <input type="file" class="form-control-file mb-2 mr-sm-2" id="images" name="images[]" multiple required>
+          <button class="btn btn-primary mb-2">Добавить</button>
+        </form>
         <hr>
         <div class="card-columns popup-gallery">
           @foreach ($images as $image)

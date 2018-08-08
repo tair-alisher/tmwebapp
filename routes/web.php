@@ -412,6 +412,11 @@ Route::get('/admin/albums/{id}/delete', [
 /* ********** admin images ********** */
 
 Route::get('/admin/albums/{id}/images', [
-    'as' => 'admin.albums.show',
+    'as' => 'admin.images',
     'uses' => 'ImagesController@images'
+]);
+
+Route::post('/admin/albums/{id}/add', [
+    'as' => 'admin.images.add',
+    'uses' => 'ImagesController@addImages'
 ]);

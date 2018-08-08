@@ -24,7 +24,7 @@ class Repository
     $originalNameParts = explode('.', $file->getClientOriginalName());
     array_pop($originalNameParts);
     $originalName = implode('.', $originalNameParts);
-    $filename = $this->toSlug($originalName) . '-' . time() . '.' . $file->getClientOriginalExtension();
+    $filename = strtolower($this->toSlug($originalName)) . '-' . time() . '.' . strtolower($file->getClientOriginalExtension());
 
     return $filename;
   }
