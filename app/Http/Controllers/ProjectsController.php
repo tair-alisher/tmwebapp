@@ -213,8 +213,8 @@ class ProjectsController extends Controller
     public function delete(ProjectsRepo $repo, $project_id)
     {
         \Auth::user()->userIs('projects_admin');
-        $repo->delete($project_id);
         $repo->deleteTranslations($project_id);
+        $repo->delete($project_id);
 
         return redirect()
             ->route('admin.projects', 'ru');

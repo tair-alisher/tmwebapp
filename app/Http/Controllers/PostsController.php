@@ -61,50 +61,71 @@ class PostsController extends Controller
             ->with('posts', $posts);
     }
 
-    public function editTranslationForm(PostsRepo $repo, $slug)
+    public function createForm($locale)
     {
         \Auth::user()->userIs('posts_admin');
-        $post = $repo->findTranslation($slug);
-
-        $slug_ru = $repo->getSlugByLocaleAndPostId('ru', $post->post_id);
-        $slug_de = $repo->getSlugByLocaleAndPostId('de', $post->post_id);
-        $slug_kg = $repo->getSlugByLocaleAndPostId('kg', $post->post_id);
-        
-        return view('posts.edit_translation')
-            ->with('post', $post)
-            ->with('slug_ru', $slug_ru)
-            ->with('slug_de', $slug_de)
-            ->with('slug_kg', $slug_kg);
+        return view('posts.create')
+            ->with('locale', $locale);
     }
 
-    public function editTranslation(Request $request, PostsRepo $repo, $slug)
+    public function create(Request $request, PostsRepo $repo, $locale)
+    {
+        \Auth::user()->userIs('posts_admin');
+        $post_id = $repo->create();
+        $slug = $repo->toSlug($request['title']) . '-' . $locale;
+
+        $repo->createTranslation([
+            'post_id' => $post_id,
+            'locale' => $locale,
+            'title' => $request['title'],
+            'slug' => $slug,
+            'description' => $request['description'],
+            'content' => $request['content']
+        ]);
+
+        return redirect()
+            ->route('admin.posts.edit_translation_form', $slug);
+    }
+
+    public function editForm(PostsRepo $repo, $id)
+    {
+        \Auth::user()->userIs('posts_admin');
+        $post = $repo->find($id);
+        
+        return view('posts.edit')
+            ->with('post', $post);
+    }
+
+    public function edit(Request $request, PostsRepo $repo, $id)
     {
         \Auth::user()->userIs('posts_admin');
         $rules = [
-            'title' => 'required|max:191',
-            'description' => 'max:255',
-            'content' => 'required'
+            'views' => 'required|numeric',
+            'created_at' => 'date'
         ];
         $messages = [
-            'title.required' => 'Заполните наименование записи.',
-            'title.max' => 'Слишком длинное наименование записи.',
-            'description.max' => 'Слишком длинное описание записи.',
-            'content.reuiqred' => 'Заполните информацию о странице.'
+            'views.required' => 'Поле "Просмотры" обязательно для заполнения.',
+            'views.numeric' => 'Поле "Просмотры" должно содержать целочисленное значение.',
+            'created_at.date' => 'Дата указана в неверном формате.'
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
-        $locale = $repo->getLocaleBySlug($slug);  
-        $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
+        if ($request['created_at'] == null) {
+            $created_at = $repo->getCreatedAtById($id);
+        } else {
+            $created_at = $request['created_at'];
+        }
 
-        $repo->updateTranslation($slug, [
-                'title' => $request['title'],
-                'slug' => $new_slug,
-                'description' => $request['description'] == null ? '' : $request['description'],
-                'content' => $request['content']
+        $pinned = $request['pinned'] == null ? false : true;
+
+        $repo->update($id, [
+                'views' => $request['views'],
+                'created_at' => $created_at,
+                'pinned' => $pinned
             ]);
         
         return redirect()
-            ->route('admin.posts.edit_translation_form', $new_slug);
+            ->route('admin.posts.edit_form', $id);
     }
 
     public function createTranslationForm(PostsRepo $repo, $locale, $post_id)
@@ -153,78 +174,57 @@ class PostsController extends Controller
             ->route('admin.posts.edit_translation_form', $slug);
     }
 
-    public function editForm(PostsRepo $repo, $id)
+    public function editTranslationForm(PostsRepo $repo, $slug)
     {
         \Auth::user()->userIs('posts_admin');
-        $post = $repo->find($id);
+        $post = $repo->findTranslation($slug);
+
+        $slug_ru = $repo->getSlugByLocaleAndPostId('ru', $post->post_id);
+        $slug_de = $repo->getSlugByLocaleAndPostId('de', $post->post_id);
+        $slug_kg = $repo->getSlugByLocaleAndPostId('kg', $post->post_id);
         
-        return view('posts.edit')
-            ->with('post', $post);
+        return view('posts.edit_translation')
+            ->with('post', $post)
+            ->with('slug_ru', $slug_ru)
+            ->with('slug_de', $slug_de)
+            ->with('slug_kg', $slug_kg);
     }
 
-    public function edit(Request $request, PostsRepo $repo, $id)
+    public function editTranslation(Request $request, PostsRepo $repo, $slug)
     {
         \Auth::user()->userIs('posts_admin');
         $rules = [
-            'views' => 'required|numeric',
-            'created_at' => 'date'
+            'title' => 'required|max:191',
+            'description' => 'max:255',
+            'content' => 'required'
         ];
         $messages = [
-            'views.required' => 'Поле "Просмотры" обязательно для заполнения.',
-            'views.numeric' => 'Поле "Просмотры" должно содержать целочисленное значение.',
-            'created_at.date' => 'Дата указана в неверном формате.'
+            'title.required' => 'Заполните наименование записи.',
+            'title.max' => 'Слишком длинное наименование записи.',
+            'description.max' => 'Слишком длинное описание записи.',
+            'content.reuiqred' => 'Заполните информацию о странице.'
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
-        if ($request['created_at'] == null) {
-            $created_at = $repo->getCreatedAtById($id);
-        } else {
-            $created_at = $request['created_at'];
-        }
+        $locale = $repo->getLocaleBySlug($slug);  
+        $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
 
-        $pinned = $request['pinned'] == null ? false : true;
-
-        $repo->update($id, [
-                'views' => $request['views'],
-                'created_at' => $created_at,
-                'pinned' => $pinned
+        $repo->updateTranslation($slug, [
+                'title' => $request['title'],
+                'slug' => $new_slug,
+                'description' => $request['description'] == null ? '' : $request['description'],
+                'content' => $request['content']
             ]);
         
         return redirect()
-            ->route('admin.posts.edit_form', $id);
-    }
-
-    public function createForm($locale)
-    {
-        \Auth::user()->userIs('posts_admin');
-        return view('posts.create')
-            ->with('locale', $locale);
-    }
-
-    public function create(Request $request, PostsRepo $repo, $locale)
-    {
-        \Auth::user()->userIs('posts_admin');
-        $post_id = $repo->create();
-        $slug = $repo->toSlug($request['title']) . '-' . $locale;
-
-        $repo->createTranslation([
-            'post_id' => $post_id,
-            'locale' => $locale,
-            'title' => $request['title'],
-            'slug' => $slug,
-            'description' => $request['description'],
-            'content' => $request['content']
-        ]);
-
-        return redirect()
-            ->route('admin.posts.edit_translation_form', $slug);
+            ->route('admin.posts.edit_translation_form', $new_slug);
     }
 
     public function delete(PostsRepo $repo, $post_id)
     {
         \Auth::user()->userIs('posts_admin');
-        $repo->delete($post_id);
         $repo->deleteTranslations($post_id);
+        $repo->delete($post_id);
 
         return redirect()
             ->route('admin.posts', 'ru');

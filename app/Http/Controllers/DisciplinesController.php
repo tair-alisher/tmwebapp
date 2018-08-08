@@ -207,8 +207,8 @@ class DisciplinesController extends Controller
     public function delete(DisciplinesRepo $repo, $discipline_id)
     {
         \Auth::user()->userIs('pages_admin');
-        $repo->delete($discipline_id);
         $repo->deleteFiles($discipline_id);
+        $repo->delete($discipline_id);
 
         return redirect()
             ->route('admin.disciplines', 'ru');

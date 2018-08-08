@@ -67,6 +67,7 @@
             {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" target="_blank" href="{{ route('home') }}">Открыть сайт</a>
             <a class="dropdown-item" href="{{ route('admin.logout') }}">Выйти</a>
           </div>
         </li>

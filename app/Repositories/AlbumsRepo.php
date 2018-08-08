@@ -32,6 +32,20 @@ class AlbumsRepo extends Repository
       ->update($data);
   }
 
+  public function delete($album_id)
+  {
+    $image = $this->getImage($album_id);
+
+    DB::table('albums')
+      ->where('id', $album_id)
+      ->delete();
+    
+    if (strlen($image) > 0) {
+      $filepath = public_path('images/gallery/albums') . '/' . $image;
+      $this->deleteFile($filepath);
+    }
+  }
+
   public function findTranslation($translation_id)
   {
     return DB::table('album_translations')
@@ -45,12 +59,33 @@ class AlbumsRepo extends Repository
       ->insertGetId($data);
   }
 
+  public function updateTranslation($translation_id, $data)
+  {
+    DB::table('album_translations')
+      ->where('id', $translation_id)
+      ->update($data);
+  }
+
+  public function deleteTranslations($album_id)
+  {
+    DB::table('album_translations')
+      ->where('album_id', $album_id)
+      ->delete();
+  }
+
   public function getTranslationId($locale, $album_id)
   {
     return DB::table('album_translations')
       ->where('locale', $locale)
       ->where('album_id', $album_id)
       ->value('id');
+  }
+
+  public function getLocale($id)
+  {
+    return DB::table('album_translations')
+      ->where('id', $id)
+      ->value('locale');
   }
 
   public function getImage($id)

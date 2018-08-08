@@ -138,10 +138,76 @@ class AlbumsController extends Controller
             ->with('translation_de', $translation_de)
             ->with('translation_kg', $translation_kg);
     }
-    public function createTranslation() {}
+    public function createTranslation(Request $request, AlbumsRepo $repo, $locale, $album_id)
+    {
+        \Auth::user()->userIs('gallery_admin');
+        $rules = [
+            'title' => 'required|max:191'
+        ];
+        $messages = [
+            'title.required' => 'Название альбома обязательно для заполнения.',
+            'title.max' => 'Название альбома слишком длинное.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->valiate();
+
+        $slug = $repo->toSlug($request['title']) . '-' . $locale;
+        $translation_id = $repo->createTranslation([
+            'album_id' => $album_id,
+            'locale' => $locale,
+            'title' => $request['title'],
+            'slug' => $slug
+        ]);
+
+        return redirect()
+            ->route('admin.albums.edit_translation_form', ['translation_id' => $translation_id]);
+    }
     
-    public function editTranslationForm() {}
-    public function editTranslation() {}
+    public function editTranslationForm(AlbumsRepo $repo, $translation_id)
+    {
+        \Auth::user()->userIs('gallery_admin');
+        $album = $repo->findTranslation($translation_id);
+
+        $translation_ru = $repo->getTranslationId('ru', $album->album_id);
+        $translation_de = $repo->getTranslationId('de', $album->album_id);
+        $translation_kg = $repo->getTranslationId('kg', $album->album_id);
+
+        return view('albums.edit_translation')
+            ->with('album', $album)
+            ->with('translation_ru', $translation_ru)
+            ->with('translation_de', $translation_de)
+            ->with('translation_kg', $translation_kg);
+    }
+    public function editTranslation(Request $request, AlbumsRepo $repo, $translation_id)
+    {
+        \Auth::user()->userIs('gallery_admin');
+        $rules = [
+            'title' => 'required|max:191'
+        ];
+        $messages = [
+            'title.required' => 'Название необходимо для заполнения.',
+            'title.max' => 'Название слишком длинное.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $locale = $repo->getLocale($translation_id);
+        $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
+
+        $repo->updateTranslation($translation_id, [
+            'title' => $request['title'],
+            'slug' => $new_slug
+        ]);
+
+        return redirect()
+            ->route('admin.albums.edit_translation_form', ['translation_id' => $translation_id]);
+    }
     
-    public function delete() {}
+    public function delete(AlbumsRepo $repo, $album_id)
+    {
+        \Auth::user()->userIs('gallery_admin');
+        // $repo->deleteImages($album_id);
+        $repo->deleteTranslations($album_id);
+        $repo->delete($album_id);
+
+        return redirect()->route('admin.albums');
+    }
 }
