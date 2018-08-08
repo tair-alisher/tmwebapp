@@ -250,8 +250,8 @@ class EmployeesController extends Controller
     public function delete(EmployeesRepo $repo, $employee_id)
     {
         \Auth::user()->userIs('employees_admin');
-        $repo->delete($employee_id);
         $repo->deleteTranslations($employee_id);
+        $repo->delete($employee_id);
 
         return redirect()->route('admin.employees', 'ru');
     }

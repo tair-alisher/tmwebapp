@@ -29,7 +29,7 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Редактирование сотрудника: {{ $employee->name }}<br><b>{{ $employee->locale }}</b></h4>
         <hr>
-        <p class="text-center"><a href="{{ route('admin.employees.edit_form', $employee->employee_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>email</b>, <b>фото</b>, или <b>дату создания</b>, нажмите здесь</a></p>
+        <p class="text-center"><a href="{{ route('admin.employees.edit_form', $employee->employee_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>email</b>, <b>фото</b>, или <b>дату создания</b>, нажмите здесь <span class="oi oi-external-link"></span></a></p>
         <hr>
         <form action="{{ route('admin.employees.edit_translation', $employee->id) }}" method="POST">
           @include('layouts.errors')

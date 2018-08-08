@@ -23,7 +23,7 @@
           @foreach ($albums as $album)
 
           <div class="card">
-            <img class="card-img-top" src="{{ asset('images/gallery/albums/thumbs') }}/{{ $album->image }}" alt="{{ $album->title }}">
+            <img class="card-img-top" src="{{ asset('images/gallery/thumbs') }}/{{ $album->image }}" alt="{{ $album->title }}">
             <div class="card-body text-center">
               <h5 class="card-title">{{ $album->title }}</h5>
               <a href="{{ route('albums.show', $album->slug) }}" class="btn btn-link">{{ trans('app.view_more') }}</a>

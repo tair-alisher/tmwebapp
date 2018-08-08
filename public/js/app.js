@@ -34,7 +34,7 @@ function adminHighlightActiveMenuItem() {
     document.getElementById('employees-nav-item').className += ' active';
   } else if (url.indexOf('posts') >= 0) {
     document.getElementById('news-nav-item').className += ' active';
-  } else if (url.indexOf('gallery') >= 0) {
+  } else if (url.indexOf('albums') >= 0) {
     document.getElementById('gallery-nav-item').className += ' active';
   } else if (url.indexOf('partners') >= 0) {
     document.getElementById('partners-nav-item').className += ' active';

@@ -46,7 +46,7 @@
         </li>
 
         <li class="nav-item" id="gallery-nav-item">
-          <a class="nav-link" href="{{ route('albums') }}">Галерея</a>
+          <a class="nav-link" href="{{ route('admin.albums') }}">Галерея</a>
         </li>
 
         <li class="nav-item" id="partners-nav-item">
@@ -67,6 +67,7 @@
             {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" target="_blank" href="{{ route('home') }}">Открыть сайт</a>
             <a class="dropdown-item" href="{{ route('admin.logout') }}">Выйти</a>
           </div>
         </li>

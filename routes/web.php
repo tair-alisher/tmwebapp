@@ -16,7 +16,7 @@ Route::get('/gallery', [
 ]);
 Route::get('/gallery/{slug}', [
     'as' => 'albums.show',
-    'uses' => 'ImagesController@show'
+    'uses' => 'ImagesController@index'
 ]);
 
 Route::get('/employees', [
@@ -359,4 +359,59 @@ Route::post('/admin/employees/edit/{translation_id}', [
 Route::get('/admin/employees/{employee_id}/delete', [
     'as' => 'admin.employees.delete',
     'uses' => 'EmployeesController@delete'
+]);
+
+/* ********** admin albums ********** */
+
+Route::get('/admin/albums', [
+    'as' => 'admin.albums',
+    'uses' => 'AlbumsController@albums'
+]);
+
+Route::get('/admin/albums/create', [
+    'as' => 'admin.albums.create_form',
+    'uses' => 'AlbumsController@createForm'
+]);
+Route::post('/admin/albums/create', [
+    'as' => 'admin.albums.create',
+    'uses' => 'AlbumsController@create'
+]);
+
+Route::get('/admin/albums/{id}/edit', [
+    'as' => 'admin.albums.edit_form',
+    'uses' => 'AlbumsController@editForm'
+]);
+Route::post('/admin/albums/{id}/edit', [
+    'as' => 'admin.albums.edit',
+    'uses' => 'AlbumsController@edit'
+]);
+
+Route::get('/admin/albums/create/{locale}/{album_id}', [
+    'as' => 'admin.albums.create_translation_form',
+    'uses' => 'AlbumsController@createTranslationForm'
+]);
+Route::post('/admin/albums/create/{locale}/{album_id}', [
+    'as' => 'admin.albums.create_translation',
+    'uses' => 'AlbumsController@createTranslation'
+]);
+
+Route::get('/admin/albums/edit/{translation_id}', [
+    'as' => 'admin.albums.edit_translation_form',
+    'uses' => 'AlbumsController@editTranslationForm'
+]);
+Route::post('/admin/albums/edit/{translation_id}', [
+    'as' => 'admin.albums.edit_translation',
+    'uses' => 'AlbumsController@editTranslation'
+]);
+
+Route::get('/admin/albums/{id}/delete', [
+    'as' => 'admin.albums.delete',
+    'uses' => 'AlbumsController@delete'
+]);
+
+/* ********** admin images ********** */
+
+Route::get('/admin/albums/{id}/images', [
+    'as' => 'admin.albums.show',
+    'uses' => 'ImagesController@images'
 ]);

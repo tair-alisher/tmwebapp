@@ -14,7 +14,7 @@
         <ul class="list-group">
           @foreach ($users as $user)
           <li class="list-group-item">
-            {{ $user->name }}
+            {{ $user->name }}<br>
             <a href="{{ route('admin.users.edit_form', $user->id) }}" class="btn btn-link main-color">Редактировать</a>
             <span class="main-color">&#8726</span>
             <a href="{{ route('admin.users.change_password_form', $user->id) }}" class="btn btn-link main-color">Сменить пароль</a>
