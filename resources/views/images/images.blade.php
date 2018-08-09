@@ -1,14 +1,6 @@
-@extends('layouts.master')
-
-@section('meta')
-
-@endsection
+@extends('layouts.admin_master')
 
 @section('title', $album->title)
-
-@section('styles')
-<link rel="stylesheet" href="{{ asset('js/magnific-popup/magnific-popup.css') }}">
-@endsection
 
 @section('content')
 <div class="grey-row">

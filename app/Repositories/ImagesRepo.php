@@ -35,5 +35,16 @@ class ImagesRepo extends Repository
         'created_at' => Carbon::today(),
         'updated_at' => Carbon::today()
       ]);
+
+      $this->albumUpdated($album_id);
+  }
+
+  public function albumUpdated($album_id)
+  {
+    DB::table('albums')
+      ->where('id', $album_id)
+      ->update([
+        'updated_at' => Carbon::today()
+      ]);
   }
 }

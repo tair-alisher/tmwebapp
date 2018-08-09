@@ -12,6 +12,11 @@ use Validator;
 
 class ImagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     public function index($slug)
     {
         $album = Album::whereTranslation('slug', $slug)
@@ -21,7 +26,7 @@ class ImagesController extends Controller
             return redirect()->route('albums.show', $album->translate()->slug);
         }
 
-        $images = Image::where('album_id', $album->id)->paginate(10);
+        $images = Image::where('album_id', $album->id)->latest()->paginate(10);
 
         return view('images.index')
             ->with('album', $album)
@@ -54,5 +59,7 @@ class ImagesController extends Controller
                 $repo->addImage($album_id, $file);
             }
         }
+
+        return redirect()->route('admin.albums');
     }
 }

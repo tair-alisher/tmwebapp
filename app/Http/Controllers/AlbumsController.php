@@ -9,9 +9,14 @@ use Validator;
 
 class AlbumsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     public function index(AlbumsRepo $repo)
     {
-        $albums = Album::latest()->paginate(6);
+        $albums = Album::latest('updated_at')->paginate(6);
 
         return view('albums.index')
             ->with('albums', $albums);
