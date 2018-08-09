@@ -17,7 +17,7 @@ class AlbumsRepo extends Repository
         at.album_id album_id
       ')
       ->where('locale', 'ru')
-      ->orderBy('a.created_at', 'desc');
+      ->orderBy('a.updated_at', 'desc');
   }
   public function find($id)
   {
@@ -53,7 +53,7 @@ class AlbumsRepo extends Repository
       ->delete();
     
     if (strlen($image) > 0) {
-      $filepath = public_path('images/gallery/thumbs') . '/' . $image;
+      $filepath = public_path('images/gallery/albums') . '/' . $image;
       $this->deleteFile($filepath);
     }
   }

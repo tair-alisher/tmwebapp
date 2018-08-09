@@ -81,6 +81,8 @@ class PagesController extends Controller
             'content' => $request['content']
         ]);
 
-        return redirect()->route('admin.pages.edit_form', $slug);
+        return redirect()
+            ->route('admin.pages.edit_form', $slug)
+            ->with('message', 'Изменения сохранены.');
     }
 }

@@ -26,6 +26,14 @@
         <hr>
         <p class="text-center"><a href="{{ route('admin.albums.edit_form', $album->album_id) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>обложку</b>, <b>дату создания</b>, или <b>количество просмотров</b>, нажмите здесь <span class="oi oi-external-link"></span></a></p>
         <hr>
+        @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ session()->get('message') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
         <form action="{{ route('admin.albums.edit_translation', ['translation_id' => $album->id]) }}" method="POST">
           @include('layouts.errors')
           {{ csrf_field() }}

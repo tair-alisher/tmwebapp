@@ -122,7 +122,8 @@ class ProjectsController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.projects.edit_form', $id);
+            ->route('admin.projects.edit_form', $id)
+            ->with('message', 'Изменения сохранены.');
     }
 
     public function createTranslationForm(ProjectsRepo $repo, $locale, $project_id)
@@ -164,7 +165,8 @@ class ProjectsController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.projects.edit_translation_form', $slug);
+            ->route('admin.projects.edit_translation_form', $slug)
+            ->with('message', 'Запись создана');
     }
 
     public function editTranslationForm(ProjectsRepo $repo, $slug)
@@ -207,7 +209,8 @@ class ProjectsController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.projects.edit_translation_form', $new_slug);
+            ->route('admin.projects.edit_translation_form', $new_slug)
+            ->with('message', 'Изменения сохранены.');
     }
 
     public function delete(ProjectsRepo $repo, $project_id)
@@ -217,6 +220,7 @@ class ProjectsController extends Controller
         $repo->delete($project_id);
 
         return redirect()
-            ->route('admin.projects', 'ru');
+            ->route('admin.projects', 'ru')
+            ->with('message', 'Запись удалена.');
     }
 }

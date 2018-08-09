@@ -148,7 +148,9 @@ class EmployeesController extends Controller
             'image' => $filename
         ]);
 
-        return redirect()->route('admin.employees.edit_form', $employee_id);
+        return redirect()
+            ->route('admin.employees.edit_form', $employee_id)
+            ->with('message', 'Изменения сохранены.');
     }
 
     public function createTranslationForm(EmployeesRepo $repo, $locale, $employee_id)
@@ -244,7 +246,8 @@ class EmployeesController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.employees.edit_translation_form', ['translation_id' => $translation_id]);
+            ->route('admin.employees.edit_translation_form', ['translation_id' => $translation_id])
+            ->with('message', 'Изменения сохранены.');
     }
 
     public function delete(EmployeesRepo $repo, $employee_id)
@@ -253,6 +256,8 @@ class EmployeesController extends Controller
         $repo->deleteTranslations($employee_id);
         $repo->delete($employee_id);
 
-        return redirect()->route('admin.employees', 'ru');
+        return redirect()
+            ->route('admin.employees', 'ru')
+            ->with('message', 'Запись удалена.');
     }
 }

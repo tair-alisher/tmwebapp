@@ -56,7 +56,7 @@ class AlbumsController extends Controller
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
             $filename = $repo->makeUniqueFilename($image);
-            $image->move(public_path('images/gallery/thumbs'), $filename);
+            $image->move(public_path('images/gallery/albums'), $filename);
         } else {
             return back()->withErrors([
                 'message' => 'Произошла ошибка при загрузке изображения. Попробуйте еще раз.'
@@ -108,10 +108,10 @@ class AlbumsController extends Controller
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
             $filename = $repo->makeUniqueFilename($image);
-            $image->move(public_path('images/gallery/thumbs'), $filename);
+            $image->move(public_path('images/gallery/albums'), $filename);
 
             if (strlen($oldFileName) > 0) {
-                $filepath = public_path('images/gallery/thumbs/') . $oldFileName;
+                $filepath = public_path('images/gallery/albums/') . $oldFileName;
                 $repo->deleteFile($filepath);
             }
         } else {
@@ -124,7 +124,9 @@ class AlbumsController extends Controller
             'image' => $filename
         ]);
 
-        return redirect()->route('admin.albums.edit_form', $id);
+        return redirect()
+            ->route('admin.albums.edit_form', $id)
+            ->with('message', 'Изменения сохранены.');
     }
     
     public function createTranslationForm(AlbumsRepo $repo, $locale, $album_id)
@@ -201,7 +203,8 @@ class AlbumsController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.albums.edit_translation_form', ['translation_id' => $translation_id]);
+            ->route('admin.albums.edit_translation_form', ['translation_id' => $translation_id])
+            ->with('message', 'Изменения сохранены.');
     }
     
     public function delete(AlbumsRepo $repo, $album_id)
@@ -211,6 +214,8 @@ class AlbumsController extends Controller
         $repo->deleteTranslations($album_id);
         $repo->delete($album_id);
 
-        return redirect()->route('admin.albums');
+        return redirect()
+            ->route('admin.albums')
+            ->with('message', 'Альбом удален.');
     }
 }

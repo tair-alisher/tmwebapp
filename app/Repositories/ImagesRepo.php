@@ -12,16 +12,30 @@ class ImagesRepo extends Repository
   {
     $image = Intervention::make($file);
     // big image
-    $image->resize(1000, null, function ($constraint) {
-      $constraint->aspectRatio();
-    });
+    if ($image->width() > 1000) {
+      $image->resize(1000, null, function ($constraint) {
+        $constraint->aspectRatio();
+      });
+    }
+    if ($image->height() > 1000) {
+      $image->resize(null, 1000, function ($constraint) {
+        $constraint->aspectRatio();
+      });
+    }
     $filename = $this->makeUniqueFilename($file);
     $image->save(public_path('images/gallery/'.$filename));
     
     // thumbnail
-    $image->resize(300, null, function ($constraint) {
-      $constraint->aspectRatio();
-    })->save(public_path('images/gallery/thumbs/'.$filename));
+    if ($image->width() > $image->height()) {
+      $image->resize(400, null, function ($constraint) {
+        $constraint->aspectRatio();
+      })->save(public_path('images/gallery/thumbs/'.$filename));
+    } else {
+      $image->resize(null, 400, function ($constraint) {
+        $constraint->aspectRatio();
+      })->save(public_path('images/gallery/thumbs/'.$filename));
+    }
+    
     
     $this->create($album_id, $filename);
   }
@@ -44,7 +58,29 @@ class ImagesRepo extends Repository
     DB::table('albums')
       ->where('id', $album_id)
       ->update([
-        'updated_at' => Carbon::today()
+        'updated_at' => Carbon::now()
       ]);
+  }
+
+  public function getImage($id)
+  {
+    return DB::table('images')
+      ->where('id', $id)
+      ->value('image');
+  }
+
+  public function delete($image_id)
+  {
+    if (strlen($image = $this->getImage($image_id)) > 0) {
+      $filepath_thumb = public_path('images/gallery/thumbs') . '/' . $image;
+      $this->deleteFile($filepath_thumb);
+
+      $filepath_image = public_path('images/gallery') . '/' . $image;
+      $this->deleteFile($filepath_image);
+    }
+
+    DB::table('images')
+      ->where('id', $image_id)
+      ->delete();
   }
 }

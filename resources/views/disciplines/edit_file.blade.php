@@ -25,6 +25,14 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Редактирование файла: {{ $file->title }}<br><b>{{ $file->locale }}</b></h4>
         <hr>
+        @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ session()->get('message') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
         <p class="text-center"><a href="{{ route('admin.disciplines.edit_form', ['discipline_id' => $file->discipline_id]) }}" target="_blank" class="btn btn-link text-primary">Чтобы изменить <b>дату</b>, нажмите здесь <span class="oi oi-external-link"></span></a></p>
         <hr>
         

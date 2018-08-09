@@ -104,7 +104,8 @@ class DisciplinesController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.disciplines.edit_form', $discipline_id);
+            ->route('admin.disciplines.edit_form', $discipline_id)
+            ->with('message', 'Изменения сохранены.');
     }
 
     public function addFileForm(DisciplinesRepo $repo, $locale, $discipline_id)
@@ -149,7 +150,8 @@ class DisciplinesController extends Controller
             ]);
 
             return redirect()
-                ->route('admin.disciplines.edit_file_form', ['file_id' => $file_id]);
+                ->route('admin.disciplines.edit_file_form', ['file_id' => $file_id])
+                ->with('message', 'Файл добавлен.');
         }
         
         return back()->withErrors([
@@ -201,7 +203,9 @@ class DisciplinesController extends Controller
             'file_title' => $filename
         ]);
 
-        return redirect()->route('admin.disciplines.edit_file_form', $file_id);
+        return redirect()
+            ->route('admin.disciplines.edit_file_form', $file_id)
+            ->with('message', 'Изменения сохранены.');
     }
 
     public function delete(DisciplinesRepo $repo, $discipline_id)
@@ -211,6 +215,7 @@ class DisciplinesController extends Controller
         $repo->delete($discipline_id);
 
         return redirect()
-            ->route('admin.disciplines', 'ru');
+            ->route('admin.disciplines', 'ru')
+            ->with('message', 'Запись удалена.');
     }
 }

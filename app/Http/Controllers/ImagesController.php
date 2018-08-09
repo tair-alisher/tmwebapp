@@ -47,7 +47,7 @@ class ImagesController extends Controller
             ->with('images', $images);
     }
 
-    public function addImages(Request $request, ImagesRepo $repo, $album_id)
+    public function add(Request $request, ImagesRepo $repo, $album_id)
     {
         $rules = [];
         $messages = [];
@@ -60,6 +60,17 @@ class ImagesController extends Controller
             }
         }
 
-        return redirect()->route('admin.albums');
+        return redirect()
+            ->route('admin.images', ['id' => $album_id])
+            ->with('message', 'Изображение добавлено.');
+    }
+
+    public function delete(ImagesRepo $repo, $id, $image_id)
+    {
+        $repo->delete($image_id);
+
+        return redirect()
+            ->route('admin.images', ['id' => $id])
+            ->with('message', 'Изображение удалено.');
     }
 }

@@ -9,6 +9,14 @@
       <div class="col-lg-9 col-md-9 white-background">
         <h4 class="main-color">Редактирование альбома</h4>
         <hr>
+        @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ session()->get('message') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
         <form method="POST" enctype="multipart/form-data" action="{{ route('admin.albums.edit', ['id' => $album->id]) }}">
           @include('layouts.errors')
           {{ csrf_field() }}
@@ -26,7 +34,7 @@
           @if(strlen($album->image) > 0)
           <div class="form-group">
             <label for="old_file">Старое фото</label>
-             <img class="img-responsive album-image" src="{{ asset('images/gallery/thumbs') . '/' . $album->image }}" alt="">
+             <img class="img-responsive album-image" src="{{ asset('images/gallery/albums') . '/' . $album->image }}" alt="">
           </div>
           @endif
 
