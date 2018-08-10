@@ -65,7 +65,8 @@ class AuthController extends Controller
         // });
 
         return redirect()
-            ->route('admin.users');
+            ->route('admin.users')
+            ->with('message', 'Пользователь добавлен.');
     }
 
     public function login()

@@ -9,6 +9,14 @@
       <div class="col-lg-7 col-md-7 white-background">
         <h4 class="main-color">Пользователи</h4>
         <hr>
+        @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ session()->get('message') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
         <a href="{{ route('admin.register') }}" class="btn btn-link main-color">Добавить пользователя</a>
 
         <ul class="list-group">

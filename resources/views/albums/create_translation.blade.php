@@ -6,7 +6,6 @@
 <div class="grey-row">
   <div class="container news height">
     <div class="row">
-
       <div class="col-lg-3 col-md-3">
         <ul class="nav flex-column">
           <li class="nav-item">

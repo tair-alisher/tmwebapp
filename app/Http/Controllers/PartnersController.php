@@ -115,7 +115,9 @@ class PartnersController extends Controller
             'image' => $filename
         ]);
 
-        return redirect()->route('admin.partners.edit_form', ['id' => $id]);
+        return redirect()
+            ->route('admin.partners.edit_form', ['id' => $id])
+            ->with('message', 'Изменения сохранены.');
     }
     
     public function delete(PartnersRepo $repo, $id)
@@ -124,6 +126,7 @@ class PartnersController extends Controller
         $repo->delete($id);
 
         return redirect()
-            ->route('admin.partners');
+            ->route('admin.partners')
+            ->with('message', 'Запись удалена');
     }
 }

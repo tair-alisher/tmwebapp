@@ -7,9 +7,16 @@ use App\Repositories\AlbumsRepo;
 use App\Repositories\ImagesRepo;
 use App\Album;
 use App\Image;
+use Intervention;
+use Validator;
 
 class ImagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     public function index($slug)
     {
         $album = Album::whereTranslation('slug', $slug)
@@ -19,7 +26,7 @@ class ImagesController extends Controller
             return redirect()->route('albums.show', $album->translate()->slug);
         }
 
-        $images = Image::where('album_id', $album->id)->paginate(10);
+        $images = Image::where('album_id', $album->id)->latest()->paginate(10);
 
         return view('images.index')
             ->with('album', $album)
@@ -33,10 +40,37 @@ class ImagesController extends Controller
         \Auth::user()->userIs('gallery_admin');
         $album = $albumsRepo->getAlbumTranslation('ru', $id);
 
-        $images = Image::where('album_id', $album->album_id)->paginate(10);
+        $images = Image::where('album_id', $album->album_id)->latest()->paginate(10);
 
         return view('images.images')
             ->with('album', $album)
             ->with('images', $images);
+    }
+
+    public function add(Request $request, ImagesRepo $repo, $album_id)
+    {
+        $rules = [];
+        $messages = [];
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        if ( $request->hasFile('images') ) {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $repo->addImage($album_id, $file);
+            }
+        }
+
+        return redirect()
+            ->route('admin.images', ['id' => $album_id])
+            ->with('message', 'Изображение добавлено.');
+    }
+
+    public function delete(ImagesRepo $repo, $id, $image_id)
+    {
+        $repo->delete($image_id);
+
+        return redirect()
+            ->route('admin.images', ['id' => $id])
+            ->with('message', 'Изображение удалено.');
     }
 }

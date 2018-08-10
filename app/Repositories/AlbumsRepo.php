@@ -17,7 +17,7 @@ class AlbumsRepo extends Repository
         at.album_id album_id
       ')
       ->where('locale', 'ru')
-      ->orderBy('a.created_at', 'desc');
+      ->orderBy('a.updated_at', 'desc');
   }
   public function find($id)
   {
@@ -53,7 +53,7 @@ class AlbumsRepo extends Repository
       ->delete();
     
     if (strlen($image) > 0) {
-      $filepath = public_path('images/gallery/thumbs') . '/' . $image;
+      $filepath = public_path('images/gallery/albums') . '/' . $image;
       $this->deleteFile($filepath);
     }
   }
@@ -113,5 +113,28 @@ class AlbumsRepo extends Repository
     return DB::table('albums')
       ->where('id', $id)
       ->value('image');
+  }
+
+  public function deleteImages($album_id)
+  {
+    $rows = DB::table('images')
+      ->select('image')
+      ->where('album_id', $album_id)
+      ->get();
+    
+    foreach ($rows as $row) {
+      $image = $row->image;
+      if (strlen($image) > 0) {
+        $filepath_thumb = public_path('images/gallery/thumbs') . '/' . $image;
+        $this->deleteFile($filepath_thumb);
+
+        $filepath_image = public_path('images/gallery/') . '/' . $image;
+        $this->deleteFile($filepath_image);
+
+        DB::table('images')
+          ->where('image', $image)
+          ->delete();
+      }
+    }
   }
 }

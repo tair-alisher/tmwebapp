@@ -29,8 +29,7 @@ class AppController extends Controller
 
     public function editUserForm($id)
     {
-        // dd(\Auth::user()->userIs('users_admin'));
-        // \Auth::user()->userIs('users_admin');
+        \Auth::user()->userIs('users_admin');
         $user = User::find($id);
         $roles = Role::all();
 
@@ -56,7 +55,9 @@ class AppController extends Controller
             }
         }
 
-        return redirect()->route('admin.users');
+        return redirect()
+            ->route('admin.users.edit_form', ['id' => $id])
+            ->with('message', 'Изменения сохранены');
     }
 
     public function changePasswordForm($id)
@@ -85,7 +86,9 @@ class AppController extends Controller
         $user->password = bcrypt($request['password']);
         $user->save();
 
-        return redirect()->route('admin.users');
+        return redirect()
+            ->route('admin.users')
+            ->with('message', 'Пароль изменен.');
     }
 
     public function deleteUser($id)
@@ -94,6 +97,8 @@ class AppController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('admin.users');
+        return redirect()
+            ->route('admin.users')
+            ->with('message', 'Пользователь удален.');
     }
 }

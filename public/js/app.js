@@ -172,3 +172,7 @@ function confirmAction() {
 function confirmPostDelete() {
   return confirm('Будут удалены варианты на всех языках.\nВы уверены, что хотите удалить данную запись?');
 }
+
+function confirmAlbumDelete() {
+  return confirm('Будут удалены ВСЕ изображения данного альбома.\nВы уверены, что хотите удалить данный альбом и все его изображения?');
+}

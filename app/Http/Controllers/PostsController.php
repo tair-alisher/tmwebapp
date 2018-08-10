@@ -125,7 +125,8 @@ class PostsController extends Controller
             ]);
         
         return redirect()
-            ->route('admin.posts.edit_form', $id);
+            ->route('admin.posts.edit_form', $id)
+            ->with('message', 'Изменения сохранены.');
     }
 
     public function createTranslationForm(PostsRepo $repo, $locale, $post_id)
@@ -217,7 +218,8 @@ class PostsController extends Controller
             ]);
         
         return redirect()
-            ->route('admin.posts.edit_translation_form', $new_slug);
+            ->route('admin.posts.edit_translation_form', $new_slug)
+            ->with('message', 'Изменения сохранены');
     }
 
     public function delete(PostsRepo $repo, $post_id)
@@ -227,6 +229,7 @@ class PostsController extends Controller
         $repo->delete($post_id);
 
         return redirect()
-            ->route('admin.posts', 'ru');
+            ->route('admin.posts', 'ru')
+            ->with('message', 'Запись удалена.');
     }
 }
