@@ -114,4 +114,27 @@ class AlbumsRepo extends Repository
       ->where('id', $id)
       ->value('image');
   }
+
+  public function deleteImages($album_id)
+  {
+    $rows = DB::table('images')
+      ->select('image')
+      ->where('album_id', $album_id)
+      ->get();
+    
+    foreach ($rows as $row) {
+      $image = $row->image;
+      if (strlen($image) > 0) {
+        $filepath_thumb = public_path('images/gallery/thumbs') . '/' . $image;
+        $this->deleteFile($filepath_thumb);
+
+        $filepath_image = public_path('images/gallery/') . '/' . $image;
+        $this->deleteFile($filepath_image);
+
+        DB::table('images')
+          ->where('image', $image)
+          ->delete();
+      }
+    }
+  }
 }

@@ -210,7 +210,7 @@ class AlbumsController extends Controller
     public function delete(AlbumsRepo $repo, $album_id)
     {
         \Auth::user()->userIs('gallery_admin');
-        // $repo->deleteImages($album_id);
+        $repo->deleteImages($album_id);
         $repo->deleteTranslations($album_id);
         $repo->delete($album_id);
 

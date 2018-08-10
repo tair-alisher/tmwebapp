@@ -27,7 +27,7 @@
             <span class="main-color">&#8726</span>
             <a href="{{ route('admin.images', $album->album_id) }}" class="btn btn-link main-color">Изображения</a>
             <span class="main-color">&#8726</span>
-            <a onclick="return confirmAction()" href="{{ route('admin.albums.delete', $album->album_id) }}" class="btn btn-link main-color">Удалить</a>
+            <a onclick="return confirmAlbumDelete()" href="{{ route('admin.albums.delete', $album->album_id) }}" class="btn btn-link main-color">Удалить</a>
           </li>
         @endforeach
         </ul>
