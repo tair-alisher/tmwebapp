@@ -14,7 +14,8 @@ class ImagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'upload']);
+        $this->middleware('web')->except('upload');
     }
 
     public function index($slug)
@@ -56,7 +57,7 @@ class ImagesController extends Controller
         if ( $request->hasFile('images') ) {
             $files = $request->file('images');
             foreach ($files as $file) {
-                $repo->addImage($album_id, $file);
+                $repo->add($album_id, $file);
             }
         }
 
@@ -72,5 +73,17 @@ class ImagesController extends Controller
         return redirect()
             ->route('admin.images', ['id' => $id])
             ->with('message', 'Изображение удалено.');
+    }
+
+    public function upload(Request $request)
+    {
+        // if ($request->hasFile('file')) {
+        //     $file = $request->file('file');
+        //     $filename = $repo->upload($file);
+        //     return public_path('images/posts') . '/' . $filename;
+        // } else {
+        //     return $message = 'error';
+        // }
+        return true;
     }
 }

@@ -8,7 +8,7 @@ use Intervention;
 
 class ImagesRepo extends Repository
 {
-  public function addImage($album_id, $file)
+  public function add($album_id, $file)
   {
     $image = Intervention::make($file);
     // big image
@@ -83,4 +83,32 @@ class ImagesRepo extends Repository
       ->where('id', $image_id)
       ->delete();
   }
+
+  public function upload($file)
+  {
+    $image = Intervention::make($file);
+    // big image
+    if ($image->width() > 1000) {
+      $image->resize(1000, null, function ($constraint) {
+        $constraint->aspectRatio();
+      });
+    }
+    if ($image->height() > 1000) {
+      $image->resize(null, 1000, function ($constraint) {
+        $constraint->aspectRatio();
+      });
+    }
+    $filename = $this->makeUniqueFilename($file);
+    $image->save(public_path('images/posts/'.$filename));
+
+    return $filename;
+  }
+
+  public function makeUniqueFilename($file)
+  {
+    $filename = md5(rand(100,200)) . '-' . time() . '.' . strtolower($file->getClientOriginalExtension());
+
+    return $filename;
+  }
+
 }

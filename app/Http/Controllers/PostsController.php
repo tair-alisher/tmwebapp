@@ -40,7 +40,7 @@ class PostsController extends Controller
         $pinned_posts = Post::pinnedPosts();
 
         if ( $post->translate()->where('slug', $slug)->first()->locale != app()->getLocale() ) {
-            return redirect()->route('news.show', $post->translate()->slug);
+            return redirect()->route('posts.show', $post->translate()->slug);
         }
         return view('posts.show')
             ->with('post', $post)
