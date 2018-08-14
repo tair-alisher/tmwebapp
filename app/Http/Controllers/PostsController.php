@@ -70,21 +70,29 @@ class PostsController extends Controller
 
     public function create(Request $request, PostsRepo $repo, $locale)
     {
+        // $rules = [];
+        // $messages = [];
+        // Validator::make($request->all(), $rules, $messages)->validate();
+
         \Auth::user()->userIs('posts_admin');
         $post_id = $repo->create();
         $slug = $repo->toSlug($request['title']) . '-' . $locale;
 
-        $repo->createTranslation([
-            'post_id' => $post_id,
-            'locale' => $locale,
-            'title' => $request['title'],
-            'slug' => $slug,
-            'description' => $request['description'],
-            'content' => $request['content']
-        ]);
+        $content = $repo->formContentWithImages($request['content']);
+        echo $request['content'];
+        echo "\ncontent:\n";
+        dd($content);
+        // $repo->createTranslation([
+        //     'post_id' => $post_id,
+        //     'locale' => $locale,
+        //     'title' => $request['title'],
+        //     'slug' => $slug,
+        //     'description' => $request['description'],
+        //     'content' => $content
+        // ]);
 
-        return redirect()
-            ->route('admin.posts.edit_translation_form', $slug);
+        // return redirect()
+        //     ->route('admin.posts.edit_translation_form', $slug);
     }
 
     public function editForm(PostsRepo $repo, $id)
