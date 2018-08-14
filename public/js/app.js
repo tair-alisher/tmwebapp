@@ -201,12 +201,9 @@ function sendFile(file, token) {
     contentType: false,
     processData: false,
     success: function (data) {
-      console.log(data);
-      alert(data);
       $('#content').summernote('insertImage', data);
     },
     error: function (XMLHttpRequest) {
-      console.log(file);
       console.log(XMLHttpRequest);
     }
   });

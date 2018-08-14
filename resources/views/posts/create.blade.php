@@ -49,9 +49,7 @@
 <script src="{{ asset('js/summernote/summernote-bs4.js') }}"></script>
 <script>
   $(document).ready(function() {
-    $('#content').summernote({
-      height: '200px'
-    });
+    initEditorWithImageUploading();
   });
 </script>
 @endsection

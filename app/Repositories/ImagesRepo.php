@@ -84,7 +84,7 @@ class ImagesRepo extends Repository
       ->delete();
   }
 
-  public function upload($file)
+  public function upload($file, $extension)
   {
     $image = Intervention::make($file);
     // big image
@@ -98,7 +98,8 @@ class ImagesRepo extends Repository
         $constraint->aspectRatio();
       });
     }
-    $filename = $this->makeUniqueFilename($file);
+    
+    $filename = md5(rand(100,200)) . time() . '.' .$extension;
     $image->save(public_path('images/posts/'.$filename));
 
     return $filename;

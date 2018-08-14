@@ -75,15 +75,26 @@ class ImagesController extends Controller
             ->with('message', 'Изображение удалено.');
     }
 
-    public function upload(Request $request)
+    public function upload(ImagesRepo $repo)
     {
-        // if ($request->hasFile('file')) {
-        //     $file = $request->file('file');
-        //     $filename = $repo->upload($file);
-        //     return public_path('images/posts') . '/' . $filename;
-        // } else {
-        //     return $message = 'error';
-        // }
-        return true;
+        if ($_FILES['file']['name']) {
+            if (!$_FILES['file']['error']) {
+                try {
+                    $ext = explode('.', $_FILES['file']['name']);
+                    $filename = $repo->upload($_FILES['file']['tmp_name'], $ext[1]);
+
+                    $http = config('constants.http');
+                    $server = config('constants.server');
+                    $port = config('constants.port');
+
+                    echo $http.$server.':'.$port.'/public/images/posts/'.$filename;
+                } catch (Exception $e) {
+                    echo $message = $e->getMessage();
+                    exit;
+                }
+            } else {
+                echo $message = 'Ошибка файла.';
+            }
+        }
     }
 }
