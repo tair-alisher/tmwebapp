@@ -93,7 +93,7 @@ return [
 
   'archive_months' => [
     'january' => 'Januar',
-    'febraury' => 'Februar',
+    'february' => 'Februar',
     'march' => 'März',
     'april' => 'April',
     'may' => 'Mai',
