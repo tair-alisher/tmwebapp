@@ -179,7 +179,7 @@ function confirmAlbumDelete() {
 
 function initEditorWithImageUploading() {
   $('#content').summernote({
-    height: '200px',
+    minHeight: '200px',
     callbacks: {
       onImageUpload: function(files) {
         var token = document.getElementsByTagName('input')[0].value;

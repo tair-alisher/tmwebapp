@@ -83,11 +83,7 @@ class ImagesController extends Controller
                     $ext = explode('.', $_FILES['file']['name']);
                     $filename = $repo->upload($_FILES['file']['tmp_name'], $ext[1]);
 
-                    $http = config('constants.http');
-                    $server = config('constants.server');
-                    $port = config('constants.port');
-
-                    echo $http.$server.':'.$port.'/public/images/posts/'.$filename;
+                    echo '/public/images/posts/'.$filename;
                 } catch (Exception $e) {
                     echo $message = $e->getMessage();
                     exit;
