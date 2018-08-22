@@ -187,6 +187,11 @@ Route::get('/admin/posts/{id}/delete', [
     'uses' => 'PostsController@delete'
 ]);
 
+Route::get('/admin/posts/{id}/duplicate', [
+  'as' => 'admin.posts.duplicate',
+  'uses' => 'PostsController@duplicate'
+]);
+
 /* ********** admin projects ********** */
 
 Route::get('/admin/projects/{locale}', [

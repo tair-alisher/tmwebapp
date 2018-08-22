@@ -66,6 +66,29 @@ class PostsRepo extends Repository
       ->delete();
   }
 
+  public function duplicateTranslation($id)
+  {
+    $translation = DB::table('post_translations')
+      ->where('id', $id)
+      ->first();
+
+    $translations = DB::table('post_translations')
+      ->where('post_id', $translation->post_id)
+      ->where('locale', '!=', $translation->locale)
+      ->get();
+
+    foreach ($translations as $trans) {
+      $this->updateTranslation($trans->slug, [
+        'description' => $translation->description,
+        'title' => $translation->title,
+        'slug' => $translation->slug . '-' . $trans->locale,
+        'content' => $translation->content
+      ]);
+    }
+
+    return $translation->slug;
+  }
+
   public function getCreatedAtById($id)
   {
     return DB::table('posts')
@@ -132,33 +155,5 @@ class PostsRepo extends Repository
       ->join('posts', 'post_translations.post_id', '=', 'posts.id')
       ->where('post_translations.locale', $locale)
       ->orderBy('posts.created_at', 'desc');
-  }
-
-  public function formContentWithImages($content)
-  {
-    $dom = new \DomDocument();
-    $dom->load($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-    $images = $dom->getElementsByTagName('img');
-    foreach ($images as $image) {
-        $src = $img->getAttribute('src');
-        if (preg_match('/data:image/', $src)) {
-            preg_match('/data:iamge\/(?<mime>.*?)\;/', $src, $groups);
-            $mimetype = $groups['mime'];
-
-            $filename = uniqid();
-            $filepath = '/images/posts/'.$filename.$mimetype;
-
-            $image = Intervention::make($src)
-              ->encode($mimetype, 100)
-              ->save(public_path($filepath));
-
-            $new_src = asset($filepath);
-            $img->removeAttribute('src');
-            $img->setAttribute('src', $new_src);
-        }
-    }
-
-    $content = $dom->saveHTML();
-    return $content;
   }
 }
