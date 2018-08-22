@@ -252,6 +252,6 @@ class PostsController extends Controller
 
       return redirect()
         ->route('admin.posts.edit_translation_form', $slug)
-        ->with('message', 'Записи на других языках заполнены аналогично.');
+        ->with('message', 'Записи на других языках теперь заполнены аналогично.');
     }
 }

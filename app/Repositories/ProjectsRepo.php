@@ -65,6 +65,47 @@ class ProjectsRepo extends Repository
       ->delete();
   }
 
+  public function duplicateTranslation($id)
+  {
+    $langs = ['ru', 'de', 'kg'];
+
+    $translation = DB::table('edu_project_translations')
+      ->where('id', $id)
+      ->first();
+
+    $translations = DB::table('edu_project_translations')
+      ->where('edu_project_id', $translation->edu_project_id)
+      ->where('locale', '!=', $translation->locale)
+      ->get();
+
+    if (count($translation) < (count($langs) - 1)) {
+      unset($langs[array_search($translation->locale, $langs)]);
+      foreach ($translations as $trans) {
+        unset($langs[array_search($translation->locale, $langs)]);
+      }
+
+      foreach ($langs as $locale) {
+        $this->createTranslation([
+          'edu_project_id' => $translation->edu_project_id,
+          'locale' => $locale,
+          'title' => $translation->title,
+          'slug' => $translation->slug . '-' . $locale,
+          'content' => $translation->content
+        ]);
+      }
+    } else {
+      foreach ($translations as $trans) {
+        $this->updateTranslation($trans->slug, [
+          'title' => $translation->title,
+          'slug' => $translation->slug . '-' . $trans->locale,
+          'content' => $translation->content
+        ]);
+      }
+    }
+
+    return $translation->slug;
+  }
+
   public function getItemsByLocale($locale)
   {
     return DB::table('edu_project_translations')

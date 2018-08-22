@@ -240,6 +240,11 @@ Route::get('/admin/projects/{id}/delete', [
     'uses' => 'ProjectsController@delete'
 ]);
 
+Route::get('/admin/projects/{id}/duplicate', [
+  'as' => 'admin.projects.duplicate',
+  'uses' => 'ProjectsController@duplicate'
+]);
+
 /* ********** admin disciplines ********** */
 
 Route::get('/admin/disciplines/{locale}', [
@@ -364,6 +369,11 @@ Route::post('/admin/employees/edit/{translation_id}', [
 Route::get('/admin/employees/{employee_id}/delete', [
     'as' => 'admin.employees.delete',
     'uses' => 'EmployeesController@delete'
+]);
+
+Route::get('/admin/employees/{id}/duplicate', [
+  'as' => 'admin.employees.duplicate',
+  'uses' => 'EmployeesController@duplicate'
 ]);
 
 /* ********** admin albums ********** */

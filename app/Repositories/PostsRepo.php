@@ -68,6 +68,8 @@ class PostsRepo extends Repository
 
   public function duplicateTranslation($id)
   {
+    $langs = ['ru', 'de', 'kg'];
+
     $translation = DB::table('post_translations')
       ->where('id', $id)
       ->first();
@@ -77,13 +79,31 @@ class PostsRepo extends Repository
       ->where('locale', '!=', $translation->locale)
       ->get();
 
-    foreach ($translations as $trans) {
-      $this->updateTranslation($trans->slug, [
-        'description' => $translation->description,
-        'title' => $translation->title,
-        'slug' => $translation->slug . '-' . $trans->locale,
-        'content' => $translation->content
-      ]);
+    if (count($translations) < (count($langs) - 1)) {
+      unset($langs[array_search($translation->locale, $langs)]);
+      foreach ($translations as $trans) {
+        unset($langs[array_search($translation->locale, $langs)]);
+      }
+
+      foreach ($langs as $locale) {
+        $this->createTranslation([
+          'post_id' => $translation->post_id,
+          'locale' => $locale,
+          'description' => $translation->description,
+          'title' => $translation->title,
+          'slug' => $translation->slug . '-' . $locale,
+          'content' => $translation->content
+        ]);
+      }
+    } else {
+      foreach ($translations as $trans) {
+        $this->updateTranslation($trans->slug, [
+          'description' => $translation->description,
+          'title' => $translation->title,
+          'slug' => $translation->slug . '-' . $trans->locale,
+          'content' => $translation->content
+        ]);
+      }
     }
 
     return $translation->slug;
