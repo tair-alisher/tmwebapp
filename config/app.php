@@ -179,6 +179,8 @@ return [
 
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Dimsav\Translatable\TranslatableServiceProvider::class,
+        ElForastero\Transliterate\TransliterationServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -228,6 +230,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Transliterate' => ElForastero\Transliterate\TransliterationFacade::class,
+        'Intervention' => Intervention\Image\Facades\Image::class
 
     ],
 

@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Dimsav\Translatable\Translatable;
+use Transliterate;
 
 class Post extends Model
 {
@@ -28,5 +30,17 @@ class Post extends Model
             ->where('pinned', true)
             ->orderBy('created_at', 'desc')
             ->get();
+    }
+
+    public static function getArchives($locale)
+    {
+        return DB::table('posts as p')
+            ->join('post_translations as pt', 'p.id', '=', 'pt.post_id')
+            ->selectRaw('year(p.created_at) year, month(p.created_at) month, count(pt.id) published')
+            ->where('pt.locale', $locale)
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(p.created_at) desc')
+            ->get()
+            ->toArray();
     }
 }

@@ -93,7 +93,7 @@ return [
 
   'archive_months' => [
     'january' => 'Январь',
-    'febraury' => 'Февраль',
+    'february' => 'Февраль',
     'march' => 'Март',
     'april' => 'Апрель',
     'may' => 'Май',
@@ -122,5 +122,9 @@ return [
   ],
 
   'updated' => 'Обновлен',
-  'download' => 'Скачать'
+  'download' => 'Скачать',
+  'register' => 'Регистрация',
+  'auth' => 'Авторизация',
+  'not_found' => 'Страница не найдена',
+  'no_results' => 'Нет записей'
 ];

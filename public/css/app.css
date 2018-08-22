@@ -138,7 +138,6 @@ footer a:hover {
 }
 
 .footer-title {
-  margin-left: 5px;
   font-size: 1.2em;
   margin-bottom: 40px;
   color: #eeeeee;
@@ -271,4 +270,8 @@ ul.pagination > li.active > span {
 .partner-image {
   max-height: 70px;
   max-width: 550px;
+}
+.album-image {
+  max-height: 200px;
+  max-width: 200px;
 }

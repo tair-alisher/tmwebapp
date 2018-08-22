@@ -56,6 +56,12 @@ if ( !function_exists('increaseViewsNumber') ) {
   }
 }
 
+if ( !function_exists('dateWithoutTime') ) {
+  function dateWithoutTime($datetime) {
+    return explode(' ', $datetime)[0];
+  }
+}
+
 if ( !function_exists('increaseProjectViewsNumber') ) {
   function increaseProjectViewsNumber($project_id) {
     $project = App\EduProject::find($project_id);

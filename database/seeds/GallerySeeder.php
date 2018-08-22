@@ -342,8 +342,8 @@ class GallerySeeder extends Seeder
         DB::table('album_translations')->insert([
             'album_id' => $album_id,
             'locale' => 'de',
-            'title' => 'praktikum-in-der-fh-koln-de',
-            'slug' => '',
+            'title' => 'Praktikum in der FH Koeln',
+            'slug' => 'praktikum-in-der-fh-koln-de',
         ]);
         DB::table('album_translations')->insert([
             'album_id' => $album_id,

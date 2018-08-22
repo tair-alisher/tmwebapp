@@ -2,26 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Repositories\PostsRepo;
+use App\Repositories\PagesRepo;
+use App\Repositories\PartnersRepo;
 use App\Page;
 use App\Post;
 use App\Employee;
 use App\Partner;
-use App\Discipline;
-use App\EduProject;
+use Validator;
 
 class PagesController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $posts = Post::latest()
-            ->orderBy('created_at', 'desc')
-            ->limit(2)
-            ->get();
+        $this->middleware('auth')->except([
+            'index', 'show'
+        ]);
+    }
+
+    public function index(PostsRepo $postsRepo, PartnersRepo $partnersRepo)
+    {
+        $posts = $postsRepo->getTwoLast(app()->getLocale());
 
         $employees = Employee::all();
 
-        $partners = Partner::all();
+        $partners = $partnersRepo->getPartnersWithImage();
 
         return view('pages.index')
             ->with('posts', $posts)
@@ -41,31 +48,41 @@ class PagesController extends Controller
             ->with('page', $page);
     }
 
-    public function disciplines()
-    {
-        $disciplines = Discipline::latest()->get();
+    /* ********** admin pages ********** */
 
-        return view('pages.disciplines')
-            ->with('disciplines', $disciplines);
+    public function editForm(PagesRepo $repo, $slug)
+    {
+        \Auth::user()->userIs('pages_admin');
+        $page = $repo->getTranslationBySlug($slug);
+
+        $slug_ru = $repo->getSlugByLocaleAndPageId('ru', $page->page_id);
+        $slug_de = $repo->getSlugByLocaleAndPageId('de', $page->page_id);
+        $slug_kg = $repo->getSlugByLocaleAndPageId('kg', $page->page_id);
+
+        return view('pages.edit')
+            ->with('page', $page)
+            ->with('slug_ru', $slug_ru)
+            ->with('slug_de', $slug_de)
+            ->with('slug_kg', $slug_kg);
     }
 
-    public function eduProjects()
+    public function edit(Request $request, PagesRepo $repo, $slug)
     {
-        $projects = EduProject::latest()->paginate(10);
+        \Auth::user()->userIs('pages_admin');
+        $rules = [
+            'content' => 'required'
+        ];
+        $messages = [
+            'content.required' => 'Заполните информацию о странице.'
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
 
-        return view('pages.projects')
-            ->with('projects', $projects);
-    }
+        $repo->updateTranslation($slug, [
+            'content' => $request['content']
+        ]);
 
-    public function showEduProject($slug)
-    {
-        $project = EduProject::whereTranslation('slug', $slug)->firstOrFail();
-
-        if ( $project->translate()->where('slug', $slug)->first()->locale != app()->getLocale() ) {
-            return redirect()->route('edu_projects.show', $project->translate()->slug);
-        }
-
-        return view('pages.show_project')
-            ->with('project', $project);
+        return redirect()
+            ->route('admin.pages.edit_form', $slug)
+            ->with('message', 'Изменения сохранены.');
     }
 }

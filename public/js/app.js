@@ -24,6 +24,25 @@ function logoCarousel()
   });
 }
 
+function adminHighlightActiveMenuItem() {
+  adminRemoveActiveClassFromNavItems();
+
+  var url = window.location.href;
+  if (url.indexOf('pages') >= 0) {
+    document.getElementById('pages-nav-item').className += ' active';
+  } else if (url.indexOf('employees') >= 0) {
+    document.getElementById('employees-nav-item').className += ' active';
+  } else if (url.indexOf('posts') >= 0) {
+    document.getElementById('news-nav-item').className += ' active';
+  } else if (url.indexOf('albums') >= 0) {
+    document.getElementById('gallery-nav-item').className += ' active';
+  } else if (url.indexOf('partners') >= 0) {
+    document.getElementById('partners-nav-item').className += ' active';
+  } else if (url.indexOf('users') >= 0) {
+    document.getElementById('users-nav-item').className += ' active';
+  }
+}
+
 function highlightActiveMenuItem() {
   removeActiveClassFromNavItems();
 
@@ -62,13 +81,17 @@ function highlightActiveMenuItem() {
     'aspirantura-kg'
   ];
   var employeesPage = 'employees';
-  var newsPage = 'news';
+  var newsPage = 'posts';
   var galleryPage = 'gallery';
   var partnersPage = 'partners';
 
   var urlParts = window.location.href.split('/');
   // var urlParams = urlParts[urlParts.length - 1].split('?');
-  var urlParams = urlParts[4].split('?');
+  if (!(urlParts.length < 5)) {
+    var urlParams = urlParts[4].split('?');
+  } else {
+    return false;
+  }
   var currentPage = urlParams[0];
 
   if (bachelorPages.includes(currentPage)) {
@@ -87,6 +110,29 @@ function highlightActiveMenuItem() {
     document.getElementById('gallery-nav-item').className += ' active';
   } else if (partnersPage == currentPage) {
     document.getElementById('partners-nav-item').className += ' active';
+  }
+}
+
+function adminRemoveActiveClassFromNavItems() {
+  var pagesNav = document.getElementById('pages-nav-item');
+  var employeesNav = document.getElementById('employees-nav-item');
+  var newsNav = document.getElementById('news-nav-item');
+  var galleryNav = document.getElementById('gallery-nav-item');
+  var partnersNav = document.getElementById('partners-nav-item');
+  var usersNav = document.getElementById('users-nav-item');
+
+  if (pagesNav.className.indexOf(' active') >= 0) {
+    pagesNav.className -= ' active';
+  } else if (employeesNav.className.indexOf(' active') >= 0) {
+    employeesNav.className -= ' active';
+  } else if (newsNav.className.indexOf(' active') >= 0) {
+    newsNav.className -= ' active';
+  } else if (galleryNav.className.indexOf(' active') >= 0) {
+    galleryNav.className -= ' active';
+  } else if (partnersNav.className.indexOf(' active') >= 0) {
+    partnersNav.className -= ' active';
+  } else if (usersNav.className.indexOf(' active') >= 0) {
+    usersNav.className -= ' active';
   }
 }
 
@@ -117,4 +163,48 @@ function removeActiveClassFromNavItems() {
   } else if (partnersNav.className.indexOf(' active') >= 0) {
     partnersNav.className -= ' active';
   }
+}
+
+function confirmAction() {
+  return confirm('Вы уверены, что хотите удалить запись?');
+}
+
+function confirmPostDelete() {
+  return confirm('Будут удалены варианты на всех языках.\nВы уверены, что хотите удалить данную запись?');
+}
+
+function confirmAlbumDelete() {
+  return confirm('Будут удалены ВСЕ изображения данного альбома.\nВы уверены, что хотите удалить данный альбом и все его изображения?');
+}
+
+function initEditorWithImageUploading() {
+  $('#content').summernote({
+    minHeight: '200px',
+    callbacks: {
+      onImageUpload: function(files) {
+        var token = document.getElementsByTagName('input')[0].value;
+        sendFile(files[0], token);
+      }
+    }
+  });
+}
+
+function sendFile(file, token) {
+  data = new FormData();
+  data.append('file', file);
+  data.append('_token', token);
+  $.ajax({
+    data: data,
+    type: 'POST',
+    url: '/ru/admin/images/upload',
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      $('#content').summernote('insertImage', data);
+    },
+    error: function (XMLHttpRequest) {
+      console.log(XMLHttpRequest);
+    }
+  });
 }

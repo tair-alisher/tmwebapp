@@ -58,7 +58,7 @@
         </li>
 
         <li class="nav-item active" id="news-nav-item">
-          <a class="nav-link" href="{{ route('news') }}">{{ trans('menu.news.title') }}</a>
+          <a class="nav-link" href="{{ route('posts') }}">{{ trans('menu.news.title') }}</a>
         </li>
 
         <li class="nav-item" id="gallery-nav-item">
@@ -68,6 +68,11 @@
         <li class="nav-item" id="partners-nav-item">
           <a href="{{ route('partners') }}" class="nav-link">{{ trans('menu.partners.title') }}</a>
         </li>
+        @if (Auth::check())
+        <li class="nav-item">
+          <a href="/admin" class="nav-link">Админ</a>
+        </li>
+        @endif
       </ul>
 
       <ul class="navbar-nav ml-auto">

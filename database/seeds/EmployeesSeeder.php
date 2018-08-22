@@ -534,7 +534,7 @@ HERE
         DB::table('employee_translations')->insert([
             'employee_id' => $employee_id,
             'locale' => 'ru',
-            'name' => 'Ешимбекова Рахат Сейтековн',
+            'name' => 'Ешимбекова Рахат Сейтековна',
             'slug' => 'eshimbekova-rahat-seytekovn-ru',
             'position' => 'Старший преподаватель кафедры',
             'degree' => 'Куратор 3-го курса',
@@ -567,7 +567,7 @@ HERE
         DB::table('employee_translations')->insert([
             'employee_id' => $employee_id,
             'locale' => 'de',
-            'name' => 'Ешимбекова Рахат Сейтековн',
+            'name' => 'Ешимбекова Рахат Сейтековна',
             'slug' => 'eshimbekova-rahat-seytekovn-de',
             'position' => 'Старший преподаватель кафедры',
             'degree' => 'Куратор 3-го курса',
@@ -600,7 +600,7 @@ HERE
         DB::table('employee_translations')->insert([
             'employee_id' => $employee_id,
             'locale' => 'kg',
-            'name' => 'Ешимбекова Рахат Сейтековн',
+            'name' => 'Ешимбекова Рахат Сейтековна',
             'slug' => 'eshimbekova-rahat-seytekovn-kg',
             'position' => 'Старший преподаватель кафедры',
             'degree' => 'Куратор 3-го курса',
