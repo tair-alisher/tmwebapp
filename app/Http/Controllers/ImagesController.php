@@ -14,7 +14,8 @@ class ImagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'upload']);
+        $this->middleware('web')->except('upload');
     }
 
     public function index($slug)
@@ -56,7 +57,7 @@ class ImagesController extends Controller
         if ( $request->hasFile('images') ) {
             $files = $request->file('images');
             foreach ($files as $file) {
-                $repo->addImage($album_id, $file);
+                $repo->add($album_id, $file);
             }
         }
 
@@ -72,5 +73,24 @@ class ImagesController extends Controller
         return redirect()
             ->route('admin.images', ['id' => $id])
             ->with('message', 'Изображение удалено.');
+    }
+
+    public function upload(ImagesRepo $repo)
+    {
+        if ($_FILES['file']['name']) {
+            if (!$_FILES['file']['error']) {
+                try {
+                    $ext = explode('.', $_FILES['file']['name']);
+                    $filename = $repo->upload($_FILES['file']['tmp_name'], $ext[1]);
+
+                    echo '/public/images/posts/'.$filename;
+                } catch (Exception $e) {
+                    echo $message = $e->getMessage();
+                    exit;
+                }
+            } else {
+                echo $message = 'Ошибка файла.';
+            }
+        }
     }
 }

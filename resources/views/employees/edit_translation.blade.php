@@ -60,16 +60,16 @@
 
           <div class="form-group">
             <label for="info">Информация</label>
-            <textarea name="info" id="info" cols="30" rows="10" class="form-control" required="required">{!! $employee->info !!}</textarea>
+            <textarea name="info" id="content" cols="30" rows="10" class="form-control" required="required">{!! $employee->info !!}</textarea>
           </div>
 
           <div class="form-group">
             <button class="btn btn-outline-primary" type="submit">Сохранить</button>
           </div>
         </form>
-      </div>   
+      </div>
     </div>
-    
+
   </div>
 </div>
 @endsection
@@ -79,7 +79,7 @@
 <script src="{{ asset('js/summernote/summernote-bs4.js') }}"></script>
 <script>
   $(document).ready(function() {
-    $('#info').summernote();
+    initEditorWithImageUploading();
   });
 </script>
 @endsection

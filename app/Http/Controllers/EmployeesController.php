@@ -44,7 +44,7 @@ class EmployeesController extends Controller
         \Auth::user()->userIs('employees_admin');
         $employees = $repo
             ->getItemsByLocale($locale);
-        
+
         return view('employees.employees')
             ->with('locale', $locale)
             ->with('employees', $employees);

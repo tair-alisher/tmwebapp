@@ -425,3 +425,7 @@ Route::get('/admin/albums/{id}/images/{image_id}/delete', [
     'as' => 'admin.images.delete',
     'uses' => 'ImagesController@delete'
 ]);
+
+/* ********** editor image upload ********** */
+
+Route::post('/admin/images/upload', 'ImagesController@upload');

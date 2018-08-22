@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Intervention;
 
 class PostsRepo extends Repository
 {
@@ -131,5 +132,33 @@ class PostsRepo extends Repository
       ->join('posts', 'post_translations.post_id', '=', 'posts.id')
       ->where('post_translations.locale', $locale)
       ->orderBy('posts.created_at', 'desc');
+  }
+
+  public function formContentWithImages($content)
+  {
+    $dom = new \DomDocument();
+    $dom->load($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    $images = $dom->getElementsByTagName('img');
+    foreach ($images as $image) {
+        $src = $img->getAttribute('src');
+        if (preg_match('/data:image/', $src)) {
+            preg_match('/data:iamge\/(?<mime>.*?)\;/', $src, $groups);
+            $mimetype = $groups['mime'];
+
+            $filename = uniqid();
+            $filepath = '/images/posts/'.$filename.$mimetype;
+
+            $image = Intervention::make($src)
+              ->encode($mimetype, 100)
+              ->save(public_path($filepath));
+
+            $new_src = asset($filepath);
+            $img->removeAttribute('src');
+            $img->setAttribute('src', $new_src);
+        }
+    }
+
+    $content = $dom->saveHTML();
+    return $content;
   }
 }

@@ -176,3 +176,35 @@ function confirmPostDelete() {
 function confirmAlbumDelete() {
   return confirm('Будут удалены ВСЕ изображения данного альбома.\nВы уверены, что хотите удалить данный альбом и все его изображения?');
 }
+
+function initEditorWithImageUploading() {
+  $('#content').summernote({
+    minHeight: '200px',
+    callbacks: {
+      onImageUpload: function(files) {
+        var token = document.getElementsByTagName('input')[0].value;
+        sendFile(files[0], token);
+      }
+    }
+  });
+}
+
+function sendFile(file, token) {
+  data = new FormData();
+  data.append('file', file);
+  data.append('_token', token);
+  $.ajax({
+    data: data,
+    type: 'POST',
+    url: '/ru/admin/images/upload',
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      $('#content').summernote('insertImage', data);
+    },
+    error: function (XMLHttpRequest) {
+      console.log(XMLHttpRequest);
+    }
+  });
+}
