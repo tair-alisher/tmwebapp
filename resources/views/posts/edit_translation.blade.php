@@ -60,6 +60,7 @@
 
           <div class="form-group">
             <button class="btn btn-outline-primary" type="submit">Сохранить</button>
+            <a href="{{ route('admin.posts.duplicate', $post->id) }}" class="btn btn-outline-secondary float-right">Дублировать на другие языки</a>
           </div>
         </form>
       </div>

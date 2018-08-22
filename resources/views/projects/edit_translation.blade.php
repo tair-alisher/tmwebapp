@@ -55,11 +55,12 @@
 
           <div class="form-group">
             <button class="btn btn-outline-primary" type="submit">Сохранить</button>
+            <a href="{{ route('admin.projects.duplicate', $project->id) }}" class="btn btn-outline-secondary float-right">Дублировать на другие языки</a>
           </div>
         </form>
-      </div>   
+      </div>
     </div>
-    
+
   </div>
 </div>
 @endsection

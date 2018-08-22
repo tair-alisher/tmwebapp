@@ -34,7 +34,7 @@ class PostsController extends Controller
     {
         $post = Post::whereTranslation('slug', $slug)
             ->firstOrFail();
-        
+
         if (!$post->slug) { abort(404); }
 
         $pinned_posts = Post::pinnedPosts();
@@ -104,7 +104,7 @@ class PostsController extends Controller
     {
         \Auth::user()->userIs('posts_admin');
         $post = $repo->find($id);
-        
+
         return view('posts.edit')
             ->with('post', $post);
     }
@@ -136,7 +136,7 @@ class PostsController extends Controller
                 'created_at' => $created_at,
                 'pinned' => $pinned
             ]);
-        
+
         return redirect()
             ->route('admin.posts.edit_form', $id)
             ->with('message', 'Изменения сохранены.');
@@ -183,7 +183,7 @@ class PostsController extends Controller
                 'description' => $request['description'],
                 'content' => $request['content']
             ]);
-        
+
         return redirect()
             ->route('admin.posts.edit_translation_form', $slug);
     }
@@ -196,7 +196,7 @@ class PostsController extends Controller
         $slug_ru = $repo->getSlugByLocaleAndPostId('ru', $post->post_id);
         $slug_de = $repo->getSlugByLocaleAndPostId('de', $post->post_id);
         $slug_kg = $repo->getSlugByLocaleAndPostId('kg', $post->post_id);
-        
+
         return view('posts.edit_translation')
             ->with('post', $post)
             ->with('slug_ru', $slug_ru)
@@ -220,7 +220,7 @@ class PostsController extends Controller
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
-        $locale = $repo->getLocaleBySlug($slug);  
+        $locale = $repo->getLocaleBySlug($slug);
         $new_slug = $repo->toSlug($request['title']) . '-' . $locale;
 
         $repo->updateTranslation($slug, [
@@ -229,7 +229,7 @@ class PostsController extends Controller
                 'description' => $request['description'] == null ? '' : $request['description'],
                 'content' => $request['content']
             ]);
-        
+
         return redirect()
             ->route('admin.posts.edit_translation_form', $new_slug)
             ->with('message', 'Изменения сохранены');
@@ -244,5 +244,14 @@ class PostsController extends Controller
         return redirect()
             ->route('admin.posts', 'ru')
             ->with('message', 'Запись удалена.');
+    }
+
+    public function duplicate(PostsRepo $repo, $id)
+    {
+      $slug = $repo->duplicateTranslation($id);
+
+      return redirect()
+        ->route('admin.posts.edit_translation_form', $slug)
+        ->with('message', 'Записи на других языках теперь заполнены аналогично.');
     }
 }

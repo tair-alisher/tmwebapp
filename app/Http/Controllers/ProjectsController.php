@@ -45,7 +45,7 @@ class ProjectsController extends Controller
         $projects = $repo
             ->getItemsByLocale($locale)
             ->paginate(10);
-        
+
         return view('projects.projects')
             ->with('locale', $locale)
             ->with('projects', $projects);
@@ -222,5 +222,14 @@ class ProjectsController extends Controller
         return redirect()
             ->route('admin.projects', 'ru')
             ->with('message', 'Запись удалена.');
+    }
+
+    public function duplicate(ProjectsRepo $repo, $id)
+    {
+      $slug = $repo->duplicateTranslation($id);
+
+      return redirect()
+        ->route('admin.projects.edit_translation_form', $slug)
+        ->with('message', 'Записи на других языках теперь заполнены аналогично.');
     }
 }

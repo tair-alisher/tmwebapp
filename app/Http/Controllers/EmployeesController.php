@@ -260,4 +260,13 @@ class EmployeesController extends Controller
             ->route('admin.employees', 'ru')
             ->with('message', 'Запись удалена.');
     }
+
+    public function duplicate(EmployeesRepo $repo, $id)
+    {
+      $translation_id = $repo->duplicateTranslation($id);
+
+      return redirect()
+        ->route('admin.employees.edit_translation_form', $translation_id)
+        ->with('message', 'Записи на других языках теперь заполнены аналогично.');
+    }
 }

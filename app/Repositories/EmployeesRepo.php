@@ -59,11 +59,63 @@ class EmployeesRepo extends Repository
       ->insertGetId($data);
   }
 
+  public function updateTranslation($translation_id, $data)
+  {
+    DB::table('employee_translations')
+      ->where('id', $translation_id)
+      ->update($data);
+  }
+
   public function deleteTranslations($employee_id)
   {
     DB::table('employee_translations')
       ->where('employee_id', $employee_id)
       ->delete();
+  }
+
+  public function duplicateTranslation($id)
+  {
+    $langs = ['ru', 'de', 'kg'];
+
+    $translation = DB::table('employee_translations')
+      ->where('id', $id)
+      ->first();
+
+    $translations = DB::table('employee_translations')
+      ->where('employee_id', $translation->employee_id)
+      ->where('locale', '!=', $translation->locale)
+      ->get();
+
+    if (count($translations) < (count($langs) - 1)) {
+      unset($langs[array_search($translation->locale, $langs)]);
+      foreach ($translations as $trans) {
+        unset($langs[array_search($translation->locale, $langs)]);
+      }
+
+      foreach ($langs as $locale) {
+        $this->createTranslation([
+          'employee_id' => $translation->employee_id,
+          'locale' => $locale,
+          'name' => $translation->name,
+          'slug' => $translation->slug . '-' . $locale,
+          'position' => $translation->position,
+          'degree' => $translation->degree,
+          'info' => $translation->info
+        ]);
+      }
+    } else {
+      foreach ($translations as $trans) {
+        $this->updateTranslation($trans->id, [
+          'name' => $translation->name,
+          'slug' => $translation->slug . '-' . $trans->locale,
+          'position' => $translation->position,
+          'degree' => $translation->degree,
+          'info' => $translation->info
+        ]);
+      }
+    }
+
+    return $translation->id;
   }
 
   public function getTranslationId($locale, $employee_id)
@@ -72,13 +124,6 @@ class EmployeesRepo extends Repository
       ->where('locale', $locale)
       ->where('employee_id', $employee_id)
       ->value('id');
-  }
-
-  public function updateTranslation($translation_id, $data)
-  {
-    DB::table('employee_translations')
-      ->where('id', $translation_id)
-      ->update($data);
   }
 
   public function getImage($employee_id)
